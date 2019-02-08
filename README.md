@@ -11,7 +11,7 @@ This auth starter implements withAuthenticator HOC to provide a basic authentica
 1. <a class="github-button" href="https://github.com/aws-samples/create-react-app-auth-amplify/fork" data-icon="octicon-repo-forked" aria-label="Fork repo">Fork repo</a>
 
 
-2. Clone clone locally 
+2. Clone locally 
 ```
 git clone git@github.com:<your-username>/create-react-app-auth-amplify.git
 ```
