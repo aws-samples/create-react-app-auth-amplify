@@ -8,9 +8,14 @@ This auth starter implements a basic authentication flow for signing up signing 
 
 ## Getting started
 
-1. Fork repo and then clone locally 
+1. Fork repo 
+<!-- Place this tag where you want the button to render. -->
+<a class="github-button" href="https://github.com/aws-samples/create-react-app-auth-amplify/fork" data-icon="octicon-repo-forked" aria-label="Fork ntkme/github-buttons on GitHub">Fork</a>
+
+
+2. Clone clone locally 
 ```
-git clone git@github.com:<username>/create-react-app-auth-amplify.git
+git clone git@github.com:<your-username>/create-react-app-auth-amplify.git
 ```
 
 2. Change into the new directory
