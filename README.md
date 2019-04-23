@@ -20,10 +20,11 @@ The Amplify Console will first deploy a backend, and then build and deploy your 
 
 ```
 git clone git@github.com:<username>/create-react-app-auth-amplify.git
-cd create-react-app-auth-amplify
+
+cd create-react-app-auth-amplify && npm install
 ```
 
-2. Import the backend environemtn deployed by the Amplify Console to your repo (the `amplify/team-provider.json` file contains information on all your backend environments). After running this command your `amplify/team-provider.json` should have a backend named `amplify`.
+2. Import the backend environment deployed by the Amplify Console to your repo (the `amplify/team-provider.json` file contains information on all backend environments in your AWS account). After running this command your `amplify/team-provider.json` should have a backend named `amplify`.
 
 ```
 amplify env import --name amplify --config "{<stack-info>}" --awsInfo "{\"configLevel\":\"project\",\"useProfile\":true,\"profileName\":\"default\"}" --yes
