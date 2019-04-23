@@ -24,10 +24,14 @@ git clone git@github.com:<username>/create-react-app-auth-amplify.git
 cd create-react-app-auth-amplify && npm install
 ```
 
-2. Import the backend environment deployed by the Amplify Console to your repo (the `amplify/team-provider.json` file contains information on all backend environments in your AWS account). After running this command your `amplify/team-provider.json` should have a backend named `amplify`.
+2. Import the backend environment deployed by the Amplify Console to your repo (the `amplify/team-provider.json` file contains information on all backend environments in your AWS account). The GIF below shows how you to copy the `amplify env import` command from the Amplify Console. 
+
+<!-- <img src="https://github.com/swaminator/gatsby-auth-starter-aws-amplify/blob/master/src/images/import-backend.gif" width="800"/> -->
+
+3. Paste this command into your terminal at the root of your repo. You should see the `amplify/team-provider.json` updated with a backend named `amplify`.
 
 ```
-amplify env import --name amplify --config "{<stack-info>}" --awsInfo "{\"configLevel\":\"project\",\"useProfile\":true,\"profileName\":\"default\"}" --yes
+amplify env import --name amplify --config "{<stack>}" --awsInfo "{<profile>}" --yes
 
 Successfully added environment from your project
 ```
@@ -39,7 +43,6 @@ amplify init
 ? Do you want to use an existing environment? Yes
 ? Choose the environment you would like to use: (Use arrow keys)
 > amplify
-
 ```
 
 4. Run locally
