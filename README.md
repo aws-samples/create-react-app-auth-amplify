@@ -52,7 +52,3 @@ The Amplify Console will first deploy a backend, and then build and deploy your 
   ```
 
 Learn how to customize the sign-in UI [here](https://aws-amplify.github.io/docs/js/authentication#customize-ui).
-
-<!-- <img src="https://github.com/swaminator/gatsby-auth-starter-aws-amplify/blob/master/src/images/amplify-console.gif" width="800"/> -->
-![Amplify Console](src/images/amplifyconsole-cra.gif)
-
