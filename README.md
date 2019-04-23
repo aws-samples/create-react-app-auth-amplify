@@ -12,7 +12,7 @@ The AWS Amplify Console provides hosting for fullstack serverless web apps. [Lea
 
 [![amplifybutton](https://oneclick.amplifyapp.com/button.svg)](https://console.aws.amazon.com/amplify/home#/deploy?repo=https://github.com/aws-samples/create-react-app-auth-amplify)
 
-The Amplify Console will first deploy a backend, and then build and deploy your frontend available at `https://master.appid.amplifyapp.com`.
+The Amplify Console will fork this repo in your GitHub account, and then build and deploy your backend and frontend in a single workflow. Your app will be available at `https://master.appid.amplifyapp.com`.
 
 ## Run locally with the Amplify CLI
 
