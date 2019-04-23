@@ -45,7 +45,6 @@ amplify init
 
 ```
 npm start
-
 ```
 
 Learn how to customize the sign-in UI [here](https://aws-amplify.github.io/docs/js/authentication#customize-ui).
