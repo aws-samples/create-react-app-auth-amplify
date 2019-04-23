@@ -26,7 +26,7 @@ The Amplify Console will first deploy a backend, and then build and deploy your 
 
 2. Import the backend environment deployed by the Amplify Console to your repo (the `amplify/team-provider.json` file contains information on all backend environments in your AWS account). The GIF below shows how you to copy the `amplify env import` command from the Amplify Console. 
 
-<img src="https://github.com/swaminator/gatsby-auth-starter-aws-amplify/blob/master/src/images/import-backend.gif" width="800"/>
+<img src="https://github.com/aws-samples/create-react-app-auth-amplify/blob/master/src/images/import-backend.gif" width="800"/>
 
 3. Paste this command into your terminal at the root of your repo. You should see the `amplify/team-provider.json` updated with a backend named `amplify`.
 
