@@ -51,4 +51,4 @@ The Amplify Console will fork this repo in your GitHub account, and then build a
   npm start
   ```
 
-Learn how to customize the sign-in UI [here](https://aws-amplify.github.io/docs/js/authentication#customize-ui).
+Checkout Nader Dabit's [Complete Guide to User Authentication](https://dev.to/dabit3/the-complete-guide-to-user-authentication-with-the-amplify-framework-2inh).
