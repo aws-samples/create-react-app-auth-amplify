@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './swaut.jpg';
+import logo from './images/swaut.jpg';
 import './App.css';
 import { withAuthenticator } from 'aws-amplify-react'
 import Amplify, { Auth } from 'aws-amplify';
