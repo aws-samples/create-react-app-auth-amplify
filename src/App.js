@@ -29,4 +29,9 @@ class App extends Component {
   }
 }
 
-export default withAuthenticator(App, true);
+export default withAuthenticator(App, {
+  includeGreetings : true,
+  authenticatorComponents : [],
+  federated : null,
+  theme : { button : {backgroundcolor : "green"}}
+});
