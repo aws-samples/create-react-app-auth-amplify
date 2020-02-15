@@ -31,19 +31,10 @@ The Amplify Console will fork this repo in your GitHub account, and then build a
 3. Paste this command into your terminal at the root of your repo. You should see the `amplify/team-provider.json` updated with a backend named `amplify`.
 
   ```
-  amplify env import --name amplify --config "{<stack>}" --awsInfo "{<profile>}" --yes
-
-  Successfully added environment from your project
+  amplify pull
   ```
 
-3. Initialize the Amplify CLI with the `amplify` environment.
-
-  ```
-  amplify init
-  ? Do you want to use an existing environment? Yes
-  ? Choose the environment you would like to use: (Use arrow keys)
-  > amplify
-  ```
+![img](src/images/amplify-pull.gif)
 
 4. Run locally
 
