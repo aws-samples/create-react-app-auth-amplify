@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "aws-amplify": "^2.2.0",
-    "aws-amplify-react": "^3.1.1",
+    "aws-amplify": "^3.0.8",
+    "aws-amplify-react": "^4.1.2",
     "bootstrap": "^4.4.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
