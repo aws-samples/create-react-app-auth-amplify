@@ -1,0 +1,20 @@
+.event {
+    min-height: 200px;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 3px #ccc;
+    padding: 16px;
+    text-align: left;
+    width: 150px;
+    margin: 10px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.event-date {
+    color: #777777;
+    font-size: 16px;
+}
+
+.event-title {
+    color: #282c34;
+}

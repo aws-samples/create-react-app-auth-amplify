@@ -1,14 +1,14 @@
 {
-    "eventsdev": {
+    "devc": {
         "awscloudformation": {
-            "AuthRoleName": "amplify-authcra-eventsdev-151152-authRole",
-            "UnauthRoleArn": "arn:aws:iam::995789409065:role/amplify-authcra-eventsdev-151152-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::995789409065:role/amplify-authcra-eventsdev-151152-authRole",
+            "AuthRoleName": "amplify-authcra-devc-120550-authRole",
+            "UnauthRoleArn": "arn:aws:iam::995789409065:role/amplify-authcra-devc-120550-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::995789409065:role/amplify-authcra-devc-120550-authRole",
             "Region": "us-east-1",
-            "DeploymentBucketName": "amplify-authcra-eventsdev-151152-deployment",
-            "UnauthRoleName": "amplify-authcra-eventsdev-151152-unauthRole",
-            "StackName": "amplify-authcra-eventsdev-151152",
-            "StackId": "arn:aws:cloudformation:us-east-1:995789409065:stack/amplify-authcra-eventsdev-151152/31e43bc0-9125-11ea-8e3e-12dace8e8b83",
+            "DeploymentBucketName": "amplify-authcra-devc-120550-deployment",
+            "UnauthRoleName": "amplify-authcra-devc-120550-unauthRole",
+            "StackName": "amplify-authcra-devc-120550",
+            "StackId": "arn:aws:cloudformation:us-east-1:995789409065:stack/amplify-authcra-devc-120550/42e474e0-9124-11ea-ba6e-0ee829539650",
             "AmplifyAppId": "d1wzvcbhccbp4k"
         },
         "categories": {

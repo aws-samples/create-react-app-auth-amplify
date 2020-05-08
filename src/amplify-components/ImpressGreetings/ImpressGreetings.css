@@ -1,0 +1,19 @@
+.amplify-nav-right {
+    display: flex;
+    align-items: baseline;
+}
+
+.amplify-nav-right a {
+    flex: 0 1 100px;
+    color: black;
+}
+
+.amplify-nav-right a.active {
+    color: orange;
+}
+
+.amplify-nav-right span {
+    text-align: end;
+    flex: 1 1 auto;
+    padding-right: 10px;
+}

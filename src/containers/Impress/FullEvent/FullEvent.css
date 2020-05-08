@@ -1,0 +1,52 @@
+.EventWrapper {
+    width: 80%;
+    max-width: 400px;
+    margin: 20px auto;
+}
+
+.FullEvent {
+    border: 1px solid #eee;
+    box-shadow: 0 2px 3px #ccc;
+    text-align: left;
+    padding: 10px;
+}
+
+.buttons {
+    margin-top: 16px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.btn {
+    font-family: "Amazon Ember","Helvetica Neue Light","Helvetica Neue","Helvetica" ,"Arial","sans-serif";
+    display: inline-block;
+    width: 120px;
+    text-decoration: none;
+    font-size: 12px;
+    height: 45px;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    color: black;
+    font-width: 400;
+    line-height: 45px;
+    cursor: pointer;
+}
+
+.success {
+    background-color: #FF9900;
+    color: white;
+}
+
+.delete {
+    background-color: #cccccc;
+}
+
+.event-date {
+    color: #777777;
+    font-size: 16px;
+}
+
+.event-title {
+    color: #282c34;
+}

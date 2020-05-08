@@ -1,7 +1,7 @@
 {
     "identityPoolName": "cognitocf0c6096_identitypool_cf0c6096",
     "allowUnauthenticatedIdentities": true,
-    "resourceNameTruncated": "cognitf04bf5a2",
+    "resourceNameTruncated": "cognit094c49f4",
     "userPoolName": "cognitocf0c6096_userpool_cf0c6096",
     "autoVerifiedAttributes": [
         "email"

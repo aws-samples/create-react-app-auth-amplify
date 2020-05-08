@@ -1,0 +1,4 @@
+.events {
+    display: flex;
+    flex-flow: row;
+}
