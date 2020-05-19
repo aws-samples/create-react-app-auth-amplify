@@ -3,6 +3,7 @@ export const GET_EVENT = 'GET_EVENT';
 export const UPDATE_EVENT = 'UPDATE_EVENT';
 export const ADD_EVENT = 'ADD_EVENT';
 export const DELETE_EVENT = 'DELETE_EVENT';
+export const GET_DATE = 'GET_DATE';
 
 export const getEvents = (events) => {
     return {
@@ -36,5 +37,12 @@ export const deleteEvent = (eventId) => {
     return {
         type: DELETE_EVENT,
         eventId: eventId
+    };
+};
+
+export const getDate = (currentDate) => {
+    return {
+        type: GET_DATE,
+        currentDate: currentDate
     };
 };

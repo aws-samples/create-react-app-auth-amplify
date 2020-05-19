@@ -28,16 +28,16 @@ const eventForm = {
         value: ''
     },
     date: {
-        elementType: 'input',
+        elementType: 'datepicker',
         elementConfig: {
             type: 'text',
             placeholder: 'Date'
         },
         validation: {
-            required: true
+            required: false
         },
         label: 'Date',
-        valid: false,
+        valid: true,
         touched: false,
         value: ''
     },

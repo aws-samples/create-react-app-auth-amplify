@@ -11,12 +11,12 @@ import config from './config';
 // }
 
 const EventsApi = {
-    async getEvents()
+    async getEvents(startDate, endDate)
     {
         return API.get(config.apiName, config.basePath, { // OPTIONAL
             headers: { Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}` },
             response: true, // OPTIONAL (return the entire Axios response object instead of only response.data)
-            queryStringParameters: {from: "2000-01-01", to: "2020-12-31"}
+            queryStringParameters: {from: startDate, to: endDate}
         }).then(response => response).catch(error => {
             //TODO catch
         });
@@ -75,6 +75,18 @@ const EventsApi = {
         }).catch(error => {
             //TODO catch
         });
-    }
+    },
+
+    async getUserEvent(userId, eventId)
+    {
+        let path = config.basePath + 'events/' + userId + '/' + eventId;
+        return API.get(config.apiName, path, { // OPTIONAL
+            headers: { },
+            response: true, // OPTIONAL (return the entire Axios response object instead of only response.data)
+            queryStringParameters: {}
+        }).then(response => response).catch(error => {
+            console.log(error.response)
+        });
+    },
 }
 export default EventsApi;

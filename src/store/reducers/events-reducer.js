@@ -5,7 +5,7 @@ const initialState = {
     currentEvent: null
 };
 
-const reducer = ( state = initialState, action ) => {
+const eventsReducer = (state = initialState, action ) => {
     switch ( action.type ) {
         case actionTypes.GET_EVENTS:
             return {
@@ -29,4 +29,4 @@ const reducer = ( state = initialState, action ) => {
     }
 };
 
-export default reducer;
+export default eventsReducer;

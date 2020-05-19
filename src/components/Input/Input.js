@@ -1,6 +1,10 @@
 import React from 'react';
 
 import './Input.css';
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
+
 
 const input = ( props ) => {
     let inputElement = null;
@@ -30,13 +34,22 @@ const input = ( props ) => {
                 <select
                     className={inputClasses.join(' ')}
                     value={props.value}
-                    onChange={props.changed}>
+                    onChange={date => props.changed(date)}>
                     {props.elementConfig.options.map(option => (
                         <option key={option.value} value={option.value}>
                             {option.displayValue}
                         </option>
                     ))}
                 </select>
+            );
+            break;
+        case ( 'datepicker' ):
+            inputElement = (
+                <DatePicker
+                    dateFormat="yyyy-MM-dd"
+                    onChange={date => props.changed(date)}
+                    selected={props.value === '' ? new Date() : new Date(props.value)}
+                />
             );
             break;
         default:

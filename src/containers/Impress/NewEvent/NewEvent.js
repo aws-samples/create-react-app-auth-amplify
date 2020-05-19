@@ -6,6 +6,7 @@ import EventsApi from "../../../api/EventsApi";
 import * as actionCreators from "../../../store/actions/actions";
 import {connect} from "react-redux";
 import {Redirect} from "react-router";
+import moment from "moment";
 
 class NewEvent extends Component {
     state = {
@@ -26,11 +27,26 @@ class NewEvent extends Component {
         this.setState({form: updatedForm});
     }
 
+    dateChangeHandler = (currentDate) => {
+        const theDate = moment(currentDate);
+        const updatedForm = {
+            ...this.state.form
+        };
+        const updatedFormElement = {
+            ...updatedForm['date']
+        };
+        updatedFormElement.value = theDate.format('YYYY-MM-DD');
+        updatedForm['date'] = updatedFormElement;
+        this.setState({form: updatedForm});
+    }
+
     checkValidity = (value, rules) => {
         let isValid = false;
 
         if (rules.required) {
             isValid = value.trim() !== '';
+        } else {
+            return true;
         }
 
         return isValid;
@@ -71,7 +87,7 @@ class NewEvent extends Component {
                     <div className="UpdateEvent">
                         {formElementsArray.map(formElement => (
                             <Input
-                                changed={this.inputChangedHandler}
+                                changed={formElement.id === 'date' ? this.dateChangeHandler : this.inputChangedHandler}
                                 key={formElement.id}
                                 invalid={!formElement.config.valid}
                                 touched={formElement.config.touched}
