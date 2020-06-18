@@ -64,6 +64,10 @@ class UserEvent extends Component {
         this.setState({hasSelectedImages: hasSelectedItems});
     }
 
+    cancelHandler = () => {
+        this.props.history.goBack();
+    }
+
     deleteImagesHandler = () => {
         Promise.all(this.album.current.state.items.map(item => {
             if(item.selected) {
@@ -98,7 +102,7 @@ class UserEvent extends Component {
                         <S3Album ref={this.album} path={this.getAlbumPath()} picker select theme={FullEventTheme}  onSelect={this.onSelectHandler}/>
                     </div>
                     <div className="buttons">
-                        <Link className="btn success" to={'/update/' + this.props.currentEvent.id}>
+                        <Link className="btn success" to={'/my-events/update/' + this.props.currentEvent.id}>
                             UPDATE
                         </Link>
                         <div className="Edit">
@@ -106,6 +110,9 @@ class UserEvent extends Component {
                         </div>
                         <div className="Edit">
                             <button onClick={this.deleteImagesHandler} className={`btn ${this.state.hasSelectedImages ? "success" : "delete"}`}>DELETE SELECTED</button>
+                        </div>
+                        <div className="Edit">
+                            <button onClick={this.cancelHandler} className={"btn delete"}>CANCEL</button>
                         </div>
                     </div>
                 </div>
@@ -117,7 +124,7 @@ class UserEvent extends Component {
 
 const mapStateToProps = state => {
     return {
-        currentEvent: state.currentEvent
+        currentEvent: state.eventsData.currentEvent
     };
 };
 

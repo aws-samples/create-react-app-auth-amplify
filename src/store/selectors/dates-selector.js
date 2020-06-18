@@ -2,19 +2,31 @@ import moment from "moment";
 
 export const getDatesInfo = (currentDate) => {
     const theDate = moment(currentDate);
-    const firstDate = theDate.clone().startOf('week').format('YYYY-MM-DD');
-    const endDate = theDate.clone().endOf('week').format('YYYY-MM-DD');
+    const firstDate = theDate.clone().startOf('week');
+    const firstDateStr = firstDate.format('YYYY-MM-DD');
+    const endDate = theDate.clone().endOf('week');
+    const endDateStr = endDate.format('YYYY-MM-DD');
+    let range = [];
+    let curDate = firstDate.clone();
+    while(curDate.isBefore(endDate) || curDate.isSame(endDate)) {
+        range.push({
+           key: curDate.format('YYYY-MM-DD'),
+           caption: curDate.format('dddd, D MMM')
+        });
+        curDate.add(1, 'day');
+    }
     const previousDate = theDate.clone().subtract(7, 'days').format('YYYY-MM-DD');
     const nextDate = theDate.clone().add(7, 'days').format('YYYY-MM-DD');
     const theWeek = theDate.week();
 
     return {
         currentDate: new Date(currentDate),
-        startDate: firstDate,
-        endDate: endDate,
+        startDate: firstDateStr,
+        endDate: endDateStr,
         week: theWeek,
         previousDate: previousDate,
-        nextDate: nextDate
+        nextDate: nextDate,
+        datesRange: range
     }
 }
 

@@ -1,14 +1,14 @@
 const eventForm = {
     id: {
-        elementType: 'input',
+        elementType: 'hidden',
         elementConfig: {
             type: 'text',
             placeholder: 'Event'
         },
         validation: {
-            required: true
+            required: false
         },
-        valid: false,
+        valid: true,
         touched: false,
         label: 'Event',
         value: ''

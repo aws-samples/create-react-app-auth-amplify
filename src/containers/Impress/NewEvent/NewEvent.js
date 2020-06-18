@@ -7,6 +7,7 @@ import * as actionCreators from "../../../store/actions/actions";
 import {connect} from "react-redux";
 import {Redirect} from "react-router";
 import moment from "moment";
+import slugify from "slugify";
 
 class NewEvent extends Component {
     state = {
@@ -58,12 +59,17 @@ class NewEvent extends Component {
         for (let formElementIdentifier in this.state.form) {
             formData[formElementIdentifier] = this.state.form[formElementIdentifier].value;
         }
+        formData['id'] = formData['date'] + "-" + slugify(formData['title']);
         EventsApi.addEvent(formData).then(response => {
             this.setState({form: null});
             this.props.onAddEvent(formData);
         }).catch(error => {
             //TODO catch
         })
+    }
+
+    cancelHandler = () => {
+        this.props.history.goBack();
     }
 
     state = {
@@ -83,7 +89,7 @@ class NewEvent extends Component {
         return (
             <div className="NewEvent">
                 <form onSubmit={this.addEventHandler}>
-                    <h1>Add an Impression</h1>
+                    <h1>Add an event</h1>
                     <div className="UpdateEvent">
                         {formElementsArray.map(formElement => (
                             <Input
@@ -98,6 +104,7 @@ class NewEvent extends Component {
                         ))}
                     </div>
                     <button className="btn">ADD</button>
+                    <button type={"button"} onClick={this.cancelHandler} className={"btn delete"}>CANCEL</button>
                 </form>
             </div>
         );

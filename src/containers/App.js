@@ -8,12 +8,10 @@ import Impress from './Impress/Impress';
 Amplify.configure({...aws_exports, ...api_config});
 
 class App extends Component {
-
-
   render () {
     return (
           <div className="App">
-            <Impress />
+            <Impress authState={this.props.authState} />
           </div>
     );
   }

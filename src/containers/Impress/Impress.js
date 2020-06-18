@@ -7,16 +7,29 @@ import FullEvent from "./FullEvent/FullEvent";
 import UserEvent from "./UserEvent/UserEvent";
 import UpdateEvent from "./UpdateEvent/UpdateEvent";
 
-const impress = (props ) =>  (
-    <div>
-    <Switch>
-        <Route path="/" exact component={Eevents} />
-        <Route path="/new" component={NewEvent} />
-        <Route path="/my-impressions/:eventId" component={FullEvent} />
-        <Route path="/update/:eventId" component={UpdateEvent} />
-        <Route path="/:userId/:eventId" component={UserEvent} />
-    </Switch>
-    </div>
-);
+const impress = (props ) =>  {
+
+    const loggedInRoutes =
+        <Switch>
+            <Route path="/" exact component={Eevents} />
+            <Route path="/my-events/new" component={NewEvent} />
+            <Route path="/my-events/update/:eventId" component={UpdateEvent} />
+            <Route path="/my-events/:eventId" component={FullEvent} />
+            <Route path="/:userId/:eventId" component={UserEvent} />
+        </Switch>;
+
+    const loggedOutRoutes =
+        <Switch>
+            <Route path="/:userId/:eventId" component={UserEvent} />
+        </Switch>;
+
+    const actualRoutes = props.authState === 'signedIn' ? loggedInRoutes : loggedOutRoutes;
+
+    return (
+        <div>
+            {actualRoutes}
+        </div>
+    );
+}
 
 export default impress;

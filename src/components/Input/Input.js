@@ -52,6 +52,12 @@ const input = ( props ) => {
                 />
             );
             break;
+        case ( 'hidden' ):
+            inputElement = (
+                <input type={"hidden"}
+                    value={props.value} />
+            );
+            break;
         default:
             inputElement = <input
                 className={inputClasses.join(' ')}

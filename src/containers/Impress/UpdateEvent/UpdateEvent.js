@@ -5,6 +5,7 @@ import eventForm from "../../../forms/event-form";
 import EventsApi from "../../../api/EventsApi";
 import * as actionCreators from "../../../store/actions/actions";
 import {connect} from "react-redux";
+import moment from "moment";
 
 class UpdateEvent extends Component {
 
@@ -43,6 +44,19 @@ class UpdateEvent extends Component {
         this.setState({form: updatedForm});
     }
 
+    dateChangeHandler = (currentDate) => {
+        const theDate = moment(currentDate);
+        const updatedForm = {
+            ...this.state.form
+        };
+        const updatedFormElement = {
+            ...updatedForm['date']
+        };
+        updatedFormElement.value = theDate.format('YYYY-MM-DD');
+        updatedForm['date'] = updatedFormElement;
+        this.setState({form: updatedForm});
+    }
+
     checkValidity = (value, rules) => {
         let isValid = false;
 
@@ -67,6 +81,10 @@ class UpdateEvent extends Component {
         })
     }
 
+    cancelHandler = () => {
+        this.props.history.goBack();
+    }
+
     state = {
         form: eventForm
     }
@@ -88,7 +106,7 @@ class UpdateEvent extends Component {
                         <div className="UpdateEvent">
                             {formElementsArray.map(formElement => (
                                 <Input
-                                    changed={this.inputChangedHandler}
+                                    changed={formElement.id === 'date' ? this.dateChangeHandler : this.inputChangedHandler}
                                     key={formElement.id}
                                     invalid={!formElement.config.valid}
                                     touched={formElement.config.touched}
@@ -99,6 +117,7 @@ class UpdateEvent extends Component {
                             ))}
                         </div>
                         <button className="btn">UPDATE</button>
+                        <button type={"button"} onClick={this.cancelHandler} className={"btn delete"}>CANCEL</button>
                     </form>
                 </div>
             );
@@ -110,7 +129,7 @@ class UpdateEvent extends Component {
 
 const mapStateToProps = state => {
     return {
-        currentEvent: state.currentEvent
+        currentEvent: state.eventsData.currentEvent
     };
 };
 

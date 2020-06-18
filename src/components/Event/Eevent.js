@@ -3,8 +3,7 @@ import './Eevent.css';
 
 const eevent = (props ) =>  (
         <div className="event" onClick={props.clicked}>
-            <span className="event-date">{props.data.day}</span>
-            <h2 className="event-title">{props.data.name}</h2>
+            <p className="event-title">{props.data.name}</p>
         </div>
 );
 

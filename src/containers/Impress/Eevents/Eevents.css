@@ -1,4 +1,10 @@
 .events {
+    width: 100%;
     display: flex;
     flex-flow: row;
+    justify-content: space-around;
+}
+
+.date-info {
+    text-align: left;
 }

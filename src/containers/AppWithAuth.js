@@ -3,18 +3,35 @@ import config from '../aws-exports';
 import {ImpressGreetings} from "../amplify-components/ImpressGreetings/ImpressGreetings";
 import App from "./App";
 import {Authenticator, Greetings} from "aws-amplify-react";
+import Auth from "@aws-amplify/auth";
 
 class AppWithAuth extends React.Component {
+
+    state = {authState: 'loading'};
+
     render() {
-        console.log(this.props);
+        console.log(this.props.location);
         return (
-                this.props.location !== '/impressions'
-                ? <Authenticator hide={[Greetings]} amplifyConfig={config}>
+                <Authenticator hide={[Greetings]} amplifyConfig={config}>
                     <ImpressGreetings override={Greetings} />
-                    <App auth={true} />
+                    <App authState={this.state.authState} />
                 </Authenticator>
-                : <App auth={false} />
         );
+    }
+
+    componentDidMount() {
+        Auth.currentAuthenticatedUser()
+            .then(user => {
+                console.log(user);
+                if (user) {
+                    this.setState({authState: 'loggedIn'});
+                } else {
+                    this.setState({authState: 'loggedOut'});
+                }
+            })
+            .catch(err => {
+                this.setState({authState: 'loggedOut'});
+            });
     }
 }
 

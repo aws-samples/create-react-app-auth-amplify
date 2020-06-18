@@ -42,7 +42,7 @@ class UserEvent extends Component {
 
 const mapStateToProps = state => {
     return {
-        currentEvent: state.currentEvent
+        currentEvent: state.eventsData.currentEvent
     };
 };
 

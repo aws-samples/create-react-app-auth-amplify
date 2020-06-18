@@ -1,0 +1,9 @@
+.day {
+    margin: 8px;
+    background-color: #eeeeee;
+    min-width: 160px;
+}
+
+.day .day-title {
+    font-size: 16px;
+}

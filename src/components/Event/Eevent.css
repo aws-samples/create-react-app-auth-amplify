@@ -1,20 +1,17 @@
 .event {
-    min-height: 200px;
+    min-height: 32px;
     border: 1px solid #eee;
     box-shadow: 0 2px 3px #ccc;
     padding: 16px;
     text-align: left;
-    width: 150px;
+    width: calc(100% - 52px);
     margin: 10px;
     text-decoration: none;
     display: inline-block;
-}
-
-.event-date {
-    color: #777777;
-    font-size: 16px;
+    background-color: blanchedalmond;
 }
 
 .event-title {
     color: #282c34;
+    font-weight: bold;
 }

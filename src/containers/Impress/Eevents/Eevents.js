@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Eevent from "../../../components/Event/Eevent";
+import Day from "../../../components/Day/Day";
 import './Eevents.css';
 import {Link} from "react-router-dom";
 import EventsApi from "../../../api/EventsApi";
@@ -8,6 +8,7 @@ import {connect} from "react-redux";
 import {getDatesInfo} from "../../../store/selectors/dates-selector";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import {getSortedEvents} from "../../../store/selectors/events-selector";
 
 class EverydayEvents extends Component
 {
@@ -31,24 +32,20 @@ class EverydayEvents extends Component
 
     render()
     {
-        const events  = this.props.events.map(eevent => {
-            return (
-            <Link to={'/my-impressions/' + eevent.id} key={eevent.id}>
-                <Eevent data={eevent} />
-            </Link>
-            )
+        const dates = this.props.dateInfo.datesRange.map(day => {
+            return <Day key={day.key} caption={day.caption} items={this.props.eventsByDate[day.key] || []}/>
         });
 
         return (
             <div>
-                <div>
-                    Current date: <DatePicker selected={this.props.dateInfo.currentDate} dateFormat={'yyyy-MM-dd'} onChange={date => {this.props.onSetDate(date)}} />
-                    <p>From {this.props.dateInfo.startDate} to {this.props.dateInfo.endDate}</p>
-                    <button onClick={()=>{this.props.onSetDate(this.props.dateInfo.previousDate)}}>Back</button>
-                    <button onClick={()=>{this.props.onSetDate(this.props.dateInfo.nextDate)}}>Next</button>
+                <div className={"date-info"}>
+                    <div>Current date: <DatePicker selected={this.props.dateInfo.currentDate} onChange={date => {this.props.onSetDate(date)}} /></div>
+                    <h3>Week {this.props.dateInfo.week} ({this.props.dateInfo.startDate} - {this.props.dateInfo.endDate})</h3>
                 </div>
                 <section className="events">
-                    { events }
+                    <button onClick={()=>{this.props.onSetDate(this.props.dateInfo.previousDate)}}>&lt;</button>
+                    { dates }
+                    <button onClick={()=>{this.props.onSetDate(this.props.dateInfo.nextDate)}}>&gt;</button>
                 </section>
             </div>
         );
@@ -57,7 +54,7 @@ class EverydayEvents extends Component
 
 const mapStateToProps = state => {
     return {
-        events: state.eventsData.events,
+        eventsByDate: getSortedEvents(state.eventsData.events),
         currentDate: state.datesData.currentDate,
         dateInfo: getDatesInfo(state.datesData.currentDate)
     };

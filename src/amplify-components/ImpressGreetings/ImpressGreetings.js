@@ -20,8 +20,8 @@ export class ImpressGreetings extends Greetings {
             <NavBar theme={theme}>
                 <Nav theme={theme}>
                     <NavRight theme={theme}>
-                        <NavLink exact to="/">Home</NavLink>
-                        <NavLink to="/new">Add new</NavLink>
+                        <NavLink exact to="/">My events</NavLink>
+                        <NavLink to="/my-events/new">Add event</NavLink>
                         {greeting}
                     </NavRight>
                 </Nav>
