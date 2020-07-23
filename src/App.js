@@ -1,14 +1,20 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
+import VideoPlayer from "./components/VideoPlayer";
+
+// Amplify
 import { withAuthenticator } from "aws-amplify-react";
-import Amplify, { Auth } from "aws-amplify";
+import Amplify from "aws-amplify";
 import aws_exports from "./aws-exports";
 Amplify.configure(aws_exports);
 
 class App extends Component {
   render() {
-    return <div></div>;
+    return (
+      <>
+        <VideoPlayer videoUrl="https://www.youtube.com/watch?v=ysz5S6PUM-U" />
+      </>
+    );
   }
 }
 
