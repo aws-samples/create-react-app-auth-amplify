@@ -10,6 +10,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "^3.4.1",
+    "react-player": "^2.5.0",
     "styled-components": "^5.1.1",
     "yarn": "^1.22.4"
   },
