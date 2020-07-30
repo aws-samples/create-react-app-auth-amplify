@@ -1,6 +1,9 @@
 {
-    "projectName": "authcra",
-    "version": "1.0",
+    "providers": [
+        "awscloudformation"
+    ],
+    "projectName": "create-react-app-auth-amplify",
+    "version": "3.0",
     "frontend": "javascript",
     "javascript": {
         "framework": "react",
@@ -10,8 +13,5 @@
             "BuildCommand": "npm run-script build",
             "StartCommand": "npm run-script start"
         }
-    },
-    "providers": [
-        "awscloudformation"
-    ]
+    }
 }
