@@ -3,4 +3,5 @@ type Todo @model {
   name: String!
   description: String
   date: String
+  status: String
 }
