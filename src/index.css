@@ -12,3 +12,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+video {
+  width: 90%;
+  max-width: 1080px;
+  position: relative;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
+  background: black;
+  visibility: hidden;
+}

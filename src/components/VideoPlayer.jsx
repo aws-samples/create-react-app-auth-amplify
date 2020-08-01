@@ -1,17 +1,33 @@
-import React from 'react';
-import ReactPlayer from 'react-player';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
 
-// Video player component docs
-// https://www.npmjs.com/package/react-player
-const VideoPlayer = (props) => {
+class VideoPlayer extends Component {
+  componentDidMount() {
+    // Load ivs script
+    const script = document.createElement("script");
+    script.src = "./ivs-script.js";
+    script.async = true;
+    script.type = "text/jsx";
+    document.body.appendChild(script);
+
+    // Show the video player, inital visibility set to hidden, once component
+    // is loaded visibility is changed to visible
+    document
+      .getElementById("root")
+      .getElementsByTagName("video")[0].style.visibility = "visible";
+  }
+
+  render() {
     return (
-        <ReactPlayer url={props.videoUrl} />
-    )
-}
-
-VideoPlayer.propTypes = {
-    videoUrl: PropTypes.string.isRequired
+      <div>
+        <div data-vjs-player>
+          <video
+            ref={(node) => (this.videoNode = node)}
+            className="video-js"
+          ></video>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default VideoPlayer;
