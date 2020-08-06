@@ -20,7 +20,7 @@ function App() {
         <NavbarFixed />
         <Route exact path="/" component={FullPageIntroWithFixedNavbar} />
         <Route exact path="/login" component={AWSLogin} />
-        <Route exact path="/AboutUs" component={AboutUs} />
+        <Route exact path="/about" component={AboutUs} />
       </BrowserRouter>
     </div>
   );

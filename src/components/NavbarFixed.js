@@ -12,6 +12,8 @@ import {
 import RegisterModal from "./RegisterModal";
 import LoginModal from "./LoginModal";
 import logo from "./assets/fridge_with_open_door_80px.png";
+import { SignOut } from 'aws-amplify-react';
+import  Auth from 'aws-amplify';
 
 export class NavbarFixed extends Component {
   constructor(props) {
@@ -23,6 +25,14 @@ export class NavbarFixed extends Component {
       modalLoginOpen: false,
     };
   }
+
+  // signOut = () => {
+  //     try {
+  //         Auth.signOut();
+  //     } catch (error) {
+  //         console.log('error signing out: ', error);
+  //     }
+  // }
 
   // Open register modal
   handleModalOpen = () => {
@@ -99,6 +109,12 @@ export class NavbarFixed extends Component {
                     </a>
                   </MDBNavItem>
                 )}
+                {/* <MDBNavItem>
+                  <a onClick={this.signOut} className="nav-link">
+                    Log Out
+                  </a>
+                </MDBNavItem> */}
+                <SignOut/>
                 <MDBNavItem>
                   <MDBNavLink to="/about">About Us</MDBNavLink>
                 </MDBNavItem>
