@@ -1,0 +1,26 @@
+/* .row > div {
+    padding: 1rem;
+    border: 2px solid #fff;
+    text-align: center;
+  } */
+
+@media screen and (min-width: 768px) {
+  body {
+    padding-top: 100px;
+  }
+}
+
+.lobster {
+  font-family: "Lobster", cursive;
+  text-align: left;
+  font-size: 3em;
+}
+
+.padding {
+  padding: 1em;
+  text-align: center;
+}
+
+.header-padding {
+  padding-top: 8em;
+}
