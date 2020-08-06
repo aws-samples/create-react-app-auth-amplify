@@ -13,53 +13,69 @@ import RegisterModal from "./RegisterModal";
 import LoginModal from "./LoginModal";
 import logo from "./assets/fridge_with_open_door_80px.png";
 import { SignOut } from 'aws-amplify-react';
-import  Auth from 'aws-amplify';
+import Auth from "@aws-amplify/auth";
 
 export class NavbarFixed extends Component {
   constructor(props) {
     super(props);
     this.state = {
       collapse: false,
-      isWideEnough: false,
-      modalOpen: false,
-      modalLoginOpen: false,
+      isWideEnough: false
+      // modalOpen: false, 
+      // modalLoginOpen: false, 
     };
   }
 
-  // signOut = () => {
-  //     try {
-  //         Auth.signOut();
-  //     } catch (error) {
-  //         console.log('error signing out: ', error);
-  //     }
+  // Cognito sign off
+  signOut() {
+    console.log(localStorage)
+    console.log(localStorage['amplify-authenticator-authState'])
+    // let authState = localStorage['amplify-authenticator-authState'];
+    // console.log(authState)
+    // if (authState === 'signedIn') {
+    //   console.log('logged in')
+    // } else {
+    //   console.log('not logged in')
+    // }
+    // console.log(localStorage['amplify-authenticator-authState']) 
+      try {
+          Auth.signOut();
+      } catch (error) {
+          console.log('error signing out: ', error);
+      }
+  }
+
+  // Stretch plan: convert AWS login/register prompt into react hook modal
+  // Open register modal
+  // handleModalOpen = () => {
+  //   this.setState((prevState) => {
+  //     return {
+  //       modalOpen: !prevState.modalOpen,
+  //     };
+  //   });
+  // };
+
+  // Open login modal
+  // handleModalLoginOpen = () => {
+  //   this.setState((prevState) => {
+  //     return {
+  //       modalLoginOpen: !prevState.modalLoginOpen,
+  //     };
+  //   });
+  // };
+  // Old logout function
+  // logout() {
+  //   localStorage.clear();
+  //   window.location.href = "/";
   // }
 
-  // Open register modal
-  handleModalOpen = () => {
-    this.setState((prevState) => {
-      return {
-        modalOpen: !prevState.modalOpen,
-      };
-    });
-  };
-  // Open login modal
-  handleModalLoginOpen = () => {
-    this.setState((prevState) => {
-      return {
-        modalLoginOpen: !prevState.modalLoginOpen,
-      };
-    });
-  };
   // Collapsable navbar when page is narrowed
   onClick = () => {
     this.setState({
       collapse: !this.state.collapse,
     });
   };
-  logout() {
-    localStorage.clear();
-    window.location.href = "/";
-  }
+  
   render() {
     return (
       <div>
@@ -102,20 +118,16 @@ export class NavbarFixed extends Component {
                     </a> */}
                   </MDBNavItem>
                 )}
-                {localStorage.token && (
+                {localStorage['amplify-authenticator-authState'].signedIn &&
                   <MDBNavItem>
-                    <a onClick={this.logout} className="nav-link">
+                    <a onClick={this.signOut} className="nav-link">
                       Log Out
                     </a>
                   </MDBNavItem>
-                )}
-                {/* <MDBNavItem>
-                  <a onClick={this.signOut} className="nav-link">
-                    Log Out
-                  </a>
-                </MDBNavItem> */}
+                }
                 <SignOut/>
                 <MDBNavItem>
+                  
                   <MDBNavLink to="/about">About Us</MDBNavLink>
                 </MDBNavItem>
               </MDBNavbarNav>

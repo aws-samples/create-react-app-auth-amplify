@@ -14,4 +14,5 @@ class AWSLogin extends Component {
   }
 }
 
+// Disable the automatic fixed navbar greeting after login with "false"
 export default withAuthenticator(AWSLogin, {includeGreetings: false});
