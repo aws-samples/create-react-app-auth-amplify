@@ -13,7 +13,8 @@ import {
 // import LoginModal from "./LoginModal";
 import logo from "./assets/fridge_with_open_door_80px.png";
 // import { SignOut } from 'aws-amplify-react'; 
-import { Hub, Auth } from 'aws-amplify'
+import { Hub, Auth } from 'aws-amplify';
+
 
 export class NavbarFixed extends Component {
   constructor(props) {
@@ -67,10 +68,13 @@ getCurrentUsername() {
   })
 }
 
+
 async onSignOutClick() {
-  await Auth.signOut()
-      .then(data => console.log(data))
-      .catch(err => console.log(err));
+  // need to redirect after log out. Not working
+  // this.props.history.push('/') 
+    await Auth.signOut()
+    .then(data => console.log(data)) 
+    .catch(err => console.log(err));
  }
 
   // Cognito sign off
