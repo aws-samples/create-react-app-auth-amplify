@@ -5,6 +5,7 @@ import aws_exports from '../aws-exports';
 Amplify.configure(aws_exports);
 
 class AWSLogin extends Component {
+
   render() {
     return (
       <div>

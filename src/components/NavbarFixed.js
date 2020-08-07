@@ -9,41 +9,88 @@ import {
   MDBNavItem,
   MDBNavLink,
 } from "mdbreact";
-import RegisterModal from "./RegisterModal";
-import LoginModal from "./LoginModal";
+// import RegisterModal from "./RegisterModal";
+// import LoginModal from "./LoginModal";
 import logo from "./assets/fridge_with_open_door_80px.png";
-import { SignOut } from 'aws-amplify-react';
-import Auth from "@aws-amplify/auth";
+// import { SignOut } from 'aws-amplify-react'; 
+import { Hub, Auth } from 'aws-amplify'
 
 export class NavbarFixed extends Component {
   constructor(props) {
     super(props);
+    this.updateLoggedStatus = this.updateLoggedStatus.bind(this)
     this.state = {
       collapse: false,
-      isWideEnough: false
+      isWideEnough: false,
+      isLogged: false
       // modalOpen: false, 
       // modalLoginOpen: false, 
     };
   }
 
+componentDidMount() {
+  this.updateLoggedStatus();
+  // Hub is an Amplify state management solution like Redux
+  // Run updateLoggedStatus function immediately
+  Hub.listen('auth', this.updateLoggedStatus); 
+}
+
+componentWillUnmount() {
+  Hub.remove('auth');
+ }
+
+ async updateLoggedStatus() {
+   // Then run getCurrentUsername to see if someone is logged in or not
+  const username = await this.getCurrentUsername()
+  let newLoggedStatus = false;
+  if (username) newLoggedStatus = true;
+  // If logged in, change state from false to newLoggedStatus
+  this.setState({ isLogged: newLoggedStatus });
+}
+
+getCurrentUsername() {
+  return new Promise((resolve, reject) => {
+    Auth.currentAuthenticatedUser()
+      .then(user => {
+        if (user.username) {
+          console.log(user.username)
+          resolve(user.username)
+        } else {
+          console.log(user)
+          resolve(null)
+        }
+      })
+      .catch(err => {
+        console.log(err)
+        resolve(null)
+      })
+  })
+}
+
+async onSignOutClick() {
+  await Auth.signOut()
+      .then(data => console.log(data))
+      .catch(err => console.log(err));
+ }
+
   // Cognito sign off
-  signOut() {
-    console.log(localStorage)
-    console.log(localStorage['amplify-authenticator-authState'])
-    // let authState = localStorage['amplify-authenticator-authState'];
-    // console.log(authState)
-    // if (authState === 'signedIn') {
-    //   console.log('logged in')
-    // } else {
-    //   console.log('not logged in')
-    // }
-    // console.log(localStorage['amplify-authenticator-authState']) 
-      try {
-          Auth.signOut();
-      } catch (error) {
-          console.log('error signing out: ', error);
-      }
-  }
+  // signOut() {
+  //   // console.log(localStorage)
+  //   console.log(localStorage['amplify-authenticator-authState'])
+  //   // let authState = localStorage['amplify-authenticator-authState'];
+  //   // console.log(authState)
+  //   // if (authState === 'signedIn') {
+  //   //   console.log('logged in')
+  //   // } else {
+  //   //   console.log('not logged in')
+  //   // }
+  //   // console.log(localStorage['amplify-authenticator-authState']) 
+  //     try {
+  //         Auth.signOut();
+  //     } catch (error) {
+  //         console.log('error signing out: ', error);
+  //     }
+  // }
 
   // Stretch plan: convert AWS login/register prompt into react hook modal
   // Open register modal
@@ -103,45 +150,33 @@ export class NavbarFixed extends Component {
                     <MDBNavLink to="/MyFridge">Your Fridge</MDBNavLink>
                   </MDBNavItem>
                 )}
-                {/* {!localStorage.token && (
-                  <MDBNavItem>
-                    <a onClick={this.handleModalOpen} className="nav-link">
-                      Register
-                    </a>
-                  </MDBNavItem>
-                )} */}
-                {!localStorage.token && (
+                {!this.state.isLogged && (
                   <MDBNavItem>
                     <MDBNavLink to="/login">Login or Register</MDBNavLink>
-                    {/* <a onClick={this.handleModalLoginOpen} className="nav-link">
-                      Login
-                    </a> */}
                   </MDBNavItem>
                 )}
-                {localStorage['amplify-authenticator-authState'].signedIn &&
+                {this.state.isLogged && (
                   <MDBNavItem>
-                    <a onClick={this.signOut} className="nav-link">
+                    <a onClick={this.onSignOutClick} className="nav-link">
                       Log Out
                     </a>
                   </MDBNavItem>
-                }
-                <SignOut/>
+                )}
                 <MDBNavItem>
-                  
                   <MDBNavLink to="/about">About Us</MDBNavLink>
                 </MDBNavItem>
               </MDBNavbarNav>
             </MDBCollapse>
           </MDBNav>
         </MDBNavbar>
-        <RegisterModal
+        {/* <RegisterModal
           modalOpen={this.state.modalOpen}
           handleModalOpen={this.handleModalOpen}
         />
         <LoginModal
           modalLoginOpen={this.state.modalLoginOpen}
           handleModalLoginOpen={this.handleModalLoginOpen}
-        />
+        /> */}
       </div>
     );
   }
