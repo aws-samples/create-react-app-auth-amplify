@@ -16,12 +16,10 @@ import Fridge from "./components/Fridge";
 function App() {
   return ( 
     <div className="App">
-      <BrowserRouter> 
-        <NavbarFixed />
-        <Route exact path="/" component={FullPageIntroWithFixedNavbar} />
-        <Route exact path="/login" component={AWSLogin} />
-        <Route exact path="/about" component={AboutUs} />
-      </BrowserRouter>
+      <Route exact path="/" component={FullPageIntroWithFixedNavbar} />
+      <NavbarFixed />
+      <Route path="/login" component={AWSLogin} />
+      <Route path="/about" component={AboutUs} />
     </div>
   );
 }

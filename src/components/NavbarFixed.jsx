@@ -14,6 +14,7 @@ import {
 import logo from "./assets/fridge_with_open_door_80px.png";
 // import { SignOut } from 'aws-amplify-react'; 
 import { Hub, Auth } from 'aws-amplify';
+import { withRouter } from 'react-router-dom';
 
 
 export class NavbarFixed extends Component {
@@ -68,10 +69,9 @@ getCurrentUsername() {
   })
 }
 
-
 async onSignOutClick() {
   // need to redirect after log out. Not working
-  // this.props.history.push('/') 
+    this.props.history.push('/login') 
     await Auth.signOut()
     .then(data => console.log(data)) 
     .catch(err => console.log(err));
@@ -161,7 +161,7 @@ async onSignOutClick() {
                 )}
                 {this.state.isLogged && (
                   <MDBNavItem>
-                    <a onClick={this.onSignOutClick} className="nav-link">
+                    <a onClick={this.onSignOutClick.bind(this)} className="nav-link">
                       Log Out
                     </a>
                   </MDBNavItem>
@@ -186,4 +186,4 @@ async onSignOutClick() {
   }
 }
 
-export default NavbarFixed;
+export default withRouter(NavbarFixed);

@@ -3,6 +3,7 @@ import { withAuthenticator } from 'aws-amplify-react'
 import Amplify from 'aws-amplify';
 import { Auth } from 'aws-amplify'
 import aws_exports from '../aws-exports';
+import { withRouter } from 'react-router-dom';
 
 Amplify.configure(aws_exports);
 class AWSLogin extends Component {
@@ -27,10 +28,16 @@ class AWSLogin extends Component {
     //   })
     //   console.log(this.state.user)
     // })
+    // See above. This needs to be moved to Redux to keep track of state.
+    .then(user => {
+      let authUser = user;
+      if (authUser) {
+        this.props.history.push('/') 
+      }
+    })
     .then(user => console.log(user))
     .catch(err => console.log(err));
     // If the promise resolves, redirect to homepage 
-    this.props.history.push('/') 
   }
 
   render() {
@@ -43,4 +50,4 @@ class AWSLogin extends Component {
 }
 
 // Disable the automatic fixed navbar greeting after login with "false"
-export default withAuthenticator(AWSLogin, {includeGreetings: false});
+export default (withRouter, withAuthenticator)(AWSLogin, {includeGreetings: false});

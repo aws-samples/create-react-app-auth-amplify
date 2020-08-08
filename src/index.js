@@ -9,6 +9,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { createStore } from "redux";
 import { Provider } from "react-redux";
+import { BrowserRouter } from 'react-router-dom';
 
 
 // Redux store setup
@@ -20,12 +21,17 @@ const initialState = {
     recipeString: "",
     recipeInfo: "",
     fridgeItems: [{}],
-    isAuth: "",
+    isAuth: false,
   };
 
 // Write functions for your reducer here
 function reducer(state = initialState, action) {
     switch (action.type) {
+      case "IS_AUTH":
+        return {
+          ...state,
+          isAuth: initialState.isAuth,
+        };
       case "GET_RECIPE":
         return {
           ...state,
@@ -70,9 +76,9 @@ function reducer(state = initialState, action) {
 
 ReactDOM.render(
     <Provider store ={store}>
-     
-        <App />
-   
+     <BrowserRouter>
+      <App />
+     </BrowserRouter>
     </Provider>,
     document.getElementById('root')
 
