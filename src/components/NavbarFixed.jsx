@@ -14,8 +14,9 @@ import {
 import logo from "./assets/fridge_with_open_door_80px.png";
 // import { SignOut } from 'aws-amplify-react'; 
 import { Hub, Auth } from 'aws-amplify';
+// Navbar components with no route need withRouter to use history.
 import { withRouter } from 'react-router-dom';
-
+import { connect } from "react-redux";
 
 export class NavbarFixed extends Component {
   constructor(props) {
@@ -54,8 +55,9 @@ getCurrentUsername() {
   return new Promise((resolve, reject) => {
     Auth.currentAuthenticatedUser()
       .then(user => {
+        console.log(user)
         if (user.username) {
-          console.log(user.username)
+          // console.log(user.username) 
           resolve(user.username)
         } else {
           console.log(user)
@@ -78,23 +80,13 @@ async onSignOutClick() {
  }
 
   // Cognito sign off
-  // signOut() {
-  //   // console.log(localStorage)
-  //   console.log(localStorage['amplify-authenticator-authState'])
-  //   // let authState = localStorage['amplify-authenticator-authState'];
-  //   // console.log(authState)
-  //   // if (authState === 'signedIn') {
-  //   //   console.log('logged in')
-  //   // } else {
-  //   //   console.log('not logged in')
-  //   // }
-  //   // console.log(localStorage['amplify-authenticator-authState']) 
-  //     try {
-  //         Auth.signOut();
-  //     } catch (error) {
-  //         console.log('error signing out: ', error);
-  //     }
-  // }
+  signOut() {
+      try {
+          Auth.signOut();
+      } catch (error) {
+          console.log('error signing out: ', error);
+      }
+  }
 
   // Stretch plan: convert AWS login/register prompt into react hook modal
   // Open register modal
@@ -186,4 +178,18 @@ async onSignOutClick() {
   }
 }
 
-export default withRouter(NavbarFixed);
+function mapStateToProps(state) {
+  return {
+    authUser: state.authUser
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    authUser: function ({user}) {
+      dispatch({ type: "AUTH_USER", payload: {user} });
+    }
+  };
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavbarFixed));
