@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { withAuthenticator } from 'aws-amplify-react'
+import { withAuthenticator } from '@aws-amplify/ui-react'
 import Amplify from 'aws-amplify';
 import aws_exports from '../aws-exports';
+import { withRouter } from 'react-router-dom';
 
 Amplify.configure(aws_exports);
 class AWSLogin extends Component {
@@ -36,4 +37,4 @@ function mapStateToProps(state) {
 
 
 // Disable the automatic fixed navbar greeting after login with "false"
-export default withAuthenticator(connect(mapStateToProps)(AWSLogin, {includeGreetings: false}));
+export default withAuthenticator(withRouter(connect(mapStateToProps)(AWSLogin, {includeGreetings: false})));
