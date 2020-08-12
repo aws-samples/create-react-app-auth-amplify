@@ -24,8 +24,8 @@ export class NavbarFixed extends Component {
     this.updateLoggedStatus = this.updateLoggedStatus.bind(this)
     this.state = {
       collapse: false,
-      isWideEnough: false,
-      isLogged: false
+      isWideEnough: false
+      // isLogged: false
       // modalOpen: false, 
       // modalLoginOpen: false, 
     };
@@ -45,10 +45,11 @@ componentWillUnmount() {
  async updateLoggedStatus() {
    // Then run getCurrentUsername to see if someone is logged in or not
   const username = await this.getCurrentUsername()
-  let newLoggedStatus = false;
-  if (username) newLoggedStatus = true;
-  // If logged in, change state from false to newLoggedStatus
-  this.setState({ isLogged: newLoggedStatus });
+  console.log(username)
+  // let newLoggedStatus = false;
+  // if (username) newLoggedStatus = true;
+  // // If logged in, change state from false to newLoggedStatus
+  // this.setState({ isLogged: newLoggedStatus });
 }
 
 getCurrentUsername() {
@@ -56,6 +57,7 @@ getCurrentUsername() {
     Auth.currentAuthenticatedUser()
       .then(user => {
         console.log(user)
+        this.props.authUser(user)
         if (user.username) {
           // console.log(user.username) 
           resolve(user.username)
@@ -72,46 +74,24 @@ getCurrentUsername() {
 }
 
 async onSignOutClick() {
-  // need to redirect after log out. Not working
-    this.props.history.push('/login') 
-    await Auth.signOut()
-    .then(data => console.log(data)) 
-    .catch(err => console.log(err));
+  // Redirect after log out. Need to fix the React update unmounted error.
+  // Clear Redux credentials
+  this.props.logout()
+  // this.props.history.push('/login') 
+  // Sign out of Cognito on this device
+  await Auth.signOut()
+  .then(data => console.log(data)) 
+  .catch(err => console.log(err));
  }
 
-  // Cognito sign off
+  // Cognito sign off from line 84
   signOut() {
       try {
-          Auth.signOut();
+        Auth.signOut();
       } catch (error) {
-          console.log('error signing out: ', error);
+        console.log('error signing out: ', error);
       }
   }
-
-  // Stretch plan: convert AWS login/register prompt into react hook modal
-  // Open register modal
-  // handleModalOpen = () => {
-  //   this.setState((prevState) => {
-  //     return {
-  //       modalOpen: !prevState.modalOpen,
-  //     };
-  //   });
-  // };
-
-  // Open login modal
-  // handleModalLoginOpen = () => {
-  //   this.setState((prevState) => {
-  //     return {
-  //       modalLoginOpen: !prevState.modalLoginOpen,
-  //     };
-  //   });
-  // };
-  // Old logout function
-  // logout() {
-  //   localStorage.clear();
-  //   window.location.href = "/";
-  // }
-
   // Collapsable navbar when page is narrowed
   onClick = () => {
     this.setState({
@@ -136,22 +116,22 @@ async onSignOutClick() {
                 <MDBNavItem>
                   <MDBNavLink to="/">Home</MDBNavLink>
                 </MDBNavItem>
-                {localStorage.token && (
+                {this.props.user && (
                   <MDBNavItem>
                     <MDBNavLink to="/SearchForm">Add Item</MDBNavLink>
                   </MDBNavItem>
                 )}
-                {localStorage.token && (
+                {this.props.user && (
                   <MDBNavItem>
                     <MDBNavLink to="/MyFridge">Your Fridge</MDBNavLink>
                   </MDBNavItem>
                 )}
-                {!this.state.isLogged && (
+                {!this.props.user && (
                   <MDBNavItem>
                     <MDBNavLink to="/login">Login or Register</MDBNavLink>
                   </MDBNavItem>
                 )}
-                {this.state.isLogged && (
+                {this.props.user && (
                   <MDBNavItem>
                     <a onClick={this.onSignOutClick.bind(this)} className="nav-link">
                       Log Out
@@ -165,14 +145,6 @@ async onSignOutClick() {
             </MDBCollapse>
           </MDBNav>
         </MDBNavbar>
-        {/* <RegisterModal
-          modalOpen={this.state.modalOpen}
-          handleModalOpen={this.handleModalOpen}
-        />
-        <LoginModal
-          modalLoginOpen={this.state.modalLoginOpen}
-          handleModalLoginOpen={this.handleModalLoginOpen}
-        /> */}
       </div>
     );
   }
@@ -180,14 +152,17 @@ async onSignOutClick() {
 
 function mapStateToProps(state) {
   return {
-    authUser: state.authUser
+    user: state.user
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    authUser: function ({user}) {
-      dispatch({ type: "AUTH_USER", payload: {user} });
+    authUser: function (user) {
+      dispatch({ type: "AUTHORIZED_USER", payload: user });
+    },
+    logout: function() {
+      dispatch({ type: "LOGOUT"});
     }
   };
 }

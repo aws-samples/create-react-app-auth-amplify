@@ -25,6 +25,8 @@ class FullPageIntroWithFixedNavbar extends React.Component {
   componentDidMount() {
     this.props.clearRecipes();
   }
+
+  
   render() {
     return (
       <div>

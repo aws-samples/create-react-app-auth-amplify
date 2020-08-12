@@ -21,7 +21,7 @@ const initialState = {
     // recipeString: "",
     // recipeInfo: "",
     // fridgeItems: [{}],
-    user: [{}]
+    user: null
   };
 
 // Write functions for your reducer here
@@ -31,7 +31,12 @@ function reducer(state = initialState, action) {
         return {
           ...state,
           user: action.payload
-        };
+        }
+      case "LOGOUT":
+        return {
+          ...state,
+          user: initialState.user
+        }
       // case "GET_RECIPE":
       //   return {
       //     ...state,
@@ -75,13 +80,13 @@ function reducer(state = initialState, action) {
   const store = createStore(reducer);
 
 ReactDOM.render(
-  <React.StrictMode>
+  
     <Provider store={store}>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </Provider>
-  </React.StrictMode>,
+    </Provider>,
+  
   document.getElementById('root')
 );
 
