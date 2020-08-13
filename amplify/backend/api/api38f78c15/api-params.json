@@ -1,0 +1,37 @@
+{
+    "paths": [
+        {
+            "name": "/items",
+            "lambdaFunction": "items",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/GET"
+                ]
+            }
+        }
+    ],
+    "resourceName": "api38f78c15",
+    "apiName": "api38f78c15",
+    "functionArns": [
+        {
+            "lambdaFunction": "items"
+        }
+    ],
+    "privacy": {
+        "auth": 1,
+        "unauth": 0,
+        "authRoleName": "amplify-authcra-devv-31547-authRole",
+        "unAuthRoleName": "amplify-authcra-devv-31547-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "items",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}
