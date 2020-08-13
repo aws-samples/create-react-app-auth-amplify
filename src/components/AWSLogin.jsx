@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { withAuthenticator } from '@aws-amplify/ui-react'
-// import Amplify, { Auth } from 'aws-amplify'; 
-// import aws_exports from '../aws-exports'; 
+import Amplify from 'aws-amplify';
+import aws_exports from '../aws-exports';
 import { withRouter } from 'react-router-dom';
 
-// Amplify.configure(aws_exports); 
+Amplify.configure(aws_exports);
 class AWSLogin extends Component {
   constructor(props) {
     super(props);
