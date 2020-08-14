@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 // import { FormControl, Button, InputGroup } from 'react-bootstrap';
-import axios from "axios";
-import { MDBInput, MDBContainer, MDBBtn } from "mdbreact";
+// import axios from "axios"; 
+// import { MDBInput, MDBContainer, MDBBtn } from "mdbreact"; 
 // import "./SearchForm.css"; 
-import { withRouter } from 'react-router-dom';
 
 class SearchForm extends Component {
   // Use local state for what's being typed
@@ -18,8 +17,9 @@ class SearchForm extends Component {
   render() {
     return (
       // Enter ingredient prompt w/ empty string validation
-      <div className="searchBox"> 
-      <MDBContainer>
+      <div className="searchBox">
+        <p>This is a test</p> 
+      {/* <MDBContainer>
         <h2>Search for a food item to add to your fridge!</h2>
         <form 
           className="needs-validation"
@@ -35,7 +35,7 @@ class SearchForm extends Component {
             className="form-control"
             name="food item"
             label="Search here!"
-            // required
+            required
           >
             <MDBBtn color="green" className="m-1 px-3 py-2" type="submit">
               Search for food item
@@ -43,7 +43,7 @@ class SearchForm extends Component {
             <div className="invalid-tooltip">Please enter a food item.</div>
           </MDBInput>
         </form>
-      </MDBContainer>
+      </MDBContainer> */}
       </div> 
     );
   }
@@ -58,24 +58,24 @@ class SearchForm extends Component {
   }
 
   // Get recipe function
-  getRecipe = () => {
-    // Make a string of items to pass into API get request
-    let recipeString = this.state.value;
-    console.log(recipeString);
-    return axios(
-      `https://api.spoonacular.com/food/products/search?query=${recipeString}&apiKey=5c87fc7501454e29ad5a56bb45d581bd&number=20`
-    )
-      .then((response) => {
-        // Dispatches the action to redux
-        console.log(response.data.products);
-        this.props.getRecipe(response.data.products);
-        // Clear the recipeString after submit
-        recipeString = "";
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  // getRecipe = () => {
+  //   // Make a string of items to pass into API get request
+  //   let recipeString = this.state.value;
+  //   console.log(recipeString);
+  //   return axios(
+  //     `https://api.spoonacular.com/food/products/search?query=${recipeString}&apiKey=5c87fc7501454e29ad5a56bb45d581bd&number=20`
+  //   )
+  //     .then((response) => {
+  //       // Dispatches the action to redux
+  //       console.log(response.data.products);
+  //       this.props.getRecipe(response.data.products);
+  //       // Clear the recipeString after submit
+  //       recipeString = "";
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
 }
 
 function mapStateToProps(state) {
@@ -98,4 +98,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchForm));
+export default connect(mapStateToProps, mapDispatchToProps)(SearchForm);
