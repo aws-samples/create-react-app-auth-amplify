@@ -18,6 +18,7 @@ function App() {
       <Route exact path="/" component={FullPageIntroWithFixedNavbar} /> 
       <Route path="/login" component={AWSLogin} />
       <Route path="/about" component={AboutUs} /> 
+      <Route path="/SearchForm" component={SearchForm} />
     </div>
   );
 }

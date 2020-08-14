@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 // import { FormControl, Button, InputGroup } from 'react-bootstrap';
 import axios from "axios";
 import { MDBInput, MDBContainer, MDBBtn } from "mdbreact";
-import "./FullPageIntroWithFixedNavbar.css";
+import "./SearchForm.css"; 
 
 class SearchForm extends Component {
   // Use local state for what's being typed
@@ -17,7 +17,8 @@ class SearchForm extends Component {
   render() {
     return (
       // Enter ingredient prompt w/ empty string validation
-      <MDBContainer className="header-padding">
+      <div className="searchBox"> 
+      <MDBContainer>
         <h2>Search for a food item to add to your fridge!</h2>
         <form
           className="needs-validation"
@@ -42,6 +43,7 @@ class SearchForm extends Component {
           </MDBInput>
         </form>
       </MDBContainer>
+      </div> 
     );
   }
   handleChange(event) {
