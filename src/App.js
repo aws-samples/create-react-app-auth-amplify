@@ -14,17 +14,13 @@ import Fridge from "./components/Fridge";
 function App() {
   return ( 
     <div className="App">
-      <NavbarFixed />  
-      <Switch>
-
-      
+      <NavbarFixed />     
       <Route exact path="/" component={FullPageIntroWithFixedNavbar} /> 
-      <Route path="/SearchForm" component={SearchForm} />
+      <Route path="/search" component={SearchForm} />
       <Route path="/login" component={AWSLogin} />
       <Route path="/about" component={AboutUs} /> 
       <Route path="/MyFridge" component={Fridge} />
       <GroceryItemResults />
-      </Switch>
     </div>
   );
 }

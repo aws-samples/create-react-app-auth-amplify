@@ -119,7 +119,7 @@ async onSignOutClick() {
                 </MDBNavItem>
                 {this.props.user && (
                   <MDBNavItem>
-                    <MDBNavLink to="/SearchForm">Add Item</MDBNavLink>
+                    <MDBNavLink to="/search">Add Item</MDBNavLink>
                   </MDBNavItem>
                 )}
                 {this.props.user && (
