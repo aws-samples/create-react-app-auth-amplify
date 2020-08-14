@@ -82,7 +82,7 @@ function mapStateToProps(state) {
     items: state.items,
     recipes: state.recipes,
     ingredients: state.ingredients,
-    isAuth: state.isAuth,
+    user: state.user
   };
 }
 
