@@ -16,7 +16,7 @@ function App() {
     <div className="App">
       <NavbarFixed />  
       <Route exact path="/" component={FullPageIntroWithFixedNavbar} /> 
-      <Route path="/SearchForm" component={SearchForm} />
+      <Route exact path="/SearchForm" component={SearchForm} />
       <Route path="/login" component={AWSLogin} />
       <Route path="/about" component={AboutUs} /> 
       <Route path="/MyFridge" component={Fridge} />

@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 // import { FormControl, Button, InputGroup } from 'react-bootstrap';
 import axios from "axios";
 import { MDBInput, MDBContainer, MDBBtn } from "mdbreact";
-import "./SearchForm.css"; 
+// import "./SearchForm.css"; 
+import { withRouter } from 'react-router-dom';
 
 class SearchForm extends Component {
   // Use local state for what's being typed
@@ -20,13 +21,13 @@ class SearchForm extends Component {
       <div className="searchBox"> 
       <MDBContainer>
         <h2>Search for a food item to add to your fridge!</h2>
-        <form
+        <form 
           className="needs-validation"
           onSubmit={this.handleSubmit}
           noValidate
         >
           <MDBInput
-            material
+            material 
             value={this.state.value}
             onChange={this.handleChange}
             type="text"
@@ -34,7 +35,7 @@ class SearchForm extends Component {
             className="form-control"
             name="food item"
             label="Search here!"
-            required
+            // required
           >
             <MDBBtn color="green" className="m-1 px-3 py-2" type="submit">
               Search for food item
@@ -97,4 +98,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchForm);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchForm));
