@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
+// import { connect } from "react-redux"; 
 // import { FormControl, Button, InputGroup } from 'react-bootstrap';
 // import axios from "axios"; 
 // import { MDBInput, MDBContainer, MDBBtn } from "mdbreact"; 
@@ -9,9 +9,9 @@ class SearchForm extends Component {
   // Use local state for what's being typed
   constructor(props) {
     super(props);
-    this.state = {};
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+      this.state = {};
+    // this.handleChange = this.handleChange.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   render() {
@@ -47,15 +47,15 @@ class SearchForm extends Component {
       </div> 
     );
   }
-  handleChange(event) {
-    this.setState({ value: event.target.value });
-    console.log(this.props.isAuth);
-  }
-  // Kick off add ingredient function on submit
-  handleSubmit(event) {
-    this.getRecipe();
-    event.preventDefault();
-  }
+  // handleChange(event) {
+  //   this.setState({ value: event.target.value });
+  //   console.log(this.props.isAuth);
+  // }
+  // // Kick off add ingredient function on submit
+  // handleSubmit(event) {
+  //   this.getRecipe();
+  //   event.preventDefault();
+  // }
 
   // Get recipe function
   // getRecipe = () => {
@@ -78,24 +78,24 @@ class SearchForm extends Component {
   // };
 }
 
-function mapStateToProps(state) {
-  return {
-    items: state.items,
-    recipes: state.recipes,
-    ingredients: state.ingredients,
-    user: state.user
-  };
-}
+// function mapStateToProps(state) {
+//   return {
+//     items: state.items,
+//     recipes: state.recipes,
+//     ingredients: state.ingredients,
+//     user: state.user
+//   };
+// }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    getRecipe: function (recipes) {
-      dispatch({ type: "GET_RECIPE", payload: recipes });
-    },
-    addIngredient: function (ingredient) {
-      dispatch({ type: "ADD_INGREDIENT", payload: ingredient });
-    },
-  };
-}
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     getRecipe: function (recipes) {
+//       dispatch({ type: "GET_RECIPE", payload: recipes });
+//     },
+//     addIngredient: function (ingredient) {
+//       dispatch({ type: "ADD_INGREDIENT", payload: ingredient });
+//     },
+//   };
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchForm);
+export default(SearchForm);
