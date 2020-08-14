@@ -28,7 +28,7 @@ class FullPageIntroWithFixedNavbar extends React.Component {
   
   render() {
     return (
-      <div>
+      <div className="mainBox">
         <header>
           <MDBContainer className="text-black text-center">
             <MDBRow className="mx-auto my-auto text-center">

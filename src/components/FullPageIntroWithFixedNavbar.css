@@ -5,8 +5,8 @@
   } */
 
 @media screen and (min-width: 768px) {
-  main {
-    /* padding-top: 100px; */
+  .mainBox {
+    padding-top: 5rem;
   }
 }
 

@@ -4,13 +4,13 @@ import kel from "./assets/Kel.jpeg";
 import nick from "./assets/nick.jpeg";
 import zach from "./assets/zach.jpeg";
 import shankar from "./assets/shankar.jpeg";
-import "./AboutUs.css";
+import "./AboutUs.css"; 
 
 export class AboutUs extends React.Component {
 
 render() {
   return (
-    <div className="AboutUs">
+    
       <header className="team-section">
         <div class="container">
           <div class="row">
@@ -192,7 +192,7 @@ render() {
           </div>
         </div>
       </header>
-    </div>
+    
   );
 }
 }
