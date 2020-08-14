@@ -23,7 +23,7 @@ export class Fridge extends Component {
   }
   // After loading users fridge, load all their database items and render to screen
   componentDidMount() {
-    this.getFridge();
+    // this.getFridge();
   }
 
   // getFridge() {

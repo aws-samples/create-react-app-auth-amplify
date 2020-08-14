@@ -19,6 +19,7 @@ function App() {
       <Route path="/SearchForm" component={SearchForm} />
       <Route path="/login" component={AWSLogin} />
       <Route path="/about" component={AboutUs} /> 
+      <Route path="/MyFridge" component={Fridge} />
       <GroceryItemResults />
     </div>
   );
