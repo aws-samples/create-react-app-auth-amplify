@@ -5,7 +5,7 @@ import React, { Component } from "react";
 // import { MDBInput, MDBContainer, MDBBtn } from "mdbreact"; 
 // import "./SearchForm.css"; 
 
-class SearchForm extends Component {
+export class SearchForm extends Component {
   // Use local state for what's being typed
   constructor(props) {
     super(props);
