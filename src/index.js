@@ -13,13 +13,13 @@ import { BrowserRouter } from 'react-router-dom';
 
 // Redux store setup
 const initialState = {
-    // value: "",
-    // recipes: [{}],
-    // products: [],
-    // items: [],
-    // recipeString: "",
-    // recipeInfo: "",
-    // fridgeItems: [{}],
+    value: "",
+    recipes: [{}],
+    products: [],
+    items: [],
+    recipeString: "",
+    recipeInfo: "",
+    fridgeItems: [{}],
     user: null
   };
 
@@ -36,17 +36,17 @@ function reducer(state = initialState, action) {
           ...state,
           user: initialState.user
         }
-      // case "GET_RECIPE":
-      //   return {
-      //     ...state,
-      //     recipes: action.payload,
-      //     items: initialState.items,
-      //   };
-      // case "ADD_INGREDIENT":
-      //   return {
-      //     ...state,
-      //     items: state.items.concat(action.payload),
-      //   };
+      case "GET_RECIPE":
+        return {
+          ...state,
+          recipes: action.payload,
+          items: initialState.items,
+        };
+      case "ADD_INGREDIENT":
+        return {
+          ...state,
+          items: state.items.concat(action.payload),
+        };
       // // Reset the screen to default state
       // case "RESET_ITEM":
       //   return {
@@ -65,11 +65,11 @@ function reducer(state = initialState, action) {
       //       (ingredient) => ingredient !== action.payload
       //     ),
       //   };
-      // case "ADD_ITEM_TO_FRIDGE":
-      //   return {
-      //     ...state,
-      //     fridgeItems: action.payload,
-      //   };
+      case "ADD_ITEM_TO_FRIDGE":
+        return {
+          ...state,
+          fridgeItems: action.payload,
+        };
       default:
         return state;
     }
