@@ -18,7 +18,7 @@ const initialState = {
     products: [],
     // Items are the fridge contents from database
     items: [],
-    recipeString: "",
+    productString: "",
     recipeInfo: "",
     fridgeItems: [{}],
     user: null
@@ -37,11 +37,10 @@ function reducer(state = initialState, action) {
           ...state,
           user: initialState.user
         }
-      case "GET_RECIPE":
+      case "GET_PRODUCTS":
         return {
           ...state,
-          recipes: action.payload,
-          items: initialState.items,
+          products: action.payload
         };
       case "ADD_INGREDIENT":
         return {

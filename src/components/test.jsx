@@ -58,9 +58,21 @@ export class test extends Component {
     // Pass product as string into API get request
     let productString = this.state.value;
     console.log(productString);
-    return axios(
-      `https://api.spoonacular.com/food/products/search?query=${productString}&apiKey=ed320f4b389446a8bffffd4a53b1604c&number=20`
-    )
+    // Consider modifying this to add options, like a calorie range slider.
+    return axios({
+        "method":"GET",
+        "url":"https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/products/search",
+        "headers":{
+        "content-type":"application/octet-stream",
+        "x-rapidapi-host":"spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+        "x-rapidapi-key":"40cb3a8377mshdada20219265609p14adc3jsn41c73db521e2",
+        "useQueryString":true
+        },"params":{
+        "offset":"0",
+        "number":"20",
+        "query": `${productString}`
+        }
+        })
       .then((response) => {
         // Dispatches the action to redux
         console.log(response.data.products);
@@ -72,7 +84,6 @@ export class test extends Component {
         console.log(error);
       });
   };
-  
 
 }
 
@@ -89,7 +100,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     getProducts: function (products) {
-      dispatch({ type: "GET_PRODUCT", payload: products });
+      dispatch({ type: "GET_PRODUCTS", payload: products });
     },
     addProduct: function (product) {
       dispatch({ type: "ADD_PRODUCT", payload: product });

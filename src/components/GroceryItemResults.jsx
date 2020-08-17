@@ -32,14 +32,15 @@ class GroceryItemResults extends Component {
   render() {
     // Create each product card
     // Each result here is called a recipe. Need to refactor later.
-    const items = this.props.recipes;
+    const items = this.props.products;
     return (
       <MDBContainer>
         <MDBRow>
           {items.map((item) => {
+            console.log(item.image)
             return (
               <MDBCol size="3" className="padding justify-content-center">
-                {this.props.recipes.length > 1 && (
+                {this.props.products.length > 1 && (
                   <MDBCard className="card align-items-center padding h-100">
                     {item.title}
                     <MDBCardImage
@@ -79,7 +80,7 @@ class GroceryItemResults extends Component {
 
 function mapStateToProps(state) {
   return {
-    recipes: state.recipes,
+    products: state.products,
     ingredients: state.ingredients,
     recipeInfo: state.recipeInfo,
   };

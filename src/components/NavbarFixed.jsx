@@ -17,7 +17,6 @@ import { Hub, Auth } from 'aws-amplify';
 // Navbar components with no route need withRouter to use history.
 import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
-import "./NavbarFixed.css"; 
 
 export class NavbarFixed extends Component {
   constructor(props) {
