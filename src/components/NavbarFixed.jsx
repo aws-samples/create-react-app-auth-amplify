@@ -142,6 +142,9 @@ async onSignOutClick() {
                 <MDBNavItem>
                   <MDBNavLink to="/about">About Us</MDBNavLink>
                 </MDBNavItem>
+                <MDBNavItem>
+                  <MDBNavLink to="/test">test</MDBNavLink>
+                </MDBNavItem>
               </MDBNavbarNav>
             </MDBCollapse>
           </MDBNav>
