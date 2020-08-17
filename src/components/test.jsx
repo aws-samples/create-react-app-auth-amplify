@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { MDBInput, MDBContainer, MDBBtn } from "mdbreact";
 import axios from "axios"; 
 import { connect } from "react-redux"; 
+import "./test.css";
 
 export class test extends Component {
 
@@ -14,7 +15,7 @@ export class test extends Component {
       
     render() {
         return (
-        <MDBContainer>
+        <MDBContainer className="test">
         <h2>Search for a food item to add to your fridge!</h2>
         <form 
           className="needs-validation"
@@ -48,22 +49,22 @@ export class test extends Component {
   }
   // Kick off add product function on submit
   handleSubmit(event) {
-    this.getProduct();
+    this.getProducts();
     event.preventDefault();
   }
 
     // Get recipe function
-    getProduct = () => {
-    // Make a string of items to pass into API get request
+    getProducts = () => {
+    // Pass product as string into API get request
     let productString = this.state.value;
     console.log(productString);
     return axios(
-      `https://api.spoonacular.com/food/products/search?query=${productString}&apiKey=5c87fc7501454e29ad5a56bb45d581bd&number=20`
+      `https://api.spoonacular.com/food/products/search?query=${productString}&apiKey=ed320f4b389446a8bffffd4a53b1604c&number=20`
     )
       .then((response) => {
         // Dispatches the action to redux
         console.log(response.data.products);
-        this.props.getProduct(response.data.products);
+        this.props.getProducts(response.data.products);
         // Clear the recipeString after submit
         productString = "";
       })
@@ -77,7 +78,9 @@ export class test extends Component {
 
 function mapStateToProps(state) {
   return {
+    // items are user fridge contents from database. Not in use yet
     items: state.items,
+    // Products are the product array from the API
     products: state.products,
     user: state.user
   };
@@ -85,7 +88,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getRecipe: function (products) {
+    getProducts: function (products) {
       dispatch({ type: "GET_PRODUCT", payload: products });
     },
     addProduct: function (product) {

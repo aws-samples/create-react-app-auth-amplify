@@ -90,9 +90,6 @@ function mapDispatchToProps(dispatch) {
     clearResults: function () {
       dispatch({ type: "RESET_ITEM" });
     },
-    getRecipeInfo: function (recipeInfo) {
-      dispatch({ type: "RECIPE_INFO", payload: recipeInfo });
-    },
     clearRecipes: function () {
       dispatch({ type: "RESET_RECIPES" });
     },
