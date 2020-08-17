@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { MDBInput, MDBContainer, MDBBtn } from "mdbreact";
 import axios from "axios"; 
+import { connect } from "react-redux"; 
 
 export class test extends Component {
 
@@ -45,32 +46,52 @@ export class test extends Component {
     this.setState({ value: event.target.value });
     console.log(this.props.isAuth);
   }
-  // Kick off add ingredient function on submit
+  // Kick off add product function on submit
   handleSubmit(event) {
-    this.getRecipe();
+    this.getProduct();
     event.preventDefault();
   }
 
     // Get recipe function
-    getRecipe = () => {
+    getProduct = () => {
     // Make a string of items to pass into API get request
-    let recipeString = this.state.value;
-    console.log(recipeString);
+    let productString = this.state.value;
+    console.log(productString);
     return axios(
-      `https://api.spoonacular.com/food/products/search?query=${recipeString}&apiKey=5c87fc7501454e29ad5a56bb45d581bd&number=20`
+      `https://api.spoonacular.com/food/products/search?query=${productString}&apiKey=5c87fc7501454e29ad5a56bb45d581bd&number=20`
     )
       .then((response) => {
         // Dispatches the action to redux
         console.log(response.data.products);
-        this.props.getRecipe(response.data.products);
+        this.props.getProduct(response.data.products);
         // Clear the recipeString after submit
-        recipeString = "";
+        productString = "";
       })
       .catch((error) => {
         console.log(error);
       });
   };
+  
 
 }
 
-export default test
+function mapStateToProps(state) {
+  return {
+    items: state.items,
+    products: state.products,
+    user: state.user
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    getRecipe: function (products) {
+      dispatch({ type: "GET_PRODUCT", payload: products });
+    },
+    addProduct: function (product) {
+      dispatch({ type: "ADD_PRODUCT", payload: product });
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(test)

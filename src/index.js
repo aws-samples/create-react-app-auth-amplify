@@ -16,6 +16,7 @@ const initialState = {
     value: "",
     recipes: [{}],
     products: [],
+    // Items are the fridge contents from database
     items: [],
     recipeString: "",
     recipeInfo: "",
