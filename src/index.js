@@ -17,9 +17,7 @@ const initialState = {
     recipes: [{}],
     products: [],
     // Items are the fridge contents from database
-    items: [],
     productString: "",
-    recipeInfo: "",
     fridgeItems: [{}],
     user: null
   };
@@ -41,12 +39,7 @@ function reducer(state = initialState, action) {
         return {
           ...state,
           products: action.payload
-        };
-      case "ADD_INGREDIENT":
-        return {
-          ...state,
-          items: state.items.concat(action.payload),
-        };
+        }
       // // Reset the screen to default state
       // case "RESET_ITEM":
       //   return {

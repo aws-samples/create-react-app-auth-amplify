@@ -77,7 +77,7 @@ export class test extends Component {
         // Dispatches the action to redux
         console.log(response.data.products);
         this.props.getProducts(response.data.products);
-        // Clear the recipeString after submit
+        // Clear the productString after submit
         productString = "";
       })
       .catch((error) => {
@@ -91,7 +91,7 @@ function mapStateToProps(state) {
   return {
     // items are user fridge contents from database. Not in use yet
     items: state.items,
-    // Products are the product array from the API
+    // Products refer to the product array from the API
     products: state.products,
     user: state.user
   };
@@ -101,10 +101,7 @@ function mapDispatchToProps(dispatch) {
   return {
     getProducts: function (products) {
       dispatch({ type: "GET_PRODUCTS", payload: products });
-    },
-    addProduct: function (product) {
-      dispatch({ type: "ADD_PRODUCT", payload: product });
-    },
+    }
   };
 }
 

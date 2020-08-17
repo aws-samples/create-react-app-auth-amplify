@@ -24,14 +24,14 @@ class GroceryItemResults extends Component {
       product_image: item.image,
       product_name: item.title,
     };
+    // Replace with the AWS function here
     // axiosWithAuth("/addItem", product, "POST").then((res) => {
     //   console.log(res.data);
     //   this.props.addToFridge(item);
     // });
   };
   render() {
-    // Create each product card
-    // Each result here is called a recipe. Need to refactor later.
+    // Render each product as card
     const items = this.props.products;
     return (
       <MDBContainer>
@@ -80,9 +80,7 @@ class GroceryItemResults extends Component {
 
 function mapStateToProps(state) {
   return {
-    products: state.products,
-    ingredients: state.ingredients,
-    recipeInfo: state.recipeInfo,
+    products: state.products
   };
 }
 
@@ -91,8 +89,8 @@ function mapDispatchToProps(dispatch) {
     clearResults: function () {
       dispatch({ type: "RESET_ITEM" });
     },
-    clearRecipes: function () {
-      dispatch({ type: "RESET_RECIPES" });
+    clearProducts: function () {
+      dispatch({ type: "RESET_PRODUCTS" });
     },
     addToFridge: function (itemInfo) {
       dispatch({ type: "ADD_ITEM_TO_FRIDGE", payload: itemInfo });

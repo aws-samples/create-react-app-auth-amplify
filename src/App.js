@@ -15,13 +15,11 @@ function App() {
     <div className="App">
       <NavbarFixed />     
       <Route exact path="/" component={FullPageIntroWithFixedNavbar} /> 
-      {/* <Route path="/search" component={SearchForm} />  */}
       <Route path="/test" component={test} />
       <GroceryItemResults />
       <Route path="/login" component={AWSLogin} />
       <Route path="/about" component={AboutUs} /> 
       <Route path="/MyFridge" component={Fridge} />
-      {/* <GroceryItemResults />  */}
     </div>
   );
 }
