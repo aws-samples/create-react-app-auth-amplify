@@ -11,6 +11,7 @@ import {
 // import { saveToFridge } from '../../amplify/backend/function/itemsLambda' 
 import { API } from 'aws-amplify';
 import awsconfig from '../aws-exports'; 
+import { uniqueId } from "lodash";
 API.configure(awsconfig);
 
 class GroceryItemResults extends Component {
@@ -20,35 +21,27 @@ class GroceryItemResults extends Component {
   }
 
   // SaveToFridge refers to saving to database. addToFridge refers to the redux action.
-  // We could consider refactoring to redux thunk middleware
   SaveToFridge = (item) => {
-    // debugger
-    // const product = {
-    //   product_id: item.id,
-    //   product_image: item.image,
-    //   product_name: item.title,
-    // };
-    // Replace with the AWS function here
-    let apiName = 'fridgeApi';
+    let apiName = 'api66aa9583'; 
     let path = '/items';
-    let newItem = {
+    let date = new Date();
+    console.log(date)
+    API.post(apiName, path, {
       body: {
+        id: uniqueId(),
+        createdAt: date,
+        username: this.props.user.username, 
         product_id: item.id,
         product_image: item.image,
-        product_name: item.title
+        product_name: item.title,
       }
-    }
-    API.post(apiName, path, newItem)
+    })
     .then(response => {
       console.log(response)
     })
     .catch(error => {
       console.log(error.response)
     });
-    // axiosWithAuth("/addItem", product, "POST").then((res) => {
-    //   console.log(res.data);
-    //   this.props.addToFridge(item);
-    // });
   };
   render() {
     // Render each product as card
