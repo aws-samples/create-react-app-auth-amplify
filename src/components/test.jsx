@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { MDBInput, MDBContainer, MDBBtn } from "mdbreact";
+import axios from "axios"; 
 
 export class test extends Component {
 
@@ -49,6 +50,26 @@ export class test extends Component {
     this.getRecipe();
     event.preventDefault();
   }
+
+    // Get recipe function
+    getRecipe = () => {
+    // Make a string of items to pass into API get request
+    let recipeString = this.state.value;
+    console.log(recipeString);
+    return axios(
+      `https://api.spoonacular.com/food/products/search?query=${recipeString}&apiKey=5c87fc7501454e29ad5a56bb45d581bd&number=20`
+    )
+      .then((response) => {
+        // Dispatches the action to redux
+        console.log(response.data.products);
+        this.props.getRecipe(response.data.products);
+        // Clear the recipeString after submit
+        recipeString = "";
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
 }
 
