@@ -17,8 +17,8 @@ export class SearchForm extends Component {
   render() {
     return (
       // Enter ingredient prompt w/ empty string validation
-      
-       
+      <div className="searchBox">
+        <p>This is a test</p> 
       {/* <MDBContainer>
         <h2>Search for a food item to add to your fridge!</h2>
         <form 
@@ -44,7 +44,7 @@ export class SearchForm extends Component {
           </MDBInput>
         </form>
       </MDBContainer> */}
-     
+      </div> 
     );
   }
   // handleChange(event) {
