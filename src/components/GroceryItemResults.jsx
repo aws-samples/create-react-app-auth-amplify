@@ -8,6 +8,10 @@ import {
   MDBBtn,
   MDBCardImage,
 } from "mdbreact";
+// import { saveToFridge } from '../../amplify/backend/function/itemsLambda' 
+import { API } from 'aws-amplify';
+import awsconfig from '../aws-exports'; 
+API.configure(awsconfig);
 
 class GroceryItemResults extends Component {
   constructor(props) {
@@ -19,12 +23,28 @@ class GroceryItemResults extends Component {
   // We could consider refactoring to redux thunk middleware
   SaveToFridge = (item) => {
     // debugger
-    const product = {
-      product_id: item.id,
-      product_image: item.image,
-      product_name: item.title,
-    };
+    // const product = {
+    //   product_id: item.id,
+    //   product_image: item.image,
+    //   product_name: item.title,
+    // };
     // Replace with the AWS function here
+    let apiName = 'fridgeApi';
+    let path = '/items';
+    let newItem = {
+      body: {
+        product_id: item.id,
+        product_image: item.image,
+        product_name: item.title
+      }
+    }
+    API.post(apiName, path, newItem)
+    .then(response => {
+      console.log(response)
+    })
+    .catch(error => {
+      console.log(error.response)
+    });
     // axiosWithAuth("/addItem", product, "POST").then((res) => {
     //   console.log(res.data);
     //   this.props.addToFridge(item);
@@ -80,7 +100,8 @@ class GroceryItemResults extends Component {
 
 function mapStateToProps(state) {
   return {
-    products: state.products
+    products: state.products,
+    user: state.user
   };
 }
 
