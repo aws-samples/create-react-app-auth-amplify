@@ -6,8 +6,8 @@ export class test extends Component {
     constructor(props) {
         super(props);
           this.state = {};
-        // this.handleChange = this.handleChange.bind(this);
-        // this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
       }
       
     render() {
@@ -39,6 +39,17 @@ export class test extends Component {
         </MDBContainer>
         )
     }
+
+  handleChange(event) {
+    this.setState({ value: event.target.value });
+    console.log(this.props.isAuth);
+  }
+  // Kick off add ingredient function on submit
+  handleSubmit(event) {
+    this.getRecipe();
+    event.preventDefault();
+  }
+
 }
 
 export default test
