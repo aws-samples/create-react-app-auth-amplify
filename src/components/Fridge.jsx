@@ -24,6 +24,7 @@ export class Fridge extends Component {
   componentDidMount() {
     this.getFridge();
     console.log(this.props.user)
+    console.log(this.props.user)
   }
 
   getFridge() {
