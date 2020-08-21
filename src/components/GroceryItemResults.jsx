@@ -10,9 +10,9 @@ import {
 } from "mdbreact";
 // import { saveToFridge } from '../../amplify/backend/function/itemsLambda' 
 import { API } from 'aws-amplify';
-import awsconfig from '../aws-exports'; 
+// import awsconfig from '../aws-exports'; 
 import { uniqueId } from "lodash";
-API.configure(awsconfig);
+// API.configure(awsconfig); 
 
 class GroceryItemResults extends Component {
   constructor(props) {
@@ -22,6 +22,7 @@ class GroceryItemResults extends Component {
 
   // SaveToFridge refers to saving to database. addToFridge refers to the redux action.
   SaveToFridge = (item) => {
+    console.log(item)
     let apiName = 'api66aa9583'; 
     let path = '/items';
     let date = new Date();
@@ -29,8 +30,8 @@ class GroceryItemResults extends Component {
     API.post(apiName, path, {
       body: {
         id: uniqueId(),
-        createdAt: date,
-        username: this.props.user.username, 
+        createdAt: date, 
+        username: this.props.user.username,
         product_id: item.id,
         product_image: item.image,
         product_name: item.title,

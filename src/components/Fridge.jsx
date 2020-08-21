@@ -3,16 +3,15 @@ import { connect } from "react-redux";
 // Import React components
 import {
   MDBContainer,
-  MDBCardText,
   MDBCard,
   MDBCol,
   MDBRow,
-  MDBCardBody,
-  MDBCardTitle,
-  MDBBtn,
   MDBCardImage,
+  MDBBtn
 } from "mdbreact";
 import "./FullPageIntroWithFixedNavbar.css";
+import Amplify, { API } from 'aws-amplify';
+Amplify.Logger.LOG_LEVEL = 'DEBUG'
 
 export class Fridge extends Component {
   constructor(props) {
@@ -23,16 +22,29 @@ export class Fridge extends Component {
   }
   // After loading users fridge, load all their database items and render to screen
   componentDidMount() {
-    // this.getFridge();
+    this.getFridge();
+    console.log(this.props.user)
   }
 
-  // getFridge() {
-  //   axiosBearer("/userItems").then((res) => {
-  //     // console.log(res.data);
-  //     this.setState({ items: res.data });
-  //   });
-  //   this.props.clearRecipes();
-  // }
+  getFridge() {
+    let apiName = 'api66aa9583';
+    let path = `/items&username=nick80`;
+    // let myInit = {
+    //   response: true,
+    //   queryStringParameters: {
+    //     'id': '1'
+    //   }
+    // }
+    
+  API.get(apiName, path)
+    .then(response => {
+      console.log(response)
+      // this.setState({ items: response.data })
+    })
+    .catch(error => {
+      console.log(error.response)
+    })
+  }
 
   // Delete item from fridge
   onDelete(item) {
@@ -87,6 +99,7 @@ export class Fridge extends Component {
 function mapStateToProps(state) {
   return {
     recipes: state.recipes,
+    user: state.user
   };
 }
 
