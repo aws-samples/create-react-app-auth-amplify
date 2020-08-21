@@ -10,7 +10,8 @@ import {
   MDBBtn
 } from "mdbreact";
 import "./FullPageIntroWithFixedNavbar.css";
-import { API } from 'aws-amplify';
+import Amplify, { API } from 'aws-amplify';
+Amplify.Logger.LOG_LEVEL = 'DEBUG'
 
 export class Fridge extends Component {
   constructor(props) {
@@ -27,17 +28,23 @@ export class Fridge extends Component {
 
   getFridge() {
     let apiName = 'api66aa9583';
-    let path = '/items/' + this.state.user;
+    let path = `/items&username=nick80`;
+    // let myInit = {
+    //   response: true,
+    //   queryStringParameters: {
+    //     'id': '1'
+    //   }
+    // }
     
-    API.get(apiName, path)
-      .then(response => {
-        console.log(response)
-        // this.setState({ items: response.data })
-      })
-      .catch(error => {
-        console.log(error.response)
-      })
-    }
+  API.get(apiName, path)
+    .then(response => {
+      console.log(response)
+      // this.setState({ items: response.data })
+    })
+    .catch(error => {
+      console.log(error.response)
+    })
+  }
 
   // Delete item from fridge
   onDelete(item) {

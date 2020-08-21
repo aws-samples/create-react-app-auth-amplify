@@ -108,7 +108,7 @@ app.get(path + hashKeyPath, function(req, res) {
 
   let queryParams = {
     TableName: tableName,
-    KeyConditions: condition
+    KeyConditions: condition,
   }
 
   dynamodb.query(queryParams, (err, data) => {
