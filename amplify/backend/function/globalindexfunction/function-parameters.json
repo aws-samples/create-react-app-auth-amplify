@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "storage": {
+      "globalsecondarytest": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

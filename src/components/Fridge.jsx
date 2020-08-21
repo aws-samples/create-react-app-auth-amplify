@@ -10,41 +10,35 @@ import {
   MDBBtn
 } from "mdbreact";
 import "./FullPageIntroWithFixedNavbar.css";
-import Amplify, { API } from 'aws-amplify';
-Amplify.Logger.LOG_LEVEL = 'DEBUG'
+import { API } from 'aws-amplify';
 
 export class Fridge extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: [],
+      // items: [],
     };
   }
   // After loading users fridge, load all their database items and render to screen
   componentDidMount() {
-    this.getFridge();
-    console.log(this.props.user)
-    console.log(this.props.user)
+    if (this.props.user) {
+      this.getFridge();
+    }
   }
 
-  async getFridge() {
-    let apiName = 'api66aa9583';
-    let path = `/items/nick80`;
-    // let myInit = {
-    //   response: true,
-    //   queryStringParameters: {
-    //     'username': 'nick80'
-    //   }
-    // }
+  getFridge() {
+    let apiName = 'api53fab81b';
+    let path = `/fridge/nick80`;
     
-  await API.get(apiName, path)
-    .then(response => {
-      console.log(response)
-      // this.setState({ items: response.data })
-    })
-    .catch(error => {
-      console.log(error.response)
-    })
+    API.get(apiName, path)
+      .then(products => {
+        console.log(products)
+        this.getProducts(products)
+        // this.setState({ items: response.data })
+      })
+      .catch(error => {
+        console.log(error.response)
+      })
   }
 
   // Delete item from fridge
@@ -67,21 +61,21 @@ export class Fridge extends Component {
         <h2>Welcome to Your Fridge!</h2>
         <h5>Here is what's currently in your fridge.</h5>
         <MDBRow>
-          {this.state.items.map((item) => {
+          {this.props.products.map((product) => {
             return (
               <MDBCol size="3" className="padding justify-content-center">
                 <MDBCard className="card align-items-center padding h-100">
-                  {item.product_name}
+                  {product.product_name}
                   <MDBCardImage
                     className="img-fluid padding"
-                    src={item.product_image}
+                    src={product.product_image}
                     alt=""
                   />
                   <MDBBtn
                     className="mt-auto"
                     color="red"
                     onClick={() => {
-                      this.onDelete(item);
+                      this.onDelete(product);
                       alert("This item was removed from your fridge");
                     }}
                   >
@@ -99,16 +93,20 @@ export class Fridge extends Component {
 
 function mapStateToProps(state) {
   return {
-    recipes: state.recipes,
-    user: state.user
+    user: state.user,
+    products: state.products
   };
 }
 
+// This needs to clear for conditional rendering
 function mapDispatchToProps(dispatch) {
   return {
     clearRecipes: function () {
       dispatch({ type: "RESET_RECIPES" });
     },
+    getProducts: function (products) {
+      dispatch({ type: "GET_PRODUCTS", payload: products });
+    }
   };
 }
 

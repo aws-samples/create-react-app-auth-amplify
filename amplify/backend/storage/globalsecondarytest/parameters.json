@@ -1,0 +1,7 @@
+{
+    "tableName": "globalsecondarytest",
+    "partitionKeyName": "id",
+    "partitionKeyType": "S",
+    "sortKeyName": "username",
+    "sortKeyType": "S"
+}

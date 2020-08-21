@@ -6,7 +6,8 @@ import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { createStore } from "redux";
+import { applyMiddleware, createStore } from "redux";
+import logger from 'redux-logger';
 import { Provider } from "react-redux";
 import { BrowserRouter } from 'react-router-dom';
 
@@ -69,7 +70,7 @@ function reducer(state = initialState, action) {
   }
   
   // Reducer store
-  const store = createStore(reducer);
+  const store = createStore(reducer, applyMiddleware(logger));
 
 ReactDOM.render(
   

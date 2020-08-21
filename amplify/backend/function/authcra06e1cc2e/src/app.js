@@ -35,6 +35,7 @@ const path = "/fridge";
 const UNAUTH = 'UNAUTH';
 const hashKeyPath = '/:' + partitionKeyName;
 const sortKeyPath = hasSortKey ? '/:' + sortKeyName : '';
+const whoDat = 'yea'
 // declare a new express app
 var app = express()
 app.use(bodyParser.json())

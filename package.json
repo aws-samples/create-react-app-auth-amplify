@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@aws-amplify/ui-react": "^0.2.14",
     "aws-amplify": "^3.0.23",
     "aws-amplify-react": "^4.1.22",
-    "@aws-amplify/ui-react": "^0.2.14",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.2",
     "kind-of": "^6.0.3",
@@ -17,7 +17,8 @@
     "react-redux": "^7.2.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.2",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "redux-logger": "^3.0.6"
   },
   "resolutions": {
     "set-value": "^2.0.1",
