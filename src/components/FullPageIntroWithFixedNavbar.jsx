@@ -22,10 +22,6 @@ import {
 // import { BrowserRouter as Router } from 'react-router-dom';
 
 class FullPageIntroWithFixedNavbar extends React.Component {
-  // componentDidMount() {
-  //   this.props.clearRecipes();
-  // }
-  
   render() {
     return (
       <div className="mainBox">

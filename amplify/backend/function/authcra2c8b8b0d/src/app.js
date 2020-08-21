@@ -16,8 +16,8 @@ var express = require('express')
 AWS.config.update({ region: process.env.TABLE_REGION });
 
 const dynamodb = new AWS.DynamoDB.DocumentClient();
-
-let tableName = "dynamoe87ae32b";
+let tableName = "dynamo17172672"; // new table
+// let tableName = "dynamoe87ae32b"; // old table
 if(process.env.ENV && process.env.ENV !== "NONE") {
   tableName = tableName + '-' + process.env.ENV;
 }
@@ -25,8 +25,10 @@ if(process.env.ENV && process.env.ENV !== "NONE") {
 const userIdPresent = false; // TODO: update in case is required to use that definition
 const partitionKeyName = "id";
 const partitionKeyType = "S";
-const sortKeyName = "";
-const sortKeyType = "";
+const sortKeyName = "username"; 
+// const sortKeyName = ""; // old  
+const sortKeyType = "S"; 
+// const sortKeyType = ""; // old 
 const hasSortKey = sortKeyName !== "";
 const path = "/items";
 const UNAUTH = 'UNAUTH';
@@ -53,6 +55,35 @@ const convertUrlType = (param, type) => {
       return param;
   }
 }
+
+/********************************
+ * MANUALLY ADDED
+ * HTTP Get method to scan all objects *
+ *
+ * The generated lambda code from `amplify add api` only created a `get` endpoint
+ * to "list" an _individual_ object.
+ *
+ * This adds the ability to perform a scan which returns an Items array of all objects.
+ ********************************/
+
+// app.get(path, function (req, res) {
+//   var params = {
+//     TableName: tableName,
+//     Select: 'ALL_ATTRIBUTES',
+//   };
+
+//   dynamodb.scan(params, (err, data) => {
+//     if (err) {
+//       res.json({ error: 'Could not load items: ' + err.message });
+//     }
+
+//     res.json({
+//       data: data.Items.map(item => {
+//         return item;
+//       }),
+//     });
+//   });
+// });
 
 /********************************
  * HTTP Get method for list objects *

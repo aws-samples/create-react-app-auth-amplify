@@ -38,9 +38,9 @@ componentDidMount() {
   Hub.listen('auth', this.updateLoggedStatus); 
 }
 
-componentWillUnmount() {
-  Hub.remove('auth');
- }
+// componentWillUnmount() {
+//   Hub.remove('auth');
+//  }
 
  async updateLoggedStatus() {
    // Then run getCurrentUsername to see if someone is logged in or not

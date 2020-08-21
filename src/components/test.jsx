@@ -55,6 +55,7 @@ export class test extends Component {
 
     // Get recipe function
     getProducts = () => {
+      console.log(this.props.user)
     // Pass product as string into API get request
     let productString = this.state.value;
     console.log(productString);
