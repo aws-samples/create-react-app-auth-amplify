@@ -22,6 +22,7 @@ class GroceryItemResults extends Component {
 
   // SaveToFridge refers to saving to database. addToFridge refers to the redux action.
   SaveToFridge = (item) => {
+    console.log('hello')
     console.log(item)
     let apiName = 'globalindextest'; 
     let path = '/fridgeitems';
