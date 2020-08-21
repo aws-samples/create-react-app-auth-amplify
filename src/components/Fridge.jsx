@@ -27,17 +27,17 @@ export class Fridge extends Component {
     console.log(this.props.user)
   }
 
-  getFridge() {
+  async getFridge() {
     let apiName = 'api66aa9583';
-    let path = `/items&username=nick80`;
+    let path = `/items/nick80`;
     // let myInit = {
     //   response: true,
     //   queryStringParameters: {
-    //     'id': '1'
+    //     'username': 'nick80'
     //   }
     // }
     
-  API.get(apiName, path)
+  await API.get(apiName, path)
     .then(response => {
       console.log(response)
       // this.setState({ items: response.data })

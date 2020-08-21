@@ -1,0 +1,7 @@
+{
+    "tableName": "dynamob91b7914",
+    "partitionKeyName": "username",
+    "partitionKeyType": "S",
+    "sortKeyName": "expiration",
+    "sortKeyType": "S"
+}
