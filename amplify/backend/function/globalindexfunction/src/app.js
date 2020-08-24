@@ -31,7 +31,7 @@ const partitionKeyType = "S";
 const sortKeyName = "username";
 const sortKeyType = "S";
 const hasSortKey = sortKeyName !== "";
-const path = "/item";
+const path = "/fridgeitems";
 const UNAUTH = 'UNAUTH';
 const hashKeyPath = '/:' + partitionKeyName;
 const sortKeyPath = hasSortKey ? '/:' + sortKeyName : '';
@@ -78,11 +78,29 @@ app.get(path + hashKeyPath, function(req, res) {
     }
   }
 
+
+
   let queryParams = {
     TableName: tableName,
-    KeyConditions: condition
+    KeyConditions: condition,
+    // KeyConditonExpression: 'username = :username',
+    // ExpressionAttributeValues: {
+    //   ':username': 'username'
+    // }
+    // Key: {
+    //   username: "nick"
+    // }
+    // KeyConditionExpression: "#username = :username",
+    //         ExpressionAttributeNames:{
+    //             "#username": "username"
+    //         },
+    //         ExpressionAttributeValues: {
+    //           ":username": {
+    //             S: "username",
+    //           },
+    //         }
   }
-
+  
   dynamodb.query(queryParams, (err, data) => {
     if (err) {
       res.statusCode = 500;

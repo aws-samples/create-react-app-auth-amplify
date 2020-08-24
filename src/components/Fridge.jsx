@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect, Component } from "react";
 import { connect } from "react-redux";
 // Import React components
 import {
@@ -27,18 +27,34 @@ export class Fridge extends Component {
   }
 
   getFridge() {
-    let apiName = 'api53fab81b';
-    let path = `/fridge/nick80`;
-    
+    console.log('test')
+    let apiName = 'globalindextest';
+    let path = '/fridgeitems&id=1';
+    // let myInit = {
+    //   queryStringParameters: {
+    //     username: 'nick'
+    //   }
+    // }
+  
     API.get(apiName, path)
-      .then(products => {
-        console.log(products)
-        this.getProducts(products)
-        // this.setState({ items: response.data })
-      })
-      .catch(error => {
-        console.log(error.response)
-      })
+    .then(response => {
+      console.log(response)
+      this.getProducts(response)
+      // this.setState({ items: response.data })
+    })
+    .catch(error => {
+      console.log(error.response)
+    })
+
+    // API.get(apiName, path, myInit)
+    //   .then(response => {
+    //     console.log(response)
+    //     this.getProducts(response)
+    //     // this.setState({ items: response.data })
+    //   })
+    //   .catch(error => {
+    //     console.log(error.response)
+    //   })
   }
 
   // Delete item from fridge
