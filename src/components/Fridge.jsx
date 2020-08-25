@@ -1,4 +1,4 @@
-import React, { useEffect, Component } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 // Import React components
 import {
@@ -16,60 +16,45 @@ export class Fridge extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // items: [],
     };
   }
   // After loading users fridge, load all their database items and render to screen
   componentDidMount() {
-    if (this.props.user) {
-      this.getFridge();
-    }
+    this.getFridge();
   }
 
   getFridge() {
-    console.log('test')
     let apiName = 'globalindextest';
-    let path = '/fridgeitems&id=1';
-    // let myInit = {
-    //   queryStringParameters: {
-    //     username: 'nick'
-    //   }
-    // }
+    let path = '/fridgeitems';
+    let params = {
+      response: true,
+      queryStringParameters: {
+        username: 'nick'
+      }
+    }
   
-    API.get(apiName, path)
+    API.get(apiName, path, params)
     .then(response => {
-      console.log(response)
-      this.getProducts(response)
+      // There's a problem here, needs to be async redux
+      const fridgeItems = response;
+      this.getProducts(fridgeItems)
+      console.log(fridgeItems)
+      console.log(this.props.products)
       // this.setState({ items: response.data })
     })
     .catch(error => {
       console.log(error.response)
     })
-
-    // API.get(apiName, path, myInit)
-    //   .then(response => {
-    //     console.log(response)
-    //     this.getProducts(response)
-    //     // this.setState({ items: response.data })
-    //   })
-    //   .catch(error => {
-    //     console.log(error.response)
-    //   })
   }
+  
 
   // Delete item from fridge
-  onDelete(item) {
-    const product = {
-      id: item.id,
-    };
-    // axiosWithAuth("/delete", product, "DELETE").then((res) => {
-    //   console.log(res.data);
-    // });
-    // axiosBearer("/userItems").then((res) => {
-    //   console.log(res.data);
-    //   this.setState({ items: res.data });
-    // });
-  }
+  // To be implemented
+  // onDelete(item) {
+  //   const product = {
+  //     id: item.id,
+  //   };
+  // }
 
   render() {
     return (
@@ -117,11 +102,8 @@ function mapStateToProps(state) {
 // This needs to clear for conditional rendering
 function mapDispatchToProps(dispatch) {
   return {
-    clearRecipes: function () {
-      dispatch({ type: "RESET_RECIPES" });
-    },
-    getProducts: function (products) {
-      dispatch({ type: "GET_PRODUCTS", payload: products });
+    getProducts: function (fridgeItems) {
+      dispatch({ type: "GET_PRODUCTS", payload: fridgeItems });
     }
   };
 }

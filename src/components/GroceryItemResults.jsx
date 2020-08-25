@@ -30,7 +30,8 @@ class GroceryItemResults extends Component {
     API.post(apiName, path, {
       body: {
         id: uniqueId(),
-        username: 'nick',
+        username: this.props.user.username,
+        expiration: '1-22-2021',
         createdAt: date, 
         product_id: item.id,
         product_image: item.image,

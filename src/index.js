@@ -15,8 +15,7 @@ import { BrowserRouter } from 'react-router-dom';
 // Redux store setup
 const initialState = {
     value: "",
-    recipes: [{}],
-    products: [],
+    products: [{}],
     // Items are the fridge contents from database
     productString: "",
     fridgeItems: [{}],

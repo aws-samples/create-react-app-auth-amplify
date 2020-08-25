@@ -61,7 +61,8 @@ const convertUrlType = (param, type) => {
  * HTTP Get method for list objects *
  ********************************/
 
-app.get(path + hashKeyPath, function(req, res) {
+app.get(path, function(req, res) {
+  const username = req.query.username;
   var condition = {}
   condition[partitionKeyName] = {
     ComparisonOperator: 'EQ'
@@ -78,27 +79,14 @@ app.get(path + hashKeyPath, function(req, res) {
     }
   }
 
-
-
   let queryParams = {
     TableName: tableName,
-    KeyConditions: condition,
-    // KeyConditonExpression: 'username = :username',
-    // ExpressionAttributeValues: {
-    //   ':username': 'username'
-    // }
-    // Key: {
-    //   username: "nick"
-    // }
-    // KeyConditionExpression: "#username = :username",
-    //         ExpressionAttributeNames:{
-    //             "#username": "username"
-    //         },
-    //         ExpressionAttributeValues: {
-    //           ":username": {
-    //             S: "username",
-    //           },
-    //         }
+    IndexName: 'users',
+    KeyConditionExpression: "username = :username",
+    ExpressionAttributeValues: {
+      // ":username": "nick" // this works 
+      ":username": username
+    }
   }
   
   dynamodb.query(queryParams, (err, data) => {
@@ -110,6 +98,7 @@ app.get(path + hashKeyPath, function(req, res) {
     }
   });
 });
+
 
 /*****************************************
  * HTTP Get method for get single object *
