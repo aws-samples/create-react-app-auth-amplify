@@ -58,6 +58,7 @@ getCurrentUsername() {
       .then(user => {
         console.log(user)
         this.props.authUser(user)
+        console.log(this.props.user.username)
         if (user.username) {
           // console.log(user.username) 
           resolve(user.username)

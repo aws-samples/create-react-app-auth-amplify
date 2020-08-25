@@ -40,6 +40,11 @@ function reducer(state = initialState, action) {
           ...state,
           products: action.payload
         }
+      case "GET_FRIDGE":
+        return {
+          ...state,
+          fridgeItems: action.payload
+        }
       // // Reset the screen to default state
       // case "RESET_ITEM":
       //   return {

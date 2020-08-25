@@ -16,6 +16,7 @@ export class Fridge extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      items: [{}]
     };
   }
   // After loading users fridge, load all their database items and render to screen
@@ -29,18 +30,18 @@ export class Fridge extends Component {
     let params = {
       response: true,
       queryStringParameters: {
-        username: 'nick'
+        username: this.props.user.username
       }
     }
   
     API.get(apiName, path, params)
     .then(response => {
+      // this.getFridgeContents(response.data)
       // There's a problem here, needs to be async redux
-      const fridgeItems = response;
-      this.getProducts(fridgeItems)
-      console.log(fridgeItems)
-      console.log(this.props.products)
-      // this.setState({ items: response.data })
+      // const fridgeItems = response.data; 
+      // console.log(fridgeItems) 
+      this.setState({ items: response.data })
+      console.log(this.state.items)
     })
     .catch(error => {
       console.log(error.response)
@@ -62,21 +63,21 @@ export class Fridge extends Component {
         <h2>Welcome to Your Fridge!</h2>
         <h5>Here is what's currently in your fridge.</h5>
         <MDBRow>
-          {this.props.products.map((product) => {
+          {this.state.items.map((item) => {
             return (
               <MDBCol size="3" className="padding justify-content-center">
                 <MDBCard className="card align-items-center padding h-100">
-                  {product.product_name}
+                  {item.product_name}
                   <MDBCardImage
                     className="img-fluid padding"
-                    src={product.product_image}
+                    src={item.product_image}
                     alt=""
                   />
                   <MDBBtn
                     className="mt-auto"
                     color="red"
                     onClick={() => {
-                      this.onDelete(product);
+                      this.onDelete(item);
                       alert("This item was removed from your fridge");
                     }}
                   >
@@ -95,15 +96,15 @@ export class Fridge extends Component {
 function mapStateToProps(state) {
   return {
     user: state.user,
-    products: state.products
+    fridgeItems: state.fridgeItems
   };
 }
 
 // This needs to clear for conditional rendering
 function mapDispatchToProps(dispatch) {
   return {
-    getProducts: function (fridgeItems) {
-      dispatch({ type: "GET_PRODUCTS", payload: fridgeItems });
+    getFridgeContents: function (fridgeItems) {
+      dispatch({ type: "GET_FRIDGE", payload: fridgeItems });
     }
   };
 }
