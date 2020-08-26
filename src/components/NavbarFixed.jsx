@@ -9,14 +9,12 @@ import {
   MDBNavItem,
   MDBNavLink,
 } from "mdbreact";
-// import RegisterModal from "./RegisterModal";
-// import LoginModal from "./LoginModal";
 import logo from "./assets/fridge_with_open_door_80px.png";
-// import { SignOut } from 'aws-amplify-react'; 
 import { Hub, Auth } from 'aws-amplify';
 // Navbar components with no route need withRouter to use history.
 import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
+import { authUser, logout } from '../actions/fridgeActions'
 
 export class NavbarFixed extends Component {
   constructor(props) {
@@ -57,6 +55,7 @@ getCurrentUsername() {
     Auth.currentAuthenticatedUser()
       .then(user => {
         console.log(user)
+        // Pass user to Redux
         this.props.authUser(user)
         console.log(this.props.user.username)
         if (user.username) {
@@ -156,18 +155,14 @@ async onSignOutClick() {
 
 function mapStateToProps(state) {
   return {
-    user: state.user
+    user: state.fridge.user
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    authUser: function (user) {
-      dispatch({ type: "AUTHORIZED_USER", payload: user });
-    },
-    logout: function() {
-      dispatch({ type: "LOGOUT"});
-    }
+    authUser: (user) => dispatch(authUser(user)),
+    logout: () => dispatch(logout())
   };
 }
 

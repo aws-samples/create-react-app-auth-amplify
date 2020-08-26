@@ -31,7 +31,7 @@ class AWSLogin extends Component {
 
 function mapStateToProps(state) {
   return {
-    user: state.user
+    user: state.fridge.user
   };
 }
 

@@ -47,10 +47,10 @@ class GroceryItemResults extends Component {
   };
   render() {
     // Render each product as card
-    const items = this.props.products;
+    const items = this.props.products; 
     return (
       <MDBContainer>
-        <MDBRow>
+        {/* <MDBRow>
           {items.map((item) => {
             console.log(item.image)
             return (
@@ -77,7 +77,7 @@ class GroceryItemResults extends Component {
               </MDBCol>
             );
           })}
-        </MDBRow>
+        </MDBRow> */}
       </MDBContainer>
     );
   }

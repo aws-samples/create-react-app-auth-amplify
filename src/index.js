@@ -4,77 +4,23 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
-import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { applyMiddleware, createStore } from "redux";
-import logger from 'redux-logger';
+// import logger from 'redux-logger'; 
 import { Provider } from "react-redux";
 import { BrowserRouter } from 'react-router-dom';
+import thunk from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
+// Local imports
+import App from './App';
+import rootReducer from './reducers';
 
-// Redux store setup
-const initialState = {
-    value: "",
-    products: [{}],
-    // Items are the fridge contents from database
-    productString: "",
-    fridgeItems: [{}],
-    user: null
-  };
-
-// Write functions for your reducer here
-function reducer(state = initialState, action) {
-    switch (action.type) {
-      case "AUTHORIZED_USER":
-        return {
-          ...state,
-          user: action.payload
-        }
-      case "LOGOUT":
-        return {
-          ...state,
-          user: initialState.user
-        }
-      case "GET_PRODUCTS":
-        return {
-          ...state,
-          products: action.payload
-        }
-      case "GET_FRIDGE":
-        return {
-          ...state,
-          fridgeItems: action.payload
-        }
-      // // Reset the screen to default state
-      // case "RESET_ITEM":
-      //   return {
-      //     ...state,
-      //     items: initialState.items,
-      //   };
-      // case 'RESET_RECIPES':
-      //   return {
-      //     ...state,
-      //     recipes: initialState.recipes
-      //   }
-      // case "DELETE_INGREDIENT":
-      //   return {
-      //     ...state,
-      //     items: state.items.filter(
-      //       (ingredient) => ingredient !== action.payload
-      //     ),
-      //   };
-      case "ADD_ITEM_TO_FRIDGE":
-        return {
-          ...state,
-          fridgeItems: action.payload,
-        };
-      default:
-        return state;
-    }
-  }
-  
   // Reducer store
-  const store = createStore(reducer, applyMiddleware(logger));
+  const store = createStore(
+    rootReducer,
+    composeWithDevTools(applyMiddleware(thunk))
+  )
 
 ReactDOM.render(
   
