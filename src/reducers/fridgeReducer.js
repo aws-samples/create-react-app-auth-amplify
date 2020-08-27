@@ -14,6 +14,13 @@ export const initialState = {
 
 export default function fridgeReducer(state = initialState, action) {
   switch (action.type) {
+
+    case actions.CLEAR_PRODUCTS:
+      return {
+        ...state,
+        products: initialState.products
+      }
+    //
     case actions.GET_FRIDGE:
       return { 
         ...state, 
@@ -22,9 +29,10 @@ export default function fridgeReducer(state = initialState, action) {
     //
     case actions.GET_FRIDGE_SUCCESS:
       return { 
+        ...state,
         fridgeItems: action.payload, 
         loading: false, 
-        hasErrors: false 
+        hasErrors: false,
       }
     //
     case actions.GET_FRIDGE_FAILURE:

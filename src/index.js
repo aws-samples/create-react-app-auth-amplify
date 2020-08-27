@@ -6,7 +6,7 @@ import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
 import * as serviceWorker from './serviceWorker';
 import { applyMiddleware, createStore } from "redux";
-// import logger from 'redux-logger'; 
+import logger from 'redux-logger'; 
 import { Provider } from "react-redux";
 import { BrowserRouter } from 'react-router-dom';
 import thunk from 'redux-thunk';
@@ -19,7 +19,7 @@ import rootReducer from './reducers';
   // Reducer store
   const store = createStore(
     rootReducer,
-    composeWithDevTools(applyMiddleware(thunk))
+    composeWithDevTools(applyMiddleware(thunk, logger))
   )
 
 ReactDOM.render(

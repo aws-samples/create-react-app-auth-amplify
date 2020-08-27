@@ -16,6 +16,7 @@ function App() {
       <NavbarFixed />     
       <Route exact path="/" component={FullPageIntroWithFixedNavbar} /> 
       <Route path="/test" component={test} />
+      <Route path="/search" component={test} />
       <GroceryItemResults />
       <Route path="/login" component={AWSLogin} />
       <Route path="/about" component={AboutUs} /> 

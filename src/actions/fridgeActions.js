@@ -7,6 +7,7 @@ export const ADD_ITEM_TO_FRIDGE = 'ADD_ITEM_TO_FRIDGE'
 export const AUTHORIZED_USER = 'AUTHORIZED_USER'
 export const GET_PRODUCTS = 'GET_PRODUCTS'
 export const LOGOUT = 'LOGOUT'
+export const CLEAR_PRODUCTS = 'CLEAR_PRODUCTS'
 // export const GET_USER_FRIDGE = 'GET_USER_FRIDGE'
 
 
@@ -14,6 +15,10 @@ export const LOGOUT = 'LOGOUT'
 export const authUser = (user) => ({
   type: AUTHORIZED_USER,
   payload: user,
+})
+
+export const clearProducts = () => ({
+  type: CLEAR_PRODUCTS
 })
 
 export const logout = () => ({

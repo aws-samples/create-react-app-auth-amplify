@@ -9,9 +9,7 @@ import {
   MDBCardImage,
 } from "mdbreact";
 import { API } from 'aws-amplify';
-import { uniqueId } from "lodash";
-// import { addToFridge } from '../actions/fridgeActions' 
-// Don't think this needs to be a redux action
+import { v4 as uuidv4 } from 'uuid';
 
 class GroceryItemResults extends Component {
   constructor(props) {
@@ -26,7 +24,7 @@ class GroceryItemResults extends Component {
     let date = new Date();
     API.post(apiName, path, {
       body: {
-        id: uniqueId(),
+        id: uuidv4(),
         username: this.props.user.username,
         expiration: '1-22-2021',
         createdAt: date, 
@@ -44,11 +42,11 @@ class GroceryItemResults extends Component {
   };
   render() {
     // Render each product as card
-    const items = this.props.products; 
     return (
       <MDBContainer>
-        <MDBRow>
-          {items.map((item) => {
+        {this.props.products && (
+          <MDBRow>
+          {this.props.products.map((item) => {
             return (
               <MDBCol size="3" className="padding justify-content-center">
                 {this.props.products.length > 1 && (
@@ -74,6 +72,11 @@ class GroceryItemResults extends Component {
             );
           })}
         </MDBRow>
+
+
+          )
+        }
+        
       </MDBContainer>
     );
   }
