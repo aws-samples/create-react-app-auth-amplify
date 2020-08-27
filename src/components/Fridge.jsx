@@ -11,6 +11,7 @@ import {
 } from "mdbreact";
 import "./FullPageIntroWithFixedNavbar.css";
 import { API } from 'aws-amplify';
+import { fetchFridge } from '../actions/fridgeActions'
 
 export class Fridge extends Component {
   constructor(props) {
@@ -21,34 +22,33 @@ export class Fridge extends Component {
   }
   // After loading users fridge, load all their database items and render to screen
   componentDidMount() {
-    this.getFridge();
+    this.props.fetchFridge();
   }
 
-  getFridge() {
-    let apiName = 'globalindextest';
-    let path = '/fridgeitems';
-    let params = {
-      response: true,
-      queryStringParameters: {
-        username: this.props.user.username
-      }
-    }
+  // getFridge() {
+  //   let apiName = 'globalindextest';
+  //   let path = '/fridgeitems';
+  //   let params = {
+  //     response: true,
+  //     queryStringParameters: {
+  //       username: this.props.user.username
+  //     }
+  //   }
   
-    API.get(apiName, path, params)
-    .then(response => {
-      // this.getFridgeContents(response.data)
-      // There's a problem here, needs to be async redux
-      // const fridgeItems = response.data; 
-      // console.log(fridgeItems) 
-      this.setState({ items: response.data })
-      console.log(this.state.items)
-    })
-    .catch(error => {
-      console.log(error.response)
-    })
-  }
+  //   API.get(apiName, path, params)
+  //   .then(response => {
+  //     // this.getFridgeContents(response.data)
+  //     // There's a problem here, needs to be async redux
+  //     // const fridgeItems = response.data; 
+  //     // console.log(fridgeItems) 
+  //     this.setState({ items: response.data })
+  //     console.log(this.state.items)
+  //   })
+  //   .catch(error => {
+  //     console.log(error.response)
+  //   })
+  // }
   
-
   // Delete item from fridge
   // To be implemented
   // onDelete(item) {
@@ -63,7 +63,7 @@ export class Fridge extends Component {
         <h2>Welcome to Your Fridge!</h2>
         <h5>Here is what's currently in your fridge.</h5>
         <MDBRow>
-          {this.state.items.map((item) => {
+          {this.props.fridgeItems.map((item) => {
             return (
               <MDBCol size="3" className="padding justify-content-center">
                 <MDBCard className="card align-items-center padding h-100">
@@ -95,17 +95,20 @@ export class Fridge extends Component {
 
 function mapStateToProps(state) {
   return {
-    user: state.user,
-    fridgeItems: state.fridgeItems
+    user: state.fridge.user,
+    fridgeItems: state.fridge.fridgeItems,
+    loading: state.fridge.loading,
+    hasErrors: state.fridge.hasErrors
   };
 }
 
 // This needs to clear for conditional rendering
 function mapDispatchToProps(dispatch) {
   return {
-    getFridgeContents: function (fridgeItems) {
-      dispatch({ type: "GET_FRIDGE", payload: fridgeItems });
-    }
+    fetchFridge: (fridgeItems) => dispatch(fetchFridge(fridgeItems))
+    // getFridgeContents: function (fridgeItems) {
+    //   dispatch({ type: "GET_FRIDGE", payload: fridgeItems });
+    // }
   };
 }
 

@@ -8,11 +8,9 @@ import {
   MDBBtn,
   MDBCardImage,
 } from "mdbreact";
-// import { saveToFridge } from '../../amplify/backend/function/itemsLambda' 
 import { API } from 'aws-amplify';
-// import awsconfig from '../aws-exports'; 
 import { uniqueId } from "lodash";
-// API.configure(awsconfig); 
+// import { addToFridge } from '../actions/fridgeActions' // Don't think this needs to be a redux action
 
 class GroceryItemResults extends Component {
   constructor(props) {
@@ -20,7 +18,7 @@ class GroceryItemResults extends Component {
     this.state = {};
   }
 
-  // SaveToFridge refers to saving to database. addToFridge refers to the redux action.
+  // SaveToFridge saves products to user's database.
   SaveToFridge = (item) => {
     console.log(item)
     let apiName = 'globalindextest'; 
@@ -50,7 +48,7 @@ class GroceryItemResults extends Component {
     const items = this.props.products; 
     return (
       <MDBContainer>
-        {/* <MDBRow>
+        <MDBRow>
           {items.map((item) => {
             console.log(item.image)
             return (
@@ -77,7 +75,7 @@ class GroceryItemResults extends Component {
               </MDBCol>
             );
           })}
-        </MDBRow> */}
+        </MDBRow>
       </MDBContainer>
     );
   }
@@ -95,22 +93,20 @@ class GroceryItemResults extends Component {
 
 function mapStateToProps(state) {
   return {
-    products: state.products,
-    user: state.user
+    products: state.fridge.products,
+    user: state.fridge.user
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    clearResults: function () {
-      dispatch({ type: "RESET_ITEM" });
-    },
-    clearProducts: function () {
-      dispatch({ type: "RESET_PRODUCTS" });
-    },
-    addToFridge: function (itemInfo) {
-      dispatch({ type: "ADD_ITEM_TO_FRIDGE", payload: itemInfo });
-    },
+    // clearResults: function () {
+    //   dispatch({ type: "RESET_ITEM" });
+    // },
+    // clearProducts: function () {
+    //   dispatch({ type: "RESET_PRODUCTS" });
+    // },
+    // addToFridge: (itemInfo) => dispatch(addToFridge(itemInfo))
   };
 }
 

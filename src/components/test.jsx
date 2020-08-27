@@ -4,8 +4,10 @@ import axios from "axios";
 import { connect } from "react-redux"; 
 import "./test.css";
 
-export class test extends Component {
+// Local imports
+import { getProducts } from '../actions/fridgeActions'
 
+export class test extends Component {
     constructor(props) {
         super(props);
           this.state = {};
@@ -13,7 +15,6 @@ export class test extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
       }
       
-    
     render() {
         return (
         <MDBContainer className="test">
@@ -48,15 +49,14 @@ export class test extends Component {
     this.setState({ value: event.target.value });
     console.log(this.props.isAuth);
   }
-  // Kick off add product function on submit
+  // Kick off find product function on submit
   handleSubmit(event) {
     this.getProducts();
     event.preventDefault();
   }
 
-    // Get recipe function
+    // Get Products from API function
     getProducts = () => {
-      console.log(this.props.user)
     // Pass product as string into API get request
     let productString = this.state.value;
     console.log(productString);
@@ -92,18 +92,16 @@ export class test extends Component {
 function mapStateToProps(state) {
   return {
     // items are user fridge contents from database. Not in use yet
-    items: state.items,
+    items: state.fridge.items,
     // Products refer to the product array from the API
-    products: state.products,
-    user: state.user
+    products: state.fridge.products,
+    user: state.fridge.user
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    getProducts: function (products) {
-      dispatch({ type: "GET_PRODUCTS", payload: products });
-    }
+    getProducts: (products) => dispatch(getProducts(products))
   };
 }
 
