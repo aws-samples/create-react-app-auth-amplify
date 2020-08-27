@@ -7,6 +7,8 @@ export const ADD_ITEM_TO_FRIDGE = 'ADD_ITEM_TO_FRIDGE'
 export const AUTHORIZED_USER = 'AUTHORIZED_USER'
 export const GET_PRODUCTS = 'GET_PRODUCTS'
 export const LOGOUT = 'LOGOUT'
+// export const GET_USER_FRIDGE = 'GET_USER_FRIDGE'
+
 
 // Create Redux action creators that return an action
 export const authUser = (user) => ({
@@ -41,6 +43,10 @@ export const getFridgeFailure = () => ({
   type: GET_FRIDGE_FAILURE,
 })
 
+// export const getUserFridge = (userFridge) => ({
+//   type: GET_USER_FRIDGE,
+//   payload: userFridge
+// })
 // Combine them all in an asynchronous thunk
 
 // export function fetchFridge() {
@@ -57,13 +63,14 @@ export const getFridgeFailure = () => ({
 //     return API.get(apiName, path, params)
 //   }
 
-export function fetchFridge() {
+export function fetchFridge(user) {
+  console.log(user)
   let apiName = 'globalindextest';
       let path = '/fridgeitems';
       let params = {
         response: true,
         queryStringParameters: {
-          username: 'nick80'
+          username: user.username
         }
       }
   return async (dispatch) => {
@@ -72,7 +79,7 @@ export function fetchFridge() {
     try {
       const response = await API.get(apiName, path, params)
       console.log(response) 
-      const data = await response.json()
+      const data = await response.data
       console.log(data)
       dispatch(getFridgeSuccess(data))
     } 

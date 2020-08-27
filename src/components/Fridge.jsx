@@ -10,39 +10,47 @@ import {
   MDBBtn
 } from "mdbreact";
 import "./FullPageIntroWithFixedNavbar.css";
-import { API } from 'aws-amplify';
+import { Auth } from 'aws-amplify';
+
+// Local imports
 import { fetchFridge } from '../actions/fridgeActions'
+// import { getUserFridge } from '../actions/fridgeActions' 
 
 export class Fridge extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: [{}]
+      // items: [{}] 
     };
   }
-  // After loading users fridge, load all their database items and render to screen
+  // Retrieve users' fridge to render
   componentDidMount() {
-    this.props.fetchFridge();
+    Auth.currentAuthenticatedUser()
+      .then(user => {
+        // this.getFridge(user)
+        // this.props.fetchFridge(user)
+        // this.props.fetchFridge(); 
+      })
   }
-
-  // getFridge() {
+  // getFridge(user) {
   //   let apiName = 'globalindextest';
   //   let path = '/fridgeitems';
   //   let params = {
   //     response: true,
   //     queryStringParameters: {
-  //       username: this.props.user.username
+  //       username: user.username
   //     }
   //   }
-  
   //   API.get(apiName, path, params)
   //   .then(response => {
+  //     const userFridge = response.data;
+  //     console.log(userFridge)
+  //     this.props.getUserFridge(userFridge)
   //     // this.getFridgeContents(response.data)
   //     // There's a problem here, needs to be async redux
   //     // const fridgeItems = response.data; 
   //     // console.log(fridgeItems) 
-  //     this.setState({ items: response.data })
-  //     console.log(this.state.items)
+  //     // this.setState({ items: response.data })
   //   })
   //   .catch(error => {
   //     console.log(error.response)
@@ -67,7 +75,6 @@ export class Fridge extends Component {
             return (
               <MDBCol size="3" className="padding justify-content-center">
                 <MDBCard className="card align-items-center padding h-100">
-                  {item.product_name}
                   <MDBCardImage
                     className="img-fluid padding"
                     src={item.product_image}
@@ -98,17 +105,16 @@ function mapStateToProps(state) {
     user: state.fridge.user,
     fridgeItems: state.fridge.fridgeItems,
     loading: state.fridge.loading,
-    hasErrors: state.fridge.hasErrors
+    hasErrors: state.fridge.hasErrors,
+    userFridgeItems: state.fridge.userFridgeItems
   };
 }
 
 // This needs to clear for conditional rendering
 function mapDispatchToProps(dispatch) {
   return {
-    fetchFridge: (fridgeItems) => dispatch(fetchFridge(fridgeItems))
-    // getFridgeContents: function (fridgeItems) {
-    //   dispatch({ type: "GET_FRIDGE", payload: fridgeItems });
-    // }
+    fetchFridge: (fridgeItems) => dispatch(fetchFridge(fridgeItems)),
+    // getUserFridge: (userFridge) => dispatch(getUserFridge(userFridge)) 
   };
 }
 

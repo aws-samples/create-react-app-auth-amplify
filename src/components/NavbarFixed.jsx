@@ -54,10 +54,9 @@ getCurrentUsername() {
   return new Promise((resolve, reject) => {
     Auth.currentAuthenticatedUser()
       .then(user => {
-        console.log(user)
         // Pass user to Redux
         this.props.authUser(user)
-        console.log(this.props.user.username)
+        console.log(this.props.user)
         if (user.username) {
           // console.log(user.username) 
           resolve(user.username)

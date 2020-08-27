@@ -10,7 +10,8 @@ import {
 } from "mdbreact";
 import { API } from 'aws-amplify';
 import { uniqueId } from "lodash";
-// import { addToFridge } from '../actions/fridgeActions' // Don't think this needs to be a redux action
+// import { addToFridge } from '../actions/fridgeActions' 
+// Don't think this needs to be a redux action
 
 class GroceryItemResults extends Component {
   constructor(props) {
@@ -20,11 +21,9 @@ class GroceryItemResults extends Component {
 
   // SaveToFridge saves products to user's database.
   SaveToFridge = (item) => {
-    console.log(item)
     let apiName = 'globalindextest'; 
     let path = '/fridgeitems';
     let date = new Date();
-    console.log(date)
     API.post(apiName, path, {
       body: {
         id: uniqueId(),
@@ -50,7 +49,6 @@ class GroceryItemResults extends Component {
       <MDBContainer>
         <MDBRow>
           {items.map((item) => {
-            console.log(item.image)
             return (
               <MDBCol size="3" className="padding justify-content-center">
                 {this.props.products.length > 1 && (
@@ -79,16 +77,6 @@ class GroceryItemResults extends Component {
       </MDBContainer>
     );
   }
-  // Clear ingredients on screen
-  handleSubmit = (event) => {
-    this.props.clearResults();
-    event.preventDefault();
-  };
-  // Clear recipes on screen
-  clearRecipes = (event) => {
-    this.props.clearRecipes();
-    event.preventDefault();
-  };
 }
 
 function mapStateToProps(state) {

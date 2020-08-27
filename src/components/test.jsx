@@ -25,7 +25,6 @@ export class test extends Component {
           noValidate
         >
           <MDBInput
-             
             value={this.state.value}
             onChange={this.handleChange}
             type="text"
@@ -33,7 +32,6 @@ export class test extends Component {
             className="form-control"
             name="food item"
             label="Search here!"
-            
           >
             <MDBBtn color="green" className="m-1 px-3 py-2" type="submit">
               Search for food item
@@ -77,7 +75,6 @@ export class test extends Component {
         })
       .then((response) => {
         // Dispatches the action to redux
-        console.log(response.data.products);
         this.props.getProducts(response.data.products);
         // Clear the productString after submit
         productString = "";
@@ -91,8 +88,6 @@ export class test extends Component {
 
 function mapStateToProps(state) {
   return {
-    // items are user fridge contents from database. Not in use yet
-    items: state.fridge.items,
     // Products refer to the product array from the API
     products: state.fridge.products,
     user: state.fridge.user

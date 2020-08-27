@@ -12,7 +12,8 @@ class AWSLogin extends Component {
     this.state = {
     };
   }
-
+  
+  // Remove navbar at this page
   // Eventually refactor to use latest Amplify react component
   componentDidMount() {
     if (this.props.user) {

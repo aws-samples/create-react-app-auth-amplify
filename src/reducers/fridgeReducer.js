@@ -9,6 +9,7 @@ export const initialState = {
   user: null,
   loading: false,
   hasErrors: false,
+  // userFridgeItems: [{}] 
 }
 
 export default function fridgeReducer(state = initialState, action) {
@@ -51,7 +52,12 @@ export default function fridgeReducer(state = initialState, action) {
         return {
           ...state,
           fridgeItems: action.payload,
-        };
+        }
+      // case actions.GET_USER_FRIDGE:
+      //   return {
+      //     ...state, 
+      //     userFridgeItems: action.payload
+      //   }
     //
     default:
       return state
