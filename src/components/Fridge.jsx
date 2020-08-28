@@ -112,7 +112,6 @@ function mapStateToProps(state) {
   };
 }
 
-// This needs to clear for conditional rendering
 function mapDispatchToProps(dispatch) {
   return {
     fetchFridge: (fridgeItems) => dispatch(fetchFridge(fridgeItems)),
