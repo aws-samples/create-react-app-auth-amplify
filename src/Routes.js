@@ -4,22 +4,29 @@ import {
   Switch,
   Route,
   Redirect,
+  useLocation,
 } from "react-router-dom";
 import SignInPage from "./pages/sign-in";
+import HomePage from "./pages/home";
+
+import { useSelector } from "react-redux";
 
 export default function Routes() {
+  const isLogin = useSelector((state) => state.signIn.isSignIn);
+
+  console.log("isLogin: ", isLogin);
   return (
     <Router>
       <Switch>
-        <Route path="/">
+        <PrivateRoute path="/login">
           <SignInPage />
-        </Route>
+        </PrivateRoute>
         {/* <Route path="/login">
           <LoginPage />
-        </Route>
-        <PrivateRoute path="/protected">
-          <ProtectedPage />
-        </PrivateRoute> */}
+        </Route> */}
+        <PrivateRoute path="/home">
+          <HomePage />
+        </PrivateRoute>
       </Switch>
     </Router>
   );
@@ -28,21 +35,46 @@ export default function Routes() {
 // A wrapper for <Route> that redirects to the login
 // screen if you're not yet authenticated.
 function PrivateRoute({ children, ...rest }) {
-  return (
-    <Route
-      {...rest}
-      render={({ location }) =>
-        true ? (
-          children
-        ) : (
-          <Redirect
-            to={{
-              pathname: "/login",
-              state: { from: location },
-            }}
-          />
-        )
-      }
-    />
-  );
+  const isLogin = useSelector((state) => state.signIn.isSignIn);
+  let { pathname } = useLocation();
+  if (isLogin === null) {
+    return <div>loading</div>;
+  }
+  if (isLogin) {
+    return (
+      <Route
+        {...rest}
+        render={({ location }) => {
+          return pathname != "/login" ? (
+            children
+          ) : (
+            <Redirect
+              to={{
+                pathname: "/home",
+                state: { from: location },
+              }}
+            />
+          );
+        }}
+      />
+    );
+  } else {
+    return (
+      <Route
+        {...rest}
+        render={({ location }) => {
+          return pathname == "/login" ? (
+            children
+          ) : (
+            <Redirect
+              to={{
+                pathname: "/login",
+                state: { from: location },
+              }}
+            />
+          );
+        }}
+      />
+    );
+  }
 }

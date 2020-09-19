@@ -1,16 +1,20 @@
-import React, { Component } from "react";
-import logo from "./logo.svg";
+import React, { Component, useEffect } from "react";
 import Routes from "./Routes";
 import "./App.css";
 import Amplify, { Auth } from "aws-amplify";
 import aws_exports from "./aws-exports";
+import { useSelector, useDispatch } from "react-redux";
+import { checkUserSession } from "./pages/sign-in/slice";
 
 Amplify.configure(aws_exports);
 
-class App extends Component {
-  render() {
-    return <Routes />;
-  }
-}
+const App = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(checkUserSession());
+  }, []);
+
+  return <Routes />;
+};
 
 export default App;

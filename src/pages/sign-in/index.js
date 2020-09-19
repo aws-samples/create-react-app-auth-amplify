@@ -1,21 +1,19 @@
 import React from "react";
 import SignIn from "./components/SignIn";
-
-import { Auth } from "aws-amplify";
-
-const signIn = async (username, password) => {
-  try {
-    const user = await Auth.signIn(username, password);
-    console.log("user: ", user);
-  } catch (error) {
-    console.log("error signing in", error);
-  }
-};
-const onSubmitSign = (event) => {
-  event.preventDefault();
-  signIn(event.target.email.value, event.target.password.value);
-};
+import { signIn } from "./slice";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function Index() {
+  const dispatch = useDispatch();
+  const onSubmitSign = (event) => {
+    event.preventDefault();
+    dispatch(
+      signIn({
+        userName: event.target.userName.value,
+        password: event.target.password.value,
+      })
+    );
+  };
+
   return <SignIn onSubmitSign={onSubmitSign} />;
 }
