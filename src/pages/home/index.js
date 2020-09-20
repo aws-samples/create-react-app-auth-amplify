@@ -2,11 +2,15 @@ import { Grid } from "@material-ui/core";
 import React from "react";
 import Header from "./components/Header";
 import WorkFlowCards from "./components/WorkFlowCards";
-import { workflowSelectors } from "./slice";
+import { workflowSelectors, workflowRemove } from "./slice";
 import { useSelector, useDispatch } from "react-redux";
 
 const HomePage = () => {
+  const dispatch = useDispatch();
   const workflows = useSelector(workflowSelectors.selectAll);
+  const handleDeleteWorkflow = (id) => {
+    dispatch(workflowRemove(id));
+  };
 
   return (
     <Grid container direction="column" spacing={1}>
@@ -14,7 +18,10 @@ const HomePage = () => {
         <Header />
       </Grid>
       <Grid item>
-        <WorkFlowCards workflows={workflows} />
+        <WorkFlowCards
+          handleDeleteWorkflow={handleDeleteWorkflow}
+          workflows={workflows}
+        />
       </Grid>
     </Grid>
   );

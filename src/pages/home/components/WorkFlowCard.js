@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -28,16 +28,26 @@ const useStyles = makeStyles({
   },
 });
 
-export default function WorkFlowCard({ workFlowName }) {
+export default function WorkFlowCard({ workFlowName, handleDeleteWorkflow }) {
   const classes = useStyles();
+  const [showDelete, setShowDelete] = useState(false);
 
   return (
     <Badge
       badgeContent={
-        <Fab size="small" color="secondary" aria-label="add">
-          <DeleteIcon />
-        </Fab>
+        showDelete && (
+          <Fab
+            onClick={handleDeleteWorkflow}
+            size="small"
+            color="secondary"
+            aria-label="add"
+          >
+            <DeleteIcon />
+          </Fab>
+        )
       }
+      onMouseEnter={() => setShowDelete(true)}
+      onMouseLeave={() => setShowDelete(false)}
     >
       <Card className={classes.root}>
         <CardContent>

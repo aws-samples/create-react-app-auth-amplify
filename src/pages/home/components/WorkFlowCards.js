@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
   },
 }));
-const WorkFlowCards = ({ workflows }) => {
+const WorkFlowCards = ({ workflows, handleDeleteWorkflow }) => {
   console.log("workflows: ", workflows);
   const classes = useStyles();
 
@@ -18,7 +18,10 @@ const WorkFlowCards = ({ workflows }) => {
     <Grid container>
       {workflows.map(({ id, workFlowName }) => (
         <Grid xs={3} className={classes.taskContainer} item key={id}>
-          <WorkFlowCard workFlowName={workFlowName} />
+          <WorkFlowCard
+            handleDeleteWorkflow={() => handleDeleteWorkflow(id)}
+            workFlowName={workFlowName}
+          />
         </Grid>
       ))}
     </Grid>

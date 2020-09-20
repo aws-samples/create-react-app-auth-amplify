@@ -19,6 +19,7 @@ const workflowSlice = createSlice({
     // as a value, `createSlice` will auto-generate the `bookAdded` action type / creator
     workflowAdded: workflowAdapter.addOne,
     workflowUpdated: workflowAdapter.updateOne,
+    workflowRemove: workflowAdapter.removeOne,
   },
 });
 
@@ -26,6 +27,10 @@ export const workflowSelectors = workflowAdapter.getSelectors(
   (state) => state.workflow
 );
 
-export const { workflowAdded, workflowUpdated } = workflowSlice.actions;
+export const {
+  workflowAdded,
+  workflowUpdated,
+  workflowRemove,
+} = workflowSlice.actions;
 
 export default workflowSlice.reducer;
