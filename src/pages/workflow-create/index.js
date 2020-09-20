@@ -28,7 +28,7 @@ const HomePage = () => {
         <Header handleAddNode={handleAddNode} />
       </Grid>
       <Grid item>
-        <TaskCards allTasks={allTasks} />
+        <TaskCards totalTasksAdded={totalTasksAdded} allTasks={allTasks} />
       </Grid>
     </Grid>
   );
