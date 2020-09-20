@@ -29,11 +29,12 @@ const taskSlice = createSlice({
     // as a value, `createSlice` will auto-generate the `bookAdded` action type / creator
     taskAdded: taskAdapter.addOne,
     taskUpdated: taskAdapter.updateOne,
+    taskRemove: taskAdapter.removeOne,
   },
 });
 
 export const taskSelectors = taskAdapter.getSelectors((state) => state.task);
 
-export const { taskAdded, taskUpdated } = taskSlice.actions;
+export const { taskAdded, taskUpdated, taskRemove } = taskSlice.actions;
 
 export default taskSlice.reducer;

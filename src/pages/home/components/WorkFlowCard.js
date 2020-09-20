@@ -19,11 +19,7 @@ const useStyles = makeStyles({
   root: {
     width: 275,
   },
-  bullet: {
-    display: "inline-block",
-    margin: "0 2px",
-    transform: "scale(0.8)",
-  },
+
   title: {
     fontSize: 14,
   },
@@ -34,7 +30,6 @@ const useStyles = makeStyles({
 
 export default function WorkFlowCard({ workFlowName }) {
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
 
   return (
     <Badge
@@ -57,7 +52,7 @@ export default function WorkFlowCard({ workFlowName }) {
                 value={workFlowName}
               />
             </Grid>
-            <Grid item container direction="row">
+            <Grid item container direction="row" justify="space-between">
               <Typography>Completed</Typography>
               <Fab size="small">
                 <Checkcon />

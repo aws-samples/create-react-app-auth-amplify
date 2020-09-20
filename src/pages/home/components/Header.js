@@ -36,11 +36,11 @@ const Header = () => {
           <Filter />{" "}
         </Grid>
         <Grid item>
-          <Button variant="contained" startIcon={<AddIcon />}>
-            <Link className={classes.linkButton} to="/workflow/create">
+          <Link className={classes.linkButton} to="/workflow/create">
+            <Button variant="contained" startIcon={<AddIcon />}>
               Create Workflow
-            </Link>
-          </Button>
+            </Button>
+          </Link>
         </Grid>
       </Grid>
     </Paper>

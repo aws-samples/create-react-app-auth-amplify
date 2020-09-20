@@ -17,7 +17,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header = ({ handleAddNode, handleSaveWorkFlow, setWorkflowName }) => {
+const Header = ({
+  handleAddNode,
+  handleSaveWorkFlow,
+  setWorkflowName,
+  handleDeleteNode,
+}) => {
   const classes = useStyles();
 
   return (
@@ -38,7 +43,11 @@ const Header = ({ handleAddNode, handleSaveWorkFlow, setWorkflowName }) => {
           </Button>
         </Grid>
         <Grid item>
-          <Button variant="contained" startIcon={<AddIcon />}>
+          <Button
+            onClick={handleDeleteNode}
+            variant="contained"
+            startIcon={<AddIcon />}
+          >
             Delete
           </Button>
         </Grid>
