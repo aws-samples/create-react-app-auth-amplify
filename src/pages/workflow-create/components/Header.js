@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header = () => {
+const Header = ({ handleAddNode }) => {
   const classes = useStyles();
 
   return (
@@ -42,8 +42,12 @@ const Header = () => {
           </Button>
         </Grid>
         <Grid item>
-          <Button variant="contained" startIcon={<AddIcon />}>
-            Add Note
+          <Button
+            variant="contained"
+            onClick={handleAddNode}
+            startIcon={<AddIcon />}
+          >
+            Add Node
           </Button>
         </Grid>
         <Grid item>

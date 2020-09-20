@@ -2,13 +2,15 @@ import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import React from "react";
 
 import TaskCard from "./TaskCard";
+import { map } from "lodash";
 
-const TaskCards = () => {
+const TaskCards = ({ allTasks }) => {
   return (
     <>
-      <TaskCard />
-      <ArrowForwardIcon />
-      <TaskCard />
+      {map(allTasks, (task) => (
+        <TaskCard />
+      ))}
+      {/* <ArrowForwardIcon /> */}
     </>
   );
 };
