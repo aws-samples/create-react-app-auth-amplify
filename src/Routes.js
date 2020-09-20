@@ -45,14 +45,14 @@ function PrivateRoute({ children, ...rest }) {
     return (
       <Route
         {...rest}
-        render={({ location }) => {
+        render={(props) => {
           return pathname != "/login" ? (
-            children
+            React.cloneElement(children, props)
           ) : (
             <Redirect
               to={{
                 pathname: "/home",
-                state: { from: location },
+                state: { from: props.location },
               }}
             />
           );

@@ -5,7 +5,9 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import { Badge, Grid } from "@material-ui/core";
+import Checkcon from "@material-ui/icons/Check";
+
+import { Badge, Grid, TextField } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import CheckIcon from "@material-ui/icons/Check";
 
@@ -30,7 +32,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function SimpleCard() {
+export default function WorkFlowCard({ workFlowName }) {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
 
@@ -44,16 +46,23 @@ export default function SimpleCard() {
     >
       <Card className={classes.root}>
         <CardContent>
-          <Typography variant="h5" component="h2">
-            WorkFlow 1
-          </Typography>
-          <Grid container item>
-            <Typography variant="h6" component="h6">
-              Completed
-            </Typography>
-            <Fab size="small" color="secondary" aria-label="add">
-              <CheckIcon />
-            </Fab>
+          <Grid spacing={3} direction="column" container>
+            <Grid item>
+              <TextField
+                id="outlined-basic"
+                label="Workflow Name"
+                variant="outlined"
+                fullWidth
+                disabled
+                value={workFlowName}
+              />
+            </Grid>
+            <Grid item container direction="row">
+              <Typography>Completed</Typography>
+              <Fab size="small">
+                <Checkcon />
+              </Fab>
+            </Grid>
           </Grid>
         </CardContent>
       </Card>

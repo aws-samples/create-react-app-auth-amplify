@@ -6,7 +6,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { taskSelectors, taskAdded } from "./slice";
 import { workflowAdded, workflowSelectors } from "../home/slice";
 
-const HomePage = () => {
+const WorkflowPage = (props) => {
+  console.log("props: ", props);
   const allTasks = useSelector(taskSelectors.selectAll);
   const totalTasksAdded = useSelector(taskSelectors.selectTotal);
   const totalWorkflowAdded = useSelector(workflowSelectors.selectTotal);
@@ -33,6 +34,7 @@ const HomePage = () => {
         tasks: allTasks,
       })
     );
+    props.history.push("/home");
   };
   console.log("allTasks: ", allTasks);
   return (
@@ -51,4 +53,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default WorkflowPage;
