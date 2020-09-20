@@ -6,7 +6,6 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 
-import Filter from "./Filter";
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -33,13 +32,23 @@ const Header = () => {
           />
         </Grid>
         <Grid item>
-          <Filter />{" "}
+          <Button variant="contained" startIcon={<AddIcon />}>
+            Shuffle
+          </Button>
         </Grid>
         <Grid item>
           <Button variant="contained" startIcon={<AddIcon />}>
-            <Link className={classes.linkButton} to="/workflow/create">
-              Create Workflow
-            </Link>
+            Delete
+          </Button>
+        </Grid>
+        <Grid item>
+          <Button variant="contained" startIcon={<AddIcon />}>
+            Add Note
+          </Button>
+        </Grid>
+        <Grid item>
+          <Button variant="contained" startIcon={<AddIcon />}>
+            Save
           </Button>
         </Grid>
       </Grid>

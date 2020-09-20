@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import SignInPage from "./pages/sign-in";
 import HomePage from "./pages/home";
+import WorkflowCreatePage from "./pages/workflow-create";
 
 import { useSelector } from "react-redux";
 
@@ -21,11 +22,11 @@ export default function Routes() {
         <PrivateRoute path="/login">
           <SignInPage />
         </PrivateRoute>
-        {/* <Route path="/login">
-          <LoginPage />
-        </Route> */}
         <PrivateRoute path="/home">
           <HomePage />
+        </PrivateRoute>
+        <PrivateRoute path="/workflow/create">
+          <WorkflowCreatePage />
         </PrivateRoute>
       </Switch>
     </Router>
