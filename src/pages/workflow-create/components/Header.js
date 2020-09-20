@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header = ({ handleAddNode }) => {
+const Header = ({ handleAddNode, handleSaveWorkFlow, setWorkflowName }) => {
   const classes = useStyles();
 
   return (
@@ -27,8 +27,9 @@ const Header = ({ handleAddNode }) => {
           <TextField
             size="small"
             id="outlined-basic"
-            label="Outlined"
+            label="workflow name"
             variant="outlined"
+            onChange={({ target: { value } }) => setWorkflowName(value)}
           />
         </Grid>
         <Grid item>
@@ -51,7 +52,11 @@ const Header = ({ handleAddNode }) => {
           </Button>
         </Grid>
         <Grid item>
-          <Button variant="contained" startIcon={<AddIcon />}>
+          <Button
+            onClick={handleSaveWorkFlow}
+            variant="contained"
+            startIcon={<AddIcon />}
+          >
             Save
           </Button>
         </Grid>
