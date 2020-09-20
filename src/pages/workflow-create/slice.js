@@ -30,11 +30,17 @@ const taskSlice = createSlice({
     taskAdded: taskAdapter.addOne,
     taskUpdated: taskAdapter.updateOne,
     taskRemove: taskAdapter.removeOne,
+    taskRemoveAll: taskAdapter.removeAll,
   },
 });
 
 export const taskSelectors = taskAdapter.getSelectors((state) => state.task);
 
-export const { taskAdded, taskUpdated, taskRemove } = taskSlice.actions;
+export const {
+  taskAdded,
+  taskUpdated,
+  taskRemove,
+  taskRemoveAll,
+} = taskSlice.actions;
 
 export default taskSlice.reducer;

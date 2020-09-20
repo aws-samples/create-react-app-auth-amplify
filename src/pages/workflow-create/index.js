@@ -3,7 +3,7 @@ import { Grid } from "@material-ui/core";
 import Header from "./components/Header";
 import TaskCards from "./components/TaskCards";
 import { useSelector, useDispatch } from "react-redux";
-import { taskSelectors, taskAdded, taskRemove } from "./slice";
+import { taskSelectors, taskAdded, taskRemove, taskRemoveAll } from "./slice";
 import { workflowAdded, workflowSelectors } from "../home/slice";
 
 const WorkflowPage = (props) => {
@@ -34,6 +34,7 @@ const WorkflowPage = (props) => {
         tasks: allTasks,
       })
     );
+    dispatch(taskRemoveAll());
     props.history.push("/home");
   };
   const handleDeleteNode = () => {
