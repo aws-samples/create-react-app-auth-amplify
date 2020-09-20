@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -28,23 +28,32 @@ const useStyles = makeStyles({
   pos: {
     marginBottom: 12,
   },
+  statusButton: {
+    background: (props) => props.statusColor,
+    "&:hover": {
+      background: (props) => props.statusColor,
+    },
+  },
 });
-
+const statusColor = ["", "green", "blue"];
 export default function TaskCard({
   updateTaskTitle,
   updateTaskDescription,
   updateTaskStatus,
 }) {
-  const classes = useStyles();
+  const [status, setStatus] = useState(0);
+
+  const classes = useStyles({ statusColor: statusColor[status] });
+  console.log("statusColor[status]: ", statusColor[status]);
   const bull = <span className={classes.bullet}>•</span>;
 
   return (
     <Badge
       badgeContent={
         <Fab
-          onClick={updateTaskStatus}
+          onClick={() => setStatus((prev) => (prev + 1) % 3)}
           size="small"
-          color="secondary"
+          className={classes.statusButton}
           aria-label="add"
         >
           <Checkcon />
