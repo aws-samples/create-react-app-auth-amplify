@@ -28,11 +28,12 @@ const taskSlice = createSlice({
     // Can pass adapter functions directly as case reducers.  Because we're passing this
     // as a value, `createSlice` will auto-generate the `bookAdded` action type / creator
     taskAdded: taskAdapter.addOne,
+    taskUpdated: taskAdapter.updateOne,
   },
 });
 
 export const taskSelectors = taskAdapter.getSelectors((state) => state.task);
 
-export const { taskAdded } = taskSlice.actions;
+export const { taskAdded, taskUpdated } = taskSlice.actions;
 
 export default taskSlice.reducer;
