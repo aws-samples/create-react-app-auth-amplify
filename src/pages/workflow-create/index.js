@@ -39,7 +39,7 @@ const WorkflowPage = (props) => {
     props.history.push("/home");
   };
   const handleDeleteNode = () => {
-    dispatch(taskRemove(totalTasksAdded));
+    totalTasksAdded > 1 && dispatch(taskRemove(totalTasksAdded));
   };
   console.log("allTasks: ", allTasks);
   return (
