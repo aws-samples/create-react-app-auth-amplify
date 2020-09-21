@@ -73,6 +73,7 @@ export default function SplitButton() {
           role={undefined}
           transition
           disablePortal
+          style={{ zIndex: 1 }}
         >
           {({ TransitionProps, placement }) => (
             <Grow

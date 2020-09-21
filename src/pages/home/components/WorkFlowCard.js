@@ -13,6 +13,7 @@ import CheckIcon from "@material-ui/icons/Check";
 
 import IconButton from "@material-ui/core/IconButton";
 import Fab from "@material-ui/core/Fab";
+import { indexOf } from "lodash";
 
 import {} from "module";
 const useStyles = makeStyles({
@@ -26,10 +27,27 @@ const useStyles = makeStyles({
   pos: {
     marginBottom: 12,
   },
+  statusButton: {
+    background: (props) => props.statusColor,
+    "&:hover": {
+      background: (props) => props.statusColor,
+    },
+  },
 });
+const statusColor = ["", "green"];
+const statusMessage = ["pending", "completed"];
+export default function WorkFlowCard({
+  workFlowName,
+  handleDeleteWorkflow,
+  isAllCompleted,
+  updateWorkFlowStatus,
+  status: currentStatusMessage,
+}) {
+  const [status, setStatus] = useState(
+    indexOf(statusMessage, currentStatusMessage)
+  );
 
-export default function WorkFlowCard({ workFlowName, handleDeleteWorkflow }) {
-  const classes = useStyles();
+  const classes = useStyles({ statusColor: statusColor[status] });
   const [showDelete, setShowDelete] = useState(false);
 
   return (
@@ -63,9 +81,15 @@ export default function WorkFlowCard({ workFlowName, handleDeleteWorkflow }) {
               />
             </Grid>
             <Grid item container direction="row" justify="space-between">
-              <Typography>Completed</Typography>
-              <Fab size="small">
-                <Checkcon />
+              <Typography>{statusMessage[status].toUpperCase()}</Typography>
+              <Fab size="small" className={classes.statusButton}>
+                <Checkcon
+                  onClick={() => {
+                    isAllCompleted && setStatus((prev) => (prev + 1) % 2);
+                    isAllCompleted &&
+                      updateWorkFlowStatus(statusMessage[(status + 1) % 2]);
+                  }}
+                />
               </Fab>
             </Grid>
           </Grid>

@@ -4,6 +4,7 @@ import {
   createSelector,
   createEntityAdapter,
 } from "@reduxjs/toolkit";
+import { map, filter, keyBy } from "lodash";
 
 // type Task = { id: number, title: string, description: string, status: string };
 const workflowAdapter = createEntityAdapter({
@@ -47,6 +48,20 @@ export const getVisibleWorkflows = createSelector(
         return workflows.filter((t) => t.status == "pending");
     }
   }
+);
+export const isAllCompleted = createSelector(
+  [workflowSelectors.selectAll],
+  (workflows) =>
+    keyBy(
+      map(workflows, ({ id, tasks }) => {
+        return {
+          id,
+          isAllCompleted:
+            filter(tasks, ["status", "completed"]).length === tasks.length,
+        };
+      }),
+      "id"
+    )
 );
 
 export const {
