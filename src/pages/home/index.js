@@ -10,8 +10,21 @@ import {
   workflowUpdateSearchText,
 } from "./slice";
 import { useSelector, useDispatch } from "react-redux";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    ...theme.typography.button,
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing(1),
+    fontSize: "2rem",
+    textAlign: "center",
+  },
+}));
 
 const HomePage = () => {
+  const classes = useStyles();
+
   const dispatch = useDispatch();
   const workflows = useSelector((state) => getVisibleWorkflows(state));
   const completedWorkflows = useSelector((state) => isAllCompleted(state));
@@ -23,17 +36,27 @@ const HomePage = () => {
   const handleSearchText = ({ target }) => {
     dispatch(workflowUpdateSearchText(target.value));
   };
+  console.log("workflows: ", workflows);
+  // if (workflows.length == 0) {
+  //   return (
+
+  //   );
+  // }
   return (
     <Grid container direction="column" spacing={1}>
       <Grid item>
         <Header handleSearchText={handleSearchText} />
       </Grid>
       <Grid item>
-        <WorkFlowCards
-          handleDeleteWorkflow={handleDeleteWorkflow}
-          workflows={workflows}
-          completedWorkflows={completedWorkflows}
-        />
+        {workflows.length == 0 ? (
+          <div className={classes.root}>No Worflows created </div>
+        ) : (
+          <WorkFlowCards
+            handleDeleteWorkflow={handleDeleteWorkflow}
+            workflows={workflows}
+            completedWorkflows={completedWorkflows}
+          />
+        )}
       </Grid>
     </Grid>
   );

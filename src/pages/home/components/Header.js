@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
   linkButton: {
     textDecoration: "none",
   },
+  searchInput: {
+    borderRadius: 26,
+  },
 }));
 
 const Header = ({ handleSearchText }) => {
@@ -36,7 +39,7 @@ const Header = ({ handleSearchText }) => {
         <Grid item>
           <Filter />{" "}
         </Grid>
-        <Grid item>
+        <Grid item style={{ marginLeft: "auto" }}>
           <Link className={classes.linkButton} to="/workflow/create">
             <Button variant="contained" startIcon={<AddIcon />}>
               Create Workflow
