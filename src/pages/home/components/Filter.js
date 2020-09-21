@@ -9,23 +9,26 @@ import Paper from "@material-ui/core/Paper";
 import Popper from "@material-ui/core/Popper";
 import MenuItem from "@material-ui/core/MenuItem";
 import MenuList from "@material-ui/core/MenuList";
+import FilterListIcon from "@material-ui/icons/FilterList";
+import { useSelector, useDispatch } from "react-redux";
 
-const options = [
-  "Create a merge commit",
-  "Squash and merge",
-  "Rebase and merge",
-];
+import { workflowUpdateFilter } from "../slice";
+
+const options = ["all", "completed", "pending"];
 
 export default function SplitButton() {
+  const dispatch = useDispatch();
+
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
 
   const handleClick = () => {
     console.info(`You clicked ${options[selectedIndex]}`);
   };
 
   const handleMenuItemClick = (event, index) => {
+    dispatch(workflowUpdateFilter(options[index]));
     setSelectedIndex(index);
     setOpen(false);
   };
@@ -61,7 +64,7 @@ export default function SplitButton() {
             aria-haspopup="menu"
             onClick={handleToggle}
           >
-            <FilterIcon />
+            <FilterListIcon />
           </Button>
         </ButtonGroup>
         <Popper
@@ -85,7 +88,6 @@ export default function SplitButton() {
                     {options.map((option, index) => (
                       <MenuItem
                         key={option}
-                        disabled={index === 2}
                         selected={index === selectedIndex}
                         onClick={(event) => handleMenuItemClick(event, index)}
                       >

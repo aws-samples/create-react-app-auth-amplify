@@ -3,6 +3,7 @@ import React from "react";
 import Header from "./Header";
 import WorkFlowCard from "./WorkFlowCard";
 import { makeStyles } from "@material-ui/core";
+import { map } from "lodash";
 
 const useStyles = makeStyles((theme) => ({
   taskContainer: {
@@ -16,7 +17,7 @@ const WorkFlowCards = ({ workflows, handleDeleteWorkflow }) => {
 
   return (
     <Grid container>
-      {workflows.map(({ id, workFlowName }) => (
+      {map(workflows, ({ id, workFlowName }) => (
         <Grid xs={3} className={classes.taskContainer} item key={id}>
           <WorkFlowCard
             handleDeleteWorkflow={() => handleDeleteWorkflow(id)}

@@ -2,12 +2,16 @@ import { Grid } from "@material-ui/core";
 import React from "react";
 import Header from "./components/Header";
 import WorkFlowCards from "./components/WorkFlowCards";
-import { workflowSelectors, workflowRemove } from "./slice";
+import {
+  workflowSelectors,
+  workflowRemove,
+  getVisibleWorkflows,
+} from "./slice";
 import { useSelector, useDispatch } from "react-redux";
 
 const HomePage = () => {
   const dispatch = useDispatch();
-  const workflows = useSelector(workflowSelectors.selectAll);
+  const workflows = useSelector((state) => getVisibleWorkflows(state));
   const handleDeleteWorkflow = (id) => {
     dispatch(workflowRemove(id));
   };
