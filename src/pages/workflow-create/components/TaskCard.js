@@ -41,9 +41,10 @@ export default function TaskCard({
   updateTaskTitle,
   updateTaskDescription,
   updateTaskStatus,
+  canBeCompleted,
 }) {
   const [status, setStatus] = useState(0);
-
+  const numberModulo = canBeCompleted ? 3 : 2;
   const classes = useStyles({ statusColor: statusColor[status] });
   const bull = <span className={classes.bullet}>•</span>;
 
@@ -52,8 +53,8 @@ export default function TaskCard({
       badgeContent={
         <Fab
           onClick={() => {
-            setStatus((prev) => (prev + 1) % 3);
-            updateTaskStatus(statusMessage[(status + 1) % 3]);
+            setStatus((prev) => (prev + 1) % numberModulo);
+            updateTaskStatus(statusMessage[(status + 1) % numberModulo]);
           }}
           size="small"
           className={classes.statusButton}

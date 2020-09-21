@@ -7,6 +7,7 @@ import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import { taskUpdated } from "../slice";
+import { get } from "lodash";
 
 const useStyles = makeStyles((theme) => ({
   taskContainer: {
@@ -34,27 +35,41 @@ const TaskCards = ({ allTasks, totalTasksAdded }) => {
   const updateTaskStatus = (id, status) => {
     dispatch(taskUpdated({ id, changes: { status } }));
   };
-
+  let truthy = [];
   return (
     <Grid container>
-      {map(allTasks, ({ id }, index) => (
-        <Grid xs={3} className={classes.taskContainer} item key={id}>
-          <TaskCard
-            updateTaskTitle={({ target: { value } }) =>
-              updateTaskTitle(id, value)
-            }
-            updateTaskDescription={({ target: { value } }) =>
-              updateTaskDescription(id, value)
-            }
-            updateTaskStatus={(status) => updateTaskStatus(id, status)}
-          />
-          {allTasks.length == index + 1 ? (
-            ""
-          ) : (
-            <ArrowForwardIcon className={classes.arrow} />
-          )}
-        </Grid>
-      ))}
+      {map(allTasks, ({ id, status }, index) => {
+        if (status === "completed") {
+          truthy.push(true);
+        } else {
+          truthy.push(false);
+        }
+        let i = -1;
+        let canBeCompleted = true;
+        while (++i < index) {
+          canBeCompleted = canBeCompleted && truthy[i];
+        }
+
+        return (
+          <Grid xs={3} className={classes.taskContainer} item key={id}>
+            <TaskCard
+              updateTaskTitle={({ target: { value } }) =>
+                updateTaskTitle(id, value)
+              }
+              updateTaskDescription={({ target: { value } }) =>
+                updateTaskDescription(id, value)
+              }
+              updateTaskStatus={(status) => updateTaskStatus(id, status)}
+              canBeCompleted={canBeCompleted}
+            />
+            {allTasks.length == index + 1 ? (
+              ""
+            ) : (
+              <ArrowForwardIcon className={classes.arrow} />
+            )}
+          </Grid>
+        );
+      })}
     </Grid>
   );
 };
