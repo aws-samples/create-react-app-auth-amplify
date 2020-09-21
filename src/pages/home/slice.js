@@ -4,7 +4,7 @@ import {
   createSelector,
   createEntityAdapter,
 } from "@reduxjs/toolkit";
-import { map, filter, keyBy } from "lodash";
+import { map, filter, keyBy, includes } from "lodash";
 
 // type Task = { id: number, title: string, description: string, status: string };
 const workflowAdapter = createEntityAdapter({
@@ -18,6 +18,7 @@ const workflowSlice = createSlice({
   initialState: workflowAdapter.getInitialState({
     filters: {
       status: "all",
+      searchText: "",
     },
   }),
   reducers: {
@@ -29,6 +30,15 @@ const workflowSlice = createSlice({
     workflowUpdateFilter: (state, action) => {
       state.filters.status = action.payload;
     },
+    workflowUpdateSearchText: (state, action) => {
+      state.filters.searchText = action.payload;
+    },
+    resetFilters: (state, action) => {
+      state.filters = {
+        status: "all",
+        searchText: "",
+      };
+    },
   },
 });
 
@@ -36,17 +46,31 @@ export const workflowSelectors = workflowAdapter.getSelectors(
   (state) => state.workflow
 );
 const getFilter = (state) => state.workflow.filters.status;
+const getSearchText = (state) => state.workflow.filters.searchText;
+
 export const getVisibleWorkflows = createSelector(
-  [getFilter, workflowSelectors.selectAll],
-  (visibilityFilter, workflows) => {
+  [getFilter, getSearchText, workflowSelectors.selectAll],
+  (visibilityFilter, searchText, workflows) => {
+    let filterWorkflows = null;
+
     switch (visibilityFilter) {
       case "all":
-        return workflows;
+        filterWorkflows = workflows;
+        break;
       case "completed":
-        return workflows.filter((t) => t.status == "completed");
+        filterWorkflows = workflows.filter((t) => t.status == "completed");
+        break;
       case "pending":
-        return workflows.filter((t) => t.status == "pending");
+        filterWorkflows = workflows.filter((t) => t.status == "pending");
+        break;
     }
+    console.log("filterWorkflows: ", filterWorkflows);
+    console.log("searchText: ", searchText);
+    return searchText
+      ? filter(filterWorkflows, ({ workFlowName }) =>
+          includes(workFlowName, searchText)
+        )
+      : filterWorkflows;
   }
 );
 export const isAllCompleted = createSelector(
@@ -69,6 +93,8 @@ export const {
   workflowUpdated,
   workflowRemove,
   workflowUpdateFilter,
+  workflowUpdateSearchText,
+  resetFilters,
 } = workflowSlice.actions;
 
 export default workflowSlice.reducer;

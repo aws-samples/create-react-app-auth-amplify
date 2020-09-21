@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header = () => {
+const Header = ({ handleSearchText }) => {
   const classes = useStyles();
 
   return (
@@ -28,8 +28,9 @@ const Header = () => {
           <TextField
             size="small"
             id="outlined-basic"
-            label="Outlined"
+            label="Search Workflow"
             variant="outlined"
+            onChange={handleSearchText}
           />
         </Grid>
         <Grid item>

@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import TaskCards from "./components/TaskCards";
 import { useSelector, useDispatch } from "react-redux";
 import { taskSelectors, taskAdded, taskRemove, taskRemoveAll } from "./slice";
-import { workflowAdded, workflowSelectors } from "../home/slice";
+import { workflowAdded, workflowSelectors, resetFilters } from "../home/slice";
 
 const WorkflowPage = (props) => {
   console.log("props: ", props);
@@ -35,6 +35,7 @@ const WorkflowPage = (props) => {
       })
     );
     dispatch(taskRemoveAll());
+    dispatch(resetFilters());
     props.history.push("/home");
   };
   const handleDeleteNode = () => {

@@ -7,6 +7,7 @@ import {
   workflowRemove,
   getVisibleWorkflows,
   isAllCompleted,
+  workflowUpdateSearchText,
 } from "./slice";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -14,15 +15,18 @@ const HomePage = () => {
   const dispatch = useDispatch();
   const workflows = useSelector((state) => getVisibleWorkflows(state));
   const completedWorkflows = useSelector((state) => isAllCompleted(state));
+
   console.log("completedWorkflows: ", completedWorkflows);
   const handleDeleteWorkflow = (id) => {
     dispatch(workflowRemove(id));
   };
-
+  const handleSearchText = ({ target }) => {
+    dispatch(workflowUpdateSearchText(target.value));
+  };
   return (
     <Grid container direction="column" spacing={1}>
       <Grid item>
-        <Header />
+        <Header handleSearchText={handleSearchText} />
       </Grid>
       <Grid item>
         <WorkFlowCards
