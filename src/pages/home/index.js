@@ -29,14 +29,12 @@ const HomePage = () => {
   const workflows = useSelector((state) => getVisibleWorkflows(state));
   const completedWorkflows = useSelector((state) => isAllCompleted(state));
 
-  console.log("completedWorkflows: ", completedWorkflows);
   const handleDeleteWorkflow = (id) => {
     dispatch(workflowRemove(id));
   };
   const handleSearchText = ({ target }) => {
     dispatch(workflowUpdateSearchText(target.value));
   };
-  console.log("workflows: ", workflows);
   // if (workflows.length == 0) {
   //   return (
 
@@ -49,7 +47,7 @@ const HomePage = () => {
       </Grid>
       <Grid item>
         {workflows.length == 0 ? (
-          <div className={classes.root}>No Worflows created </div>
+          <div className={classes.root}>No Workflows </div>
         ) : (
           <WorkFlowCards
             handleDeleteWorkflow={handleDeleteWorkflow}

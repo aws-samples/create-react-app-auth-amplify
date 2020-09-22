@@ -24,6 +24,8 @@ const Header = ({
   handleSaveWorkFlow,
   setWorkflowName,
   handleDeleteNode,
+  isAllTaskCompleted,
+  hanldeShuffleNode,
 }) => {
   const classes = useStyles();
 
@@ -40,9 +42,15 @@ const Header = ({
           />
         </Grid>
         <Grid style={{ marginLeft: "auto" }} item>
-          <Button variant="contained" startIcon={<ShuffleIcon />}>
-            Shuffle
-          </Button>
+          {isAllTaskCompleted && (
+            <Button
+              onClick={hanldeShuffleNode}
+              variant="contained"
+              startIcon={<ShuffleIcon />}
+            >
+              Shuffle
+            </Button>
+          )}
         </Grid>
         <Grid item>
           <Button

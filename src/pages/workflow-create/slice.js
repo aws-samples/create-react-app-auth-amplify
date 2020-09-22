@@ -4,6 +4,8 @@ import {
   createSelector,
   createEntityAdapter,
 } from "@reduxjs/toolkit";
+import { keyBy, filter, shuffle } from "lodash";
+
 // type Task = { id: number, title: string, description: string, status: string };
 const taskAdapter = createEntityAdapter({
   // Assume IDs are stored in a field other than `book.id`
@@ -33,16 +35,25 @@ const taskSlice = createSlice({
     taskRemoveAll: (state, action) => {
       taskAdapter.setAll(state, taskInitialState);
     },
+    taskShuffle: (state, { payload }) => {
+      state.ids = shuffle(payload);
+    },
   },
 });
 
 export const taskSelectors = taskAdapter.getSelectors((state) => state.task);
+
+export const isAllTaskCompleted = createSelector(
+  [taskSelectors.selectAll, taskSelectors.selectTotal],
+  (tasks, total) => filter(tasks, ["status", "completed"]).length === total
+);
 
 export const {
   taskAdded,
   taskUpdated,
   taskRemove,
   taskRemoveAll,
+  taskShuffle,
 } = taskSlice.actions;
 
 export default taskSlice.reducer;
