@@ -16,10 +16,8 @@ export const signIn = createAsyncThunk(
   "signIn/fetch",
   async ({ userName, password }) => {
     const user = await Auth.signIn(userName, password);
-    const current = await Auth.currentAuthenticatedUser({
-      bypassCache: false, // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
-    });
-    console.log("current: ", current);
+
+    console.log("current: ", user.data);
     return user.data;
   }
 );
