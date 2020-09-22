@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ButtonAppBar() {
+export default function ButtonAppBar({ isSignIn, handleSignOut }) {
   const classes = useStyles();
 
   return (
@@ -27,7 +27,11 @@ export default function ButtonAppBar() {
           <Typography variant="h6" className={classes.title}>
             FLOWAPP
           </Typography>
-          <Button color="inherit">Logout</Button>
+          {isSignIn && (
+            <Button onClick={handleSignOut} color="inherit">
+              Logout
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
     </div>

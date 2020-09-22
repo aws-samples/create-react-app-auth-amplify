@@ -13,9 +13,6 @@ import WorkflowCreatePage from "./pages/workflow-create";
 import { useSelector } from "react-redux";
 
 export default function Routes() {
-  const isLogin = useSelector((state) => state.signIn.isSignIn);
-
-  console.log("isLogin: ", isLogin);
   return (
     <Router>
       <Switch>
@@ -28,6 +25,9 @@ export default function Routes() {
         <PrivateRoute path="/workflow/create">
           <WorkflowCreatePage />
         </PrivateRoute>
+        <PrivateRoute path="/">
+          <HomePage />
+        </PrivateRoute>
       </Switch>
     </Router>
   );
@@ -38,9 +38,6 @@ export default function Routes() {
 function PrivateRoute({ children, ...rest }) {
   const isLogin = useSelector((state) => state.signIn.isSignIn);
   let { pathname } = useLocation();
-  if (isLogin === null) {
-    return <div>loading</div>;
-  }
   if (isLogin) {
     return (
       <Route
