@@ -53,7 +53,7 @@ export default function SignIn({ onSubmitSign }) {
             required
             fullWidth
             id="email"
-            label="Email Address"
+            label="Username"
             name="userName"
             autoComplete="email"
             autoFocus
@@ -79,11 +79,6 @@ export default function SignIn({ onSubmitSign }) {
           >
             Sign In
           </Button>
-          <Grid container>
-            <Grid item>
-              <Link to="/signup">{"Don't have an account? Sign Up"}</Link>
-            </Grid>
-          </Grid>
         </form>
       </div>
     </Container>
