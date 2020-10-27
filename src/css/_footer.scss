@@ -1,0 +1,59 @@
+footer {
+  width: 100vw;
+  position: relative;
+
+  .footer__message {
+    color: lighten($header-outline, 20%);
+  }
+
+  button {
+    position: absolute;
+    bottom: 0px;
+    right: 15px;
+    padding: 7px 25px;
+    text-transform: uppercase;
+    background: none;
+    color: lighten($header-outline, 20%);
+    border: 3px solid $header-outline;
+    border-radius: 0.4rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.8);
+      color: $dark-text;
+      cursor: pointer;
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  footer {
+    .footer__message {
+      text-align: left;
+      padding-left: 20px;
+    }
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .footer__message {
+    font-size: 0.8em;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  footer {
+    display: flex;
+    flex-direction: column;
+
+    .footer__message {
+      text-align: center;
+      padding-left: 0px;
+    }
+
+    button {
+      position: static;
+    }
+  }
+}

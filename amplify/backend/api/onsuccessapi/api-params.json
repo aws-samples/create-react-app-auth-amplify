@@ -1,0 +1,35 @@
+{
+    "paths": [
+        {
+            "name": "/getaccesstoken",
+            "lambdaFunction": "blockdefi01a4ba88",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/getaccesstoken"
+        }
+    ],
+    "resourceName": "onsuccessapi",
+    "apiName": "onsuccessapi",
+    "functionArns": [
+        {
+            "lambdaFunction": "blockdefi01a4ba88"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-authcra-devp-11611-authRole",
+        "unAuthRoleName": "amplify-authcra-devp-11611-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "blockdefi01a4ba88",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}

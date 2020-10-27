@@ -1,0 +1,99 @@
+@import "_variables";
+
+.home {
+  width: 100%;
+  max-width: 400px;
+  flex: 1;
+  position: relative;
+  margin-top: 50px;
+
+  .triangle {
+    position: absolute;
+    transform: translateX(-150px) translateY(50px);
+  }
+
+  .home__item {
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    transition: 0.2s;
+    border-radius: 50%;
+    border: 18px solid;
+
+    &.home__paper {
+      $position-x: 0px;
+      transform: translateX($position-x);
+      @include play-item($paper-color);
+      box-shadow: item-shadow($paper-color);
+      &:hover {
+        transform: translateX($position-x) scale(1.2);
+        transition: 0.2s;
+      }
+    }
+
+    &.home__scissors {
+      $position-x: 250px;
+      transform: translateX($position-x);
+      @include play-item($scissors-color);
+      box-shadow: item-shadow($scissors-color);
+      &:hover {
+        transform: translateX($position-x) scale(1.2);
+      }
+    }
+
+    &.home__rock {
+      $position-x: 125px;
+      $position-y: 230px;
+      transform: translateX($position-x) translateY($position-y);
+      @include play-item($rock-color);
+      box-shadow: item-shadow($rock-color);
+      &:hover {
+        transform: translateX($position-x) translateY($position-y) scale(1.2);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .home {
+    max-width: 225px;
+
+    .triangle {
+      max-width: 225px;
+      transform: translateX(-120px) translateY(50px);
+    }
+
+    .home__item {
+      width: 90px;
+      height: 90px;
+      border: 8px solid;
+      background-size: 50%;
+      margin-top: 10px;
+
+      &.home__paper {
+        $position-x: -30px;
+        transform: translateX($position-x);
+        &:hover {
+          transform: translateX($position-x) scale(1.2);
+        }
+      }
+
+      &.home__scissors {
+        $position-x: 140px;
+        transform: translateX($position-x);
+        &:hover {
+          transform: translateX($position-x) scale(1.2);
+        }
+      }
+
+      &.home__rock {
+        $position-x: 55px;
+        $position-y: 165px;
+        transform: translateX($position-x) translateY($position-y);
+        &:hover {
+          transform: translateX($position-x) translateY($position-y) scale(1.2);
+        }
+      }
+    }
+  }
+}

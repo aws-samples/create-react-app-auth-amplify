@@ -1,0 +1,35 @@
+header {
+  border: 3px solid $header-outline;
+  border-radius: 0.4rem;
+  display: flex;
+  justify-content: space-between;
+  max-width: 700px;
+  width: 100%;
+  padding: 20px;
+  margin-top: 20px;
+  box-sizing: border-box;
+
+  > .header__title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-transform: uppercase;
+    line-height: 2rem;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  header {
+    padding: 20px;
+    // margin: 20px 20px 40px 20px;
+
+    > .header__title {
+      line-height: 1.3rem;
+      font-size: 1.6rem;
+    }
+  }
+}

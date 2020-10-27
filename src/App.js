@@ -1,20 +1,40 @@
-import React, { Component } from 'react';
+import React, { Button, useState } from 'react';
 import logo from './logo.svg';
-import './App.css';
-import { withAuthenticator } from 'aws-amplify-react'
-import Amplify, { Auth } from 'aws-amplify';
-import aws_exports from './aws-exports';
-Amplify.configure(aws_exports);
+import Link from './components/PlaidLink';
+import { API } from 'aws-amplify';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <h1>Hello World!</h1>
-      </div>
-    );
+export default function App() {
+
+  const [linkToken, setLinkToken] = useState('')
+
+  async function getLinkToken() {
+    var token = await API.post('linktokenapi', '/plaidLinkToken');
+    token = token.link_token;
+    setLinkToken(token);
+    console.log(linkToken);
   }
+  
+  return (
+    <div className="App">
+      <header className="App-header">
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+      <div>
+        <button onClick={getLinkToken}>
+                Get Link Token
+        </button>
+        <Link token={linkToken} />
+        </div>
+    </div>
+  );
 }
-
-
-export default withAuthenticator(App, true);

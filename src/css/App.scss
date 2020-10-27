@@ -1,0 +1,26 @@
+@import "_variables";
+@import "_header";
+@import "_scorebox";
+@import "_home";
+@import "_play";
+@import "_footer";
+@import "_modal";
+
+body {
+  font-family: "Barlow Semi Condensed", sans-serif;
+  background: $background-gradient;
+  color: white;
+  letter-spacing: 1px;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  align-items: center;
+  padding: 0 20px;
+}

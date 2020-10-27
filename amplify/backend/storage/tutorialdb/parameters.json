@@ -1,0 +1,5 @@
+{
+    "tableName": "tutorialdb",
+    "partitionKeyName": "id",
+    "partitionKeyType": "S"
+}

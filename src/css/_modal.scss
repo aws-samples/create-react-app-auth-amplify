@@ -1,0 +1,77 @@
+@import "_variables";
+
+.modal-wrapper {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(255, 255, 255, 0.2);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .modal-inner {
+    color: $dark-text;
+    background-color: white;
+    border-radius: $border-radius-title-button;
+    padding: 30px;
+
+    img {
+      width: 100%;
+    }
+
+    .modal__header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 30px;
+
+      h1 {
+        text-transform: uppercase;
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+}
+
+button {
+  background: none;
+  border: none;
+  align-self: center;
+  color: $dark-text;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &.mobile__button {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .modal-wrapper {
+    .modal-inner {
+      height: 100vh;
+      width: 100%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+
+      .modal__header {
+        justify-content: center;
+      }
+    }
+  }
+
+  button {
+    &.mobile__button {
+      display: inline-block;
+    }
+
+    &.desktop__button {
+      display: none;
+    }
+  }
+}

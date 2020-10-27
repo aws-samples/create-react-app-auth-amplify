@@ -1,0 +1,175 @@
+.play-wrapper {
+  max-width: 800px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  flex-wrap: wrap;
+
+  .game__result {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+
+    > h3 {
+      margin: 20px 0;
+    }
+
+    &.result__mobile {
+      display: none;
+    }
+
+    &.invisible {
+      display: none;
+    }
+
+    h3 {
+      text-transform: uppercase;
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    .play-again__button {
+      background-color: white;
+      text-decoration: none;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      border-radius: $border-radius-title-button;
+      font-size: 0.8em;
+
+      &:hover {
+        color: red;
+      }
+    }
+  }
+
+  .pick {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .pick__title {
+      text-transform: uppercase;
+
+      &.result__mobile {
+        display: none;
+      }
+    }
+
+    .pick__item {
+      margin: 50px 40px 0 40px;
+      width: 200px;
+      height: 200px;
+      background-size: 50%;
+      background-color: rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+      border: 18px solid;
+      border-color: transparent;
+      font-size: 6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &.pick__scissors {
+        @include play-item($scissors-color);
+        box-shadow: item-shadow($scissors-color);
+
+        &.winner {
+          box-shadow: item-shadow($scissors-color), winner-shadow();
+        }
+      }
+
+      &.pick__paper {
+        @include play-item($paper-color);
+        box-shadow: item-shadow($paper-color);
+
+        &.winner {
+          box-shadow: item-shadow($paper-color), winner-shadow();
+        }
+      }
+
+      &.pick__rock {
+        @include play-item($rock-color);
+        box-shadow: item-shadow($rock-color);
+
+        &.winner {
+          box-shadow: item-shadow($rock-color), winner-shadow();
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .play-wrapper {
+    // margin-top: 10px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    .game__result {
+      &.result__mobile {
+        display: inline-block;
+        width: 500px;
+      }
+      &.result__desktop {
+        display: none;
+      }
+      &.invisible {
+        display: none;
+      }
+
+      h3 {
+        margin-top: 25px;
+      }
+    }
+
+    .pick {
+      .pick__title {
+        text-transform: uppercase;
+
+        &.result__mobile {
+          display: inline-block;
+        }
+        &.result__desktop {
+          display: none;
+        }
+      }
+
+      .pick__item {
+        margin: 10px 13px 35px 13px;
+        width: 150px;
+        height: 150px;
+        border: 18px solid;
+        border-color: transparent;
+        font-size: 6rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .play-wrapper {
+    .game__result {
+      &.result__mobile {
+        width: 200px;
+      }
+    }
+
+    .pick {
+      .pick__title {
+        max-width: 100px;
+      }
+
+      .pick__item {
+        margin: 10px 10px 30px 10px;
+        width: 100px;
+        height: 100px;
+        background-size: 50%;
+        border: 10px solid;
+        border-color: transparent;
+        font-size: 4rem;
+      }
+    }
+  }
+}

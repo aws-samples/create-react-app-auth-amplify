@@ -1,0 +1,30 @@
+$background-gradient: radial-gradient(
+  circle,
+  rgba(31, 55, 86, 1) 0%,
+  rgba(20, 21, 57, 1) 100%
+);
+$background-color: rgb(20, 21, 57);
+$scissors-color: hsl(40, 84%, 53%);
+$paper-color: hsl(230, 89%, 65%);
+$rock-color: hsl(349, 70%, 56%);
+$dark-text: hsl(229, 25%, 31%);
+$score-text: hsl(229, 64%, 46%);
+$header-outline: hsl(217, 16%, 45%);
+$border-radius-title-button: 0.4rem;
+
+@mixin play-item($color) {
+  background-color: white;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-color: $color;
+}
+
+@function item-shadow($color) {
+  @return inset 0px 8px rgba(63, 55, 55, 0.1), 0px 8px darken($color, 15%);
+}
+
+@function winner-shadow() {
+  @return 0px 0px 0px 50px rgba(220, 220, 220, 0.075),
+    0px 0px 0px 100px rgba(220, 220, 220, 0.05),
+    0px 0px 0px 150px rgba(220, 220, 220, 0.025);
+}
