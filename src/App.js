@@ -18,7 +18,7 @@ class App extends Component {
         </header>
       </div>
       <div>
-        Put all the don''t mess with react because it is just php but more complex elsewhere.
+        Put all the don&apos;t mess with react because it is just php but more complex elsewhere.
       </div>
     );
   }
