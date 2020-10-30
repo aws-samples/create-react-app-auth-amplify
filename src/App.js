@@ -16,9 +16,9 @@ class App extends Component {
             Edit <code>src/App.js</code> and save to reload.
           </p>
         </header>
-      </div>
-      <div>
-        Put all the don&apos;t mess with react because it is just php but more complex elsewhere.
+        <div>
+          Put all the don&apos;t mess with react because it is just php but more complex elsewhere.
+        </div>
       </div>
     );
   }
