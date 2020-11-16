@@ -29,7 +29,6 @@ var routes = [
   {
     path: "/dashboard",
     name: "Dashboard",
-    rtlName: "لوحة القيادة",
     icon: "tim-icons icon-sound-wave",
     component: Dashboard,
     layout: "/admin"
@@ -37,41 +36,15 @@ var routes = [
   {
     path: "/icons",
     name: "Foal Watchers",
-    rtlName: "الرموز",
     icon: "tim-icons icon-atom",
-    component: Icons,
-    layout: "/admin"
-  },
-  {
-    path: "/mares",
-    name: "Mares",
-    rtlName: "الرموز",
-    icon: "tim-icons icon-heart-2",
     component: Mares,
     layout: "/admin"
   },
   {
     path: "/notifications",
     name: "Notifications",
-    rtlName: "إخطارات",
     icon: "tim-icons icon-bell-55",
     component: Notifications,
-    layout: "/admin"
-  },
-  {
-    path: "/user-profile",
-    name: "User Profile",
-    rtlName: "ملف تعريفي للمستخدم",
-    icon: "tim-icons icon-single-02",
-    component: UserProfile,
-    layout: "/admin"
-  },
-  {
-    path: "/typography",
-    name: "Logs",
-    rtlName: "طباعة",
-    icon: "tim-icons icon-align-center",
-    component: Typography,
     layout: "/admin"
   }
 ];

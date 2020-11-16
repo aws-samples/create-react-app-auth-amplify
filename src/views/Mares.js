@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Card, CardImg, CardText, CardBody, CardDeck,
-  CardTitle, CardSubtitle, Button
+  CardTitle, CardSubtitle, Button, CardFooter
 } from 'reactstrap';
 
 const style = { width: "18rem" };
@@ -14,21 +14,30 @@ class Mares extends React.Component {
         <div className="content">
             <CardDeck>
                 <Card style={style}>
-                    <CardImg top width="100%" src="https://scontent-iad3-1.xx.fbcdn.net/v/t31.0-8/17505132_10101716442692277_1192316473197671617_o.jpg?_nc_cat=103&_nc_sid=730e14&_nc_ohc=5my4YWBGLDwAX-PvRvw&_nc_ht=scontent-iad3-1.xx&oh=b2f35586a28ae73952c35b739188a00b&oe=5FB06C52"/>
+                    <CardImg top width="100%" src="https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-9/105942206_2947812388674579_8800215465849698207_n.jpg?_nc_cat=102&ccb=2&_nc_sid=0debeb&_nc_ohc=3SHehgaMh4wAX9Tslsr&_nc_ht=scontent-iad3-1.xx&oh=b948a9e0ff6a4c21d25fc3effc04f516&oe=5FD5F4B4"/>
                     <CardBody>
-                        <CardTitle>Raven</CardTitle>
+                        <CardTitle>Allison Schieber</CardTitle>
+                        <CardSubtitle>
+                        Foal watch shift: 9pm - 2am
+                        </CardSubtitle>
                         <CardText>
-
+                          Contact: schiebera@appstate.edu
                         </CardText>
-                        <Button>Update Info</Button>
                     </CardBody>
                 </Card>
                 <Card style={style}>
-                    <CardImg top width="100%" src="https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-9/57083804_10102513317912947_2008791908402331648_o.jpg?_nc_cat=105&_nc_sid=730e14&_nc_ohc=xC7r_QWC46IAX_0lWEX&_nc_ht=scontent-iad3-1.xx&oh=fdd1396455177f288382e4c3105e7ca9&oe=5FB11624" alt="Card image cap" />
+                    <CardImg top width="100%" src="https://scontent-iad3-1.xx.fbcdn.net/v/t31.0-8/13701207_911661138944633_2111176807843618678_o.jpg?_nc_cat=111&ccb=2&_nc_sid=174925&_nc_ohc=zjPn8GKoNFkAX8Z-0KH&_nc_oc=AQnx5BvzeBYnQFEWX6ptxxw5rAw1y16pQXTAhaROgpqYFyP6pAjWIUk-oPb-RD2gJ6M&_nc_ht=scontent-iad3-1.xx&oh=d96f9b9eb70281a607513fa95e2476cd&oe=5FD63750" alt="Card image cap" />
                     <CardBody>
-                        <CardTitle>Rachel</CardTitle>
-                        <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
-                        <Button>Update Info</Button>
+                        <CardTitle>Juliana Luczynski</CardTitle>
+                        <CardSubtitle>
+                          Foal watch shift: 2am - 7am
+                        </CardSubtitle>
+                        <CardText>
+                          Contact: luczynskij@appstate.edu
+                        </CardText>
+                        <CardFooter>
+                          Currently on foal watch
+                        </CardFooter>
                     </CardBody>
                 </Card>
             </CardDeck>

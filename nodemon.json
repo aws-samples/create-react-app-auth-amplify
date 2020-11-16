@@ -1,7 +1,7 @@
 {
     "env": {
         "MONGO_USER": "schiebs",
-        "MONGO_PASSWORD": "pZsxv0MKYZ4fhOMZ",
-        "MONGO_DB": "MongoDB-Atlas"
+        "MONGO_PASSWORD": "XXXXXXXXX",
+        "MONGO_DB": "maredb"
     }
 }

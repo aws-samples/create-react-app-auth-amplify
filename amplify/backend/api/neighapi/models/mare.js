@@ -11,12 +11,16 @@ const mareSchema = new Schema({
     type: String,
     required: true
   },
-  dueDate: {
+  date: {
     type: String,
     required: true
   },
-  status: {
+  time: {
     type: String,
+    required: true
+  },
+  stat: {
+    type: String, 
     required: true
   }
 });

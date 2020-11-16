@@ -30,25 +30,15 @@ class Footer extends React.Component {
         <Container fluid>
           <Nav>
             <NavItem>
-              <NavLink href="https://www.creative-tim.com/?ref=bdr-user-archive-footer">Hidden Hill Farm</NavLink>
+              <NavLink href="https://www.hiddenhillfarm.us/">Hidden Hill Farm</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="https://www.creative-tim.com/presentation?ref=bdr-user-archive-footer">About Us</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="https://www.creative-tim.com/blog?ref=bdr-user-archive-footer">Facebook</NavLink>
+              <NavLink href="https://www.facebook.com/hiddenhillfarmnc/">Facebook</NavLink>
             </NavItem>
           </Nav>
           <div className="copyright">
-            © {new Date().getFullYear()} made with{" "}
-            <i className="tim-icons icon-heart-2" /> by{" "}
-            <a
-              href="https://www.creative-tim.com/?ref=bdr-user-archive-footer"
-              target="_blank"
-            >
-              Creative Tim
-            </a>{" "}
-            for a better web.
+            © {new Date().getFullYear()} Capstone Project by Allison Schieber,
+            Juliana Luczynski and Chase Averett
           </div>
         </Container>
       </footer>
