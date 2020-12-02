@@ -16,16 +16,19 @@ def my_view():
 
     dir = r"C:\Users\Ally\zclone\create-react-app-auth-amplify\amplify\backend\imageProcessing\images"
     image = random.choice(os.listdir(dir))
+    # Assign random label based on image query
+    statusOps = ["Laying down", "Standing", "Pacing"]
 
     camera = image[0 : 6]
     date = image[7 : 16]
     time = image[18 : 25]
-    # stat = callfunc()
+    stat = random.choice(statusOps)
 
     statusDocument = {
         "camera": camera,
         "date": date,
-        "time": time
+        "time": time,
+        "stat": stat
     }
 
     # Insert Data

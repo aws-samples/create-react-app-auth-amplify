@@ -1,0 +1,49 @@
+.Log-header {
+    background-color: #222;
+    color: white;
+  }
+  
+  .navbar-item {
+    color: white;
+  }
+  
+  .Log-title {
+    font-size: 1.5em;
+  }
+  
+  .Log-intro {
+    font-size: large;
+  }
+  
+  .m-t-20 {
+    margin-top: 20px;
+  }
+  
+  .card {
+    box-shadow: 0 1px 5px 1px rgba(0, 0, 0, 0.1);
+  }
+  
+  .page-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .newnote-page {
+    height: calc(100vh - 52px);
+    width: 60%;
+  }
+  
+  .field:not(:last-child) {
+    margin-bottom: 2.75rem;
+  }
+  
+  .card button {
+    border: none;
+    color: #3273dc;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  .card button:hover {
+    color: #363636;
+  }

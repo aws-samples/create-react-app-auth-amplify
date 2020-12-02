@@ -27,20 +27,6 @@ class Footer extends React.Component {
   render() {
     return (
       <footer className="footer">
-        <Container fluid>
-          <Nav>
-            <NavItem>
-              <NavLink href="https://www.hiddenhillfarm.us/">Hidden Hill Farm</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="https://www.facebook.com/hiddenhillfarmnc/">Facebook</NavLink>
-            </NavItem>
-          </Nav>
-          <div className="copyright">
-            © {new Date().getFullYear()} Capstone Project by Allison Schieber,
-            Juliana Luczynski and Chase Averett
-          </div>
-        </Container>
       </footer>
     );
   }

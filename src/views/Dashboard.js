@@ -15,14 +15,18 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
-// nodejs library that concatenates classes
-import classNames from "classnames";
-
+import React, { Component } from "react";
+import { useQuery } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
+import AllNotes from "./AllNotes";
+import NewNote from "./NewNote";
+import EditNote from "./EditNote";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 // reactstrap components
 import {
   Button,
   ButtonGroup,
+  Badge,
   Card,
   CardHeader,
   CardBody,
@@ -37,18 +41,27 @@ import {
   Table,
   Row,
   Col,
-  UncontrolledTooltip
+  UncontrolledTooltip,
+  CardFooter
 } from "reactstrap";
+import { FormLabel, Form} from "react-bootstrap";
+
 
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      editing: false
-    };
+       inputs: ['input-0']
+    }
     this.newTaskName = "";
     this.newTaskDesc = "";
   }
+
+  appendInput() {
+    var newInput = `input-${this.state.inputs.length}`;
+    this.setState(prevState => ({ inputs: prevState.inputs.concat([newInput]) }));
+  }
+
 
   render() {
     const { onEdit } = this.props;
@@ -61,7 +74,7 @@ class Dashboard extends React.Component {
               <Card>
                 <CardHeader>
                   <Button
-                  color="warning"
+                  color="info"
                   >
                   Fetch Mare Status
                   </Button>
@@ -106,6 +119,13 @@ class Dashboard extends React.Component {
                         <td>19-20-02</td>
                         <td>Pacing</td>
                       </tr>
+                      <tr>
+                        <td>Belle</td>
+                        <td>120</td>
+                        <td>11/18/2020</td>
+                        <td>19-20-02</td>
+                        <td>Standing</td>
+                      </tr>
                     </tbody>
                   </Table>
                 </CardBody>
@@ -113,50 +133,36 @@ class Dashboard extends React.Component {
             </Col>
             <Col>
               <Row>
-                <Col lg="6" md="12">
+                <Col>
                   <Card className="card-tasks">
-                    <CardHeader>
-                      <h6 className="title d-inline">Logs</h6>
-                      <p className="card-category d-inline"> today</p>
-                      <UncontrolledDropdown>
-                        <DropdownToggle
-                          caret
-                          className="btn-icon"
-                          color="link"
-                          data-toggle="dropdown"
-                          type="button"
-                        >
-                          <i className="tim-icons icon-settings-gear-63" />
-                        </DropdownToggle>
-                        <DropdownMenu aria-labelledby="dropdownMenuLink" right>
-                          <DropdownItem
-                            href="#pablo"
-                            onClick={e => e.preventDefault()}
+                  <Router>
+                    <div>
+                        <CardHeader>
+                          <h6 className="title d-inline">Logs</h6>
+                          <p className="card-category d-inline"> today</p>
+                          <Link to="/newnote">
+                          <Button
+                            className="float-right"
+                            color="link"
                           >
-                            Action
-                          </DropdownItem>
-                          <DropdownItem
-                            href="#pablo"
-                            onClick={e => e.preventDefault()}
-                          >
-                            Another action
-                          </DropdownItem>
-                          <DropdownItem
-                            href="#pablo"
-                            onClick={e => e.preventDefault()}
-                          >
-                            Something else
-                          </DropdownItem>
-                        </DropdownMenu>
-                      </UncontrolledDropdown>
-                    </CardHeader>
+                            <i className="tim-icons icon-simple-add btn"></i>
+                          </Button>
+                          </Link>
+                        </CardHeader>
+                    </div>
                     <CardBody>
-                      <Table>
-                        <FormGroup>
-                          heheh
-                        </FormGroup>
-                      </Table>
+                    <div className="navbar-end">
+                          <Link to="/" className="navbar-item float-center">
+                            <Button color="white">Display Logs</Button>
+                          </Link>
+                    </div>
+                      <Route>
+                        <Route path="/newnote" component={NewNote} />
+                        <Route exact path="/" component={AllNotes} />
+                        <Route path="/note/:id" component={EditNote} />
+                      </Route>
                     </CardBody>
+                  </Router>
                   </Card>
                 </Col>
               </Row>

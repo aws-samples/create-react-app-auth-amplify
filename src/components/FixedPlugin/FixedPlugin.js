@@ -49,7 +49,7 @@ class FixedPlugin extends Component {
       <div className="fixed-plugin">
         <div className={this.state.classes}>
           <div onClick={this.handleClick}>
-            <i className="fa fa-cog fa-2x" />
+            <i className="tim-icons icon-settings-gear-63" />
           </div>
           <ul className="dropdown-menu show">
             <li className="header-title">SIDEBAR BACKGROUND</li>

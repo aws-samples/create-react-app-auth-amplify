@@ -2,11 +2,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const graphqlHttp = require('express-graphql');
 const mongoose = require('mongoose');
-const graphQlSchema = require('./amplify/backend/api/neighapi/schema/index');
-const graphQlResolvers = require('./amplify/backend/api/neighapi/resolvers/index');
+const graphQlSchema = require('./amplify/backend/api/neighapi/schema/schema');
+const graphQlResolvers = require('./amplify/backend/api/neighapi/resolvers/resolvers');
 
 const app = express();
-
+const PORT = 4300;
 app.use(bodyParser.json());
 
 app.use(
