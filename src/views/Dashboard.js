@@ -18,9 +18,12 @@
 import React, { Component } from "react";
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
+import jQuery from 'jquery';
 import AllNotes from "./AllNotes";
 import NewNote from "./NewNote";
 import EditNote from "./EditNote";
+import AllMares from "./AllMares";
+import NewMare from "./NewMare";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 // reactstrap components
 import {
@@ -60,7 +63,16 @@ class Dashboard extends React.Component {
   appendInput() {
     var newInput = `input-${this.state.inputs.length}`;
     this.setState(prevState => ({ inputs: prevState.inputs.concat([newInput]) }));
-  }
+  };
+
+  runPyScript() {
+    jQuery.ajax({
+      url: "../../amplify/backend/imageProcessing/pullPhoto.py",
+      success: function() {
+     alert('python script completed');;
+    }
+  });
+}
 
 
   render() {
@@ -68,94 +80,58 @@ class Dashboard extends React.Component {
     return (
       <>
         <div className="content">
-          
           <Row>
-            <Col lg="6" md="12">
-              <Card>
-                <CardHeader>
-                  <Button
-                  color="info"
-                  >
-                  Fetch Mare Status
-                  </Button>
-                </CardHeader>
-                <CardBody>
-                  <Table className="tablesorter" responsive>
-                    <thead className="text-primary">
-                      <tr>
-                        <th>Mare</th>
-                        <th>Camera</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Status</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr data-toggle="collapse" data-target="#folder1">
-                        <td>Rachel</td>
-                        <td>90</td>
-                        <td>11/18/2020</td>
-                        <td>19-20-02</td>
-                        <td>Standing</td>
-                      </tr>
-                      <tr>
-                        <td>Raven</td>
-                        <td>100</td>
-                        <td>11/18/2020</td>
-                        <td>19-20-02</td>
-                        <td>Laying down</td>
-                      </tr>
-                      <tr>
-                        <td>Rhiannon</td>
-                        <td>102</td>
-                        <td>11/18/2020</td>
-                        <td>19-20-02</td>
-                        <td>Laying down</td>
-                      </tr>
-                      <tr>
-                        <td>Sassy</td>
-                        <td>110</td>
-                        <td>11/18/2020</td>
-                        <td>19-20-02</td>
-                        <td>Pacing</td>
-                      </tr>
-                      <tr>
-                        <td>Belle</td>
-                        <td>120</td>
-                        <td>11/18/2020</td>
-                        <td>19-20-02</td>
-                        <td>Standing</td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                </CardBody>
-              </Card>
-            </Col>
             <Col>
-              <Row>
-                <Col>
-                  <Card className="card-tasks">
-                  <Router>
+              <Card>
+                <Router>
                     <div>
                         <CardHeader>
-                          <h6 className="title d-inline">Logs</h6>
-                          <p className="card-category d-inline"> today</p>
-                          <Link to="/newnote">
+                          <Link to="/allmares">
+                            <Button
+                              className="float-left"
+                              color="white"
+                            >
+                            Display Mares
+                            </Button>
+                          </Link>
+                          <Link to="/newmare">
                           <Button
                             className="float-right"
-                            color="link"
+                            color="white"
                           >
-                            <i className="tim-icons icon-simple-add btn"></i>
+                          Fetch Mare
                           </Button>
                           </Link>
                         </CardHeader>
+                      </div>
+                      <CardBody>
+                        <Route>
+                          <Route path= "/allmares" component={AllMares} />
+                          <Route path= "/newmare" component={NewMare} />
+                        </Route>
+                      </CardBody>
+                </Router>
+              </Card>
+            </Col>
+
+            <Col>
+              <Row>
+                <Col>
+                  <Card>
+                  <Router>
+                    <div>
+                        <CardHeader>
+                          <Link to="/newnote" className="navbar-item float-right">
+                            <Button color="white">Add Log</Button>
+                          </Link>
+                          <div className="navbar-end">
+                            <Link to="/" className="navbar-item float-left">
+                              <Button color="white">Display Logs</Button>
+                            </Link>
+                          </div>
+                        </CardHeader>
                     </div>
                     <CardBody>
-                    <div className="navbar-end">
-                          <Link to="/" className="navbar-item float-center">
-                            <Button color="white">Display Logs</Button>
-                          </Link>
-                    </div>
                       <Route>
                         <Route path="/newnote" component={NewNote} />
                         <Route exact path="/" component={AllNotes} />

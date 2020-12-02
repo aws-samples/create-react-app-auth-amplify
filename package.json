@@ -24,6 +24,7 @@
     "graphql-tag": "^2.11.0",
     "graphql-tools": "^7.0.2",
     "history": "4.10.1",
+    "jquery": "^3.5.1",
     "jsonwebtoken": "^8.4.0",
     "kind-of": "^6.0.3",
     "lodash": "^4.17.19",

@@ -19,7 +19,7 @@ app.use(cors());
 
 app.get("/", (req, res) => {
   res.json({
-    message: "Notetaking API v1"
+    message: "Neigh API v1"
   });
 });
 app.use(

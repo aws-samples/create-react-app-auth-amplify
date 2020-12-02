@@ -6,7 +6,6 @@ const graphQlSchema = require('./amplify/backend/api/neighapi/schema/schema');
 const graphQlResolvers = require('./amplify/backend/api/neighapi/resolvers/resolvers');
 
 const app = express();
-const PORT = 4300;
 app.use(bodyParser.json());
 
 app.use(
