@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import SignIn from "./SignIn";
-import SignUp from "./SignUp";
+// import SignUp from "./SignUp";
 import amplifyCustomUi from "aws-amplify-react-custom-ui";
 
 class HelloWorld extends Component {
@@ -13,7 +13,7 @@ class HelloWorld extends Component {
 export default class App extends Component {
   componentWillMount() {
     amplifyCustomUi.setSignIn(SignIn);
-    amplifyCustomUi.setSignUp(SignUp);
+    // amplifyCustomUi.setSignUp(SignUp);
   }
 
   render() {
