@@ -1,15 +1,16 @@
 .App {
   text-align: center;
+  background-image: './IMG_1085.jpg';
 }
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+  height: 50vmin;
+  align-items: center;
 }
 
 .App-header {
   background-color: #282c34;
-  background-image: './IMG_1085.jpg';
   min-height: 100vh;
   display: flex;
   flex-direction: column;
