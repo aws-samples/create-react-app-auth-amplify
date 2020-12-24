@@ -9,6 +9,7 @@
 
 .App-header {
   background-color: #282c34;
+  background-image: './IMG_1085.jpg';
   min-height: 100vh;
   display: flex;
   flex-direction: column;
