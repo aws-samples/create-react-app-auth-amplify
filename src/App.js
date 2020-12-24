@@ -21,7 +21,7 @@ class App extends Component {
             target="_blank"
             rel="noopener noreferrer"
           >
-            MET
+            shop
           </a>
         </header>
       </div>
