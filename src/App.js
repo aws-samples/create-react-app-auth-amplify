@@ -11,17 +11,17 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <img src=https://modernnetsec.io/wp-content/uploads/2020/03/modern-netsec-clear.png className="App-logo" alt="logo" />
           <p>
-            Edit <code>src/App.js</code> and save to reload.
+            Edit <code>src/https://modernnetsec.io/wp-content/uploads/2020/03/modern-netsec-clear.pngApp.js</code> and save to reload.
           </p>
           <a
             className="App-link"
-            href="https://reactjs.org"
+            href="https://www.modernnetec.io
             target="_blank"
             rel="noopener noreferrer"
           >
-            Learn React
+            Threat Intel 
           </a>
         </header>
       </div>
