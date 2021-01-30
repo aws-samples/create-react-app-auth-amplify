@@ -14,12 +14,23 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-size: calc(20px + 2vmin);
+  color: rgb(255, 255, 255);
 }
 
 .App-link {
-  color: #61dafb;
+  color: #69fb61;
 }
 
 @keyframes 
+.app-link
+<div class="page-wrapper">
+  <section></section>
+  <section></section>
+  <section>
+    <div class="section-item"></div>
+    <div class="section-item">
+      <div class="sub-section"><div>
+    </div>
+  </section>
+ </div>
