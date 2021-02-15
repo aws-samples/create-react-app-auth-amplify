@@ -1,0 +1,16 @@
+type Roast @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Roast: [String!]
+  Ground: [String!]
+  Roasttosel: [Selection!] @connection(keyName: "byRoast", fields: ["id"])
+}
+
+type Selection @model @auth(rules: [{allow: public}]) @key(name: "byRoast", fields: ["roastID"]) {
+  id: ID!
+  origin: [String!]
+  blend: [String!]
+  bagweight: [Int!]
+  quantity: Int!
+  roastID: ID!
+}
+ 
