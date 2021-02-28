@@ -2,9 +2,7 @@
 
 This auth starter implements withAuthenticator HOC to provide a basic authentication flow for signing up signing in users as well as protected client side routing using AWS Amplify. Auth features: User sign up, User sign in, Multi-factor Authentication, User sign-out.
 
-[View Demo](https://master.d2ka7y7551sk8n.amplifyapp.com/)
-
-![Amplify Auth](src/images/auth.gif)
+[View Demo](https://apnacred.crediwatch.org/)
 
 ## Deploy with the AWS Amplify Console
 
@@ -33,8 +31,6 @@ The Amplify Console will fork this repo in your GitHub account, and then build a
   ```
   amplify pull
   ```
-
-![img](src/images/amplify-pull.mov)
 
 4. Run locally
 
