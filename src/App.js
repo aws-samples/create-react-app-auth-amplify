@@ -16,6 +16,7 @@ class App extends Component {
             Edit <code>src/App.js</code> To make HealthFlex
           </p>
           <p>
+      <html>
       <form>
   <label for="role">Role:</label><br>
   <input type="string" id="role" name="role" value=""><br>
@@ -23,7 +24,7 @@ class App extends Component {
   <input type="string" id="hospital" name="hospital" value=""><br><br>
   <input type="submit" value="Submit">
 </form> 
-      
+      </html>
           <a
             className="App-link"
             href="https://reactjs.org"
