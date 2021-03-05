@@ -13,7 +13,7 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
-            Edit <code>src/App.js</code> To make HealthFlex
+            Edit <code>src/App.js</code> To make flex flex
                 <html>
       <form>
   <label for="role">Role:</label><br>
