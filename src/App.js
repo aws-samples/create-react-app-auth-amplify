@@ -15,6 +15,15 @@ class App extends Component {
           <p>
             Edit <code>src/App.js</code> To make HealthFlex
           </p>
+          <p>
+      <form>
+  <label for="role">Role:</label><br>
+  <input type="string" id="role" name="role" value=""><br>
+  <label for="hospital">Hospital:</label><br>
+  <input type="string" id="hospital" name="hospital" value=""><br><br>
+  <input type="submit" value="Submit">
+</form> 
+      
           <a
             className="App-link"
             href="https://reactjs.org"
