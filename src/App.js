@@ -14,16 +14,6 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <p>
             Edit <code>src/App.js</code> To make flex flex
-                <html>
-      <form>
-  <label for="role">Role:</label><br>
-  <input type="string" id="role" name="role" value=""><br>
-  <label for="hospital">Hospital:</label><br>
-  <input type="string" id="hospital" name="hospital" value=""><br><br>
-  <input type="submit" value="Submit">
-      </html>
-</form> 
-      
       
       </p>
           <a
