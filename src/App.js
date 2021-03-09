@@ -4,6 +4,9 @@ import './App.css';
 import { withAuthenticator } from 'aws-amplify-react'
 import Amplify, { Auth } from 'aws-amplify';
 import aws_exports from './aws-exports';
+
+import ScheduleSelector from 'react-schedule-selector'
+
 Amplify.configure(aws_exports);
 
 class App extends Component {
@@ -26,6 +29,27 @@ class App extends Component {
         </header>
       </div>
     );
+  }
+}
+
+class App extends React.Component {
+  state = { schedule = [] }
+
+  handleChange = newSchedule => {
+    this.setState({ schedule: newSchedule })
+  }
+
+  render() {
+    return (
+      <ScheduleSelector
+        selection={this.state.schedule}
+        numDays={5}
+        minTime={8}
+        maxTime={22}
+        hourlyChunks={2}
+        onChange={this.handleChange}
+      />
+    )
   }
 }
 
