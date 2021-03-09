@@ -4,7 +4,7 @@ import './App.css';
 import { withAuthenticator } from 'aws-amplify-react'
 import Amplify, { Auth } from 'aws-amplify';
 import aws_exports from './aws-exports';
-
+//attempt to import
 import ScheduleSelector from 'react-schedule-selector'
 
 Amplify.configure(aws_exports);
@@ -32,6 +32,7 @@ class App extends Component {
   }
 }
 
+//added class
 class App extends React.Component {
   state = { schedule = [] }
 
@@ -52,5 +53,7 @@ class App extends React.Component {
     )
   }
 }
+//end scheduler
+
 
 export default withAuthenticator(App, true);
