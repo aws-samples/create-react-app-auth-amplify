@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import logo from './Providers.jpg';
+import logo from './Providers.jpg';
 import './App.css';
 import { withAuthenticator } from 'aws-amplify-react'
 import Amplify, { Auth } from 'aws-amplify';
@@ -11,8 +11,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src=./Providers.jpg />
-      //className="App-logo" alt="logo" />
+          <img src=./Providers.jpg />  className="App-logo" alt="logo" />
           <p>
             Welcome to HealthFlex.  Empowering providers, creating flexibility for employers.  A more efficient Healthcare staffing solution.
       </p>
