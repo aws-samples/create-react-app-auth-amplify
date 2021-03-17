@@ -1,0 +1,5 @@
+{
+     "git.allowForcePush": true,
+     "git.allowNoVerifyCommit": true,
+     "git.alwaysSignOff": true
+}
