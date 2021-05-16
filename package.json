@@ -3,19 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ant-design/icons": "^4.6.2",
+    "antd": "^4.15.5",
     "aws-amplify": "^2.2.0",
     "aws-amplify-react": "^3.1.1",
+    "axios": "^0.21.1",
     "bootstrap": "^4.4.1",
+    "immer": "^8.0.1",
     "kind-of": "^6.0.3",
     "lodash": "^4.17.19",
+    "node-forge": "^0.10.0",
+    "object-path": "^0.11.5",
+    "prettier": "^2.3.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "^3.4.1",
-    "axios": "^0.21.1",
-    "serialize-javascript": "^3.1.0",
-    "node-forge": "^0.10.0",
-    "object-path": "^0.11.5",
-    "immer": "^8.0.1"
+    "serialize-javascript": "^3.1.0"
   },
   "resolutions": {
     "set-value": "^2.0.1",
@@ -38,5 +41,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "react-router-dom": "^5.2.0"
+  }
 }
