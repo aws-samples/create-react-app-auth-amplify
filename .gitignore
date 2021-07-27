@@ -3,7 +3,6 @@
 src/aws-exports.js
 amplify/backend/awscloudformation/
 amplify/backend/amplify-meta.json
-package-lock.json
 
 # dependencies
 /node_modules
