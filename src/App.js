@@ -24,6 +24,9 @@ class App extends Component {
           >
             Learn React
           </a>
+Storage.list('')
+    .then(result => console.log(result))
+    .catch(err => console.log(err));
         </header>
       </div>
     );
