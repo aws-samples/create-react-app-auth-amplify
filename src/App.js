@@ -7,11 +7,28 @@ import aws_exports from './aws-exports';
 Amplify.configure(aws_exports);
 
 class App extends Component {
+  function embedDashboard() {
+                var containerDiv = document.getElementById("dashboardContainer");
+                var options = {
+                    url: "http://example.com",
+                    container: containerDiv,
+                    parameters: {
+                        country: 'United States'
+                    },
+                    scrolling: "no",
+                    height: "700px",
+                    width: "1000px"
+                };
+                dashboard = QuickSightEmbedding.embedDashboard(options);
+                dashboard.on('error', onError);
+                dashboard.on('load', onDashboardLoad);
+            }
   render() {
     return (
       <div className="App">
         <AmplifySignOut />
         <header className="App-header">
+        embedDashboard()
           <img src={logo} className="App-logo" alt="logo" />
           <p>
             Edit <code>src/App.js</code> and save to rela.
@@ -25,6 +42,9 @@ class App extends Component {
             Learn React
           </a>
         </header>
+      <div id="dashboardContainer">
+        
+       </div>
       </div>
     );
   }
