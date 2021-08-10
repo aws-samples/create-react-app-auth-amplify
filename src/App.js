@@ -19,9 +19,9 @@ class App extends Component {
                     height: "700px",
                     width: "1000px"
                 };
-                dashboard = QuickSightEmbedding.embedDashboard(options);
-                dashboard.on('error', onError);
-                dashboard.on('load', onDashboardLoad);
+                //dashboard = QuickSightEmbedding.embedDashboard(options);
+                //dashboard.on('error', onError);
+                //dashboard.on('load', onDashboardLoad);
             }
   render() {
     return (
