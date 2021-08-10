@@ -7,7 +7,7 @@ import aws_exports from './aws-exports';
 Amplify.configure(aws_exports);
 
 class App extends Component {
-  function embedDashboard() {
+  embedDashboard() {
                 var containerDiv = document.getElementById("dashboardContainer");
                 var options = {
                     url: "http://example.com",
