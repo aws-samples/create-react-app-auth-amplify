@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "aws-amplify": "^4.2.0",
     "@aws-amplify/ui-react": "^1.2.6",
-    "react": "^16.13.1",
+    "aws-amplify": "^4.2.0",
+    "react": "^16.14.0",
     "react-dom": "^16.13.1",
     "react-scripts": "^4.0.3"
   },

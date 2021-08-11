@@ -1,14 +1,246 @@
+@media only screen and (max-width: 600px) {
+}
+html {
+  font-family: "Helvetica", sans-serif;
+  margin: 0 auto;
+  color: white;
+  background-color: #1E2432;
+  height: 100%;
+  display: flex;
+}
 body {
   margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+.content {
+  flex: 1 0 auto;
+}
+.footer {
+  flex-shrink: 0;
+  padding-top: 20px;
+}
+a {
+  color: white;
+  text-decoration-color: #dc9a6b;
+}
+a:hover {
+  color: #dc9a6b;
+}
+hr {
+  color: white;
+  border: 1px solid;
+  width: 20%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.logo {
+  height: 3em;
+  margin-top: 1em;
+  margin-right: 0.5em;
+}
+.event-header {
+  color: #dc9a6b;
+}
+.nav {
+  align-items: center;
+  background-color: #54A3A7;
+}
+.title {
+  color: white;
+  vertical-align: middle;
+  width: 61%;
+}
+.links {
+  font-size: x-large;
+  width: 28%;
+}
+.link {
+  color: white;
+  text-decoration: none;
+  padding-right: 20px;
+  padding-left: 20px;
+  text-align: right;
+}
+.link:hover {
+  color: #dc9a6b;
+}
+.current {
+  text-decoration: underline;
+  text-decoration-color: #dc9a6b;
+}
+.flex-container {
+  display: flex;
+  flex-wrap: nowrap;
+}
+.center {
+  justify-content: center;
+}
+.blog {
+  width: 50%;
+  line-height: 35px;
+  font-size: larger;
+}
+.events {
+  font-size: larger;
+  width: 33%;
+}
+.event {
+  padding-bottom: 40px;
+}
+.box {
+  font-size: larger;
+  min-width: 30%;
+  margin-right: 1%;
+  line-height: 35px;
+}
+.red {
+  background-color: red;
+}
+.blue {
+  background-color: blue;
+}
+.fit {
+  width: 100%;
+}
+.discord {
+  margin-top: 1%;
+}
+.border {
+  border: 20px solid white;
+}
+.caption {
+  margin-top: -5%;
+  background-color: white;
+  color: black;
+  text-align: center;
+}
+.event_title {
+  font-size: 2rem;
+  font-weight: 600;
+}
+.event_date {
+  font-size: 1.5rem;
+}
+.event_desc {
+  font-style: italic;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.social-media {
+  font-size: 50px;
+  line-height: 80px;
+  padding-left: 15px;
+  padding-right: 15px;
+  align-items: center;
+}
+.discord {
+  font-size: 50px;
+  line-height: 81px;
+  padding-left: 15px;
+  padding-right: 15px;
+  align-items: center;
+}
+.orange {
+  color: #dc9a6b;
+}
+.left {
+  padding-left: 15px;
+}
+.boxes {
+  width: 90%;
+  padding-left: 5%;
+}
+.calendar-name {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.month {
+  display: flex;
+  width: 98%;
+  flex-direction: column;
+}
+.week {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+.day {
+ width: 14%; 
+ height: 120px;
+ background-color: rgba(255, 255, 255, 0.267);
+ display: inline-block;
+ margin: 0;
+ flex: 1;
+ border: 1px solid black;
+ color: black;
+ padding-left: 2px;
+ font-size: 0.9rem;
+}
+.day-number {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+.weekend {
+  background-color: rgba(255, 255, 255, 0.521);
+}
+@media (max-width: 800px) {
+  .events {
+    font-size: 1rem;
+    width: 80%;
+  }
+}
+.column {
+    flex-direction: column;
+}
+.game {
+    background-color: #EF142B;
+    width: 100%;
+    height: 2rem;
+    display: block;
+    margin-bottom: 0.5rem;
+    line-height: 2rem;
+}
+.game-title {
+    display: inline-block;
+    padding-left: 5%;
+    width: 16%;
+}
+.code {
+    display: inline-block;
+    width: 25%;
+}
+.password {
+    display: inline-block;
+    width: 25%;
+}
+.players {
+    display: inline-block;
+    width: 8%;
+}
+.age {
+    display: inline-block;
+    width: 10%;
+}
+.report {
+    display: inline-block;
+}
+.game-header {
+  background-color: #CBCBCB; 
+  color: black;
+}
+.game-input {
+  width: 20%;
+}
+.submit {
+  padding-left: 5%;
+  padding-top: 1%;
+}
+.flex {
+  display: flex;
 }
