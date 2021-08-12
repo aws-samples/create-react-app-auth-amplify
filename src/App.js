@@ -16,6 +16,8 @@ Amplify.configure(aws_exports);
 const logger = new Logger("CCLogger");
 
 // https://docs.amplify.aws/start/getting-started/data-model/q/integration/react#deploying-the-api
+// https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-using-tokens-with-identity-providers.html
+
 const initialState = {
   title: '',
   players: 0,
@@ -405,7 +407,10 @@ const Submit = () => {
       const game = { ...formState };
       //setGames([...formState]);
       setFormState(initialState);
-      await API.graphql(graphqlOperation(createGame, {input: game}));
+      await API.graphql(graphqlOperation(createGame, {input: game}))
+      .catch((error) => {
+        console.log(error);
+      })
     } catch (err) {
       console.log("error creating game: " + err);
     }
@@ -452,5 +457,5 @@ class Footer extends Component {
   }
 }
 
-//export default withAuthenticator(App);
-export default(App);
+export default withAuthenticator(App);
+//export default(App);
