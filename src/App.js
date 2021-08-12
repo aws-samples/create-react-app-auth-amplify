@@ -10,6 +10,7 @@ import { API, graphqlOperation } from 'aws-amplify'
 import { createGame } from './graphql/mutations'
 import { listGames } from './graphql/queries'
 import { DateUtils } from '@aws-amplify/core';
+import { AWSAppSyncProvider } from '@aws-amplify/pubsub';
 Amplify.configure(aws_exports);
 
 const logger = new Logger("CCLogger");
@@ -25,40 +26,9 @@ const initialState = {
   created: null
 }
 
-// const App = () => {
-//   const [formState, setFormState] = useState([]);
-//   const [todos, setTodos] = useState([])
-
-//   useEffect(() => {
-//     fetchGames()
-//   }, [])
-
-//   function setInput(key, value) {
-//     setFormState({ ...formState, [key]: value})
-//   }
-
-//   async function fetchGames() {
-//     try {
-//       const gameData = await API.graphql(graphqlOperation(listGames));
-//       const games = gameData.data.listGames.items;
-//       setGames(games);
-//     } catch (err) {
-//       console.log("error fetching games: " + err);
-//     }
-//   }
-
-//   async function addGame() {
-//     try {
-//       if (!formState.name || !formState.description) return;
-//       const game = { ...formState };
-//       setGames([...formState]);
-//       setFormState(initialState);
-//       await API.graphql(graphqlOperation(createGame, {input: game}));
-//     } catch (err) {
-//       console.log("error creating game: " + err);
-//     }
-//   }
-// }
+const client = new AWSAppSyncClient({
+  url: resolveAwsAuthConfig.
+})
 
 class App extends Component {
   constructor(props) {
@@ -68,7 +38,8 @@ class App extends Component {
       showSignIn: false,
       showSubmit: false,
       username: "Test",
-      user: null
+      user: null,
+      onHome: true
     }
 
     this.handleNavigation = this.handleNavigation.bind(this);
@@ -129,7 +100,8 @@ class App extends Component {
     {
       this.setState({
         showSignIn: false,
-        showSubmit: false
+        showSubmit: false,
+        onHome: true
       })
     }
 
@@ -137,7 +109,8 @@ class App extends Component {
     {
       this.setState({
         showSignIn: false,
-        showSubmit: true
+        showSubmit: true,
+        onHome: false
       })
     }
 
@@ -146,7 +119,8 @@ class App extends Component {
       this.setState({
         loggedIn: false,
         showSignIn: true,
-        showSubmit: false
+        showSubmit: false,
+        onHome: true
       })
     }
 
@@ -157,7 +131,8 @@ class App extends Component {
         this.setState({
           loggedIn: false,
           showSignIn: false,
-          showSubmit: false
+          showSubmit: false,
+          onHome: true
         })
       })
     }
@@ -167,7 +142,7 @@ class App extends Component {
     if (this.state.showSignIn) {
       return (
         <div>
-        <Navigation onNavigation={this.handleNavigation} loggedIn={this.state.loggedIn} username={this.state.username} />
+        <Navigation onNavigation={this.handleNavigation} loggedIn={this.state.loggedIn} username={this.state.username} onHome={this.state.onHome} />
         <AmplifyAuthenticator>
           <AmplifySignIn></AmplifySignIn>
         </AmplifyAuthenticator>
@@ -178,7 +153,7 @@ class App extends Component {
     if (this.state.showSubmit) {
       return (
         <div>
-        <Navigation onNavigation={this.handleNavigation} loggedIn={this.state.loggedIn} username={this.state.username} />
+        <Navigation onNavigation={this.handleNavigation} loggedIn={this.state.loggedIn} username={this.state.username} onHome={this.state.onHome}  />
         <Submit />
         <Footer />
       </div>
@@ -186,7 +161,7 @@ class App extends Component {
     }
     return(
     <div>
-      <Navigation onNavigation={this.handleNavigation} loggedIn={this.state.loggedIn} username={this.state.username} />
+      <Navigation onNavigation={this.handleNavigation} loggedIn={this.state.loggedIn} username={this.state.username} onHome={this.state.onHome}  />
       <Content />
       <Footer />
     </div>
@@ -236,6 +211,27 @@ class Navigation extends Component {
 
   render() {
     if (this.props.loggedIn) {
+      if (this.props.onHome) {
+        return (
+          <div className="content">
+        <div id="nav" className="flex-container center nav">
+          <div id="title" className="title flex-container">
+            <div>
+              <img className="logo" src="logosmall.png" alt=""></img>
+            </div>
+            <div>
+              <h1>Carrier Commander</h1>
+            </div>
+          </div>
+          <div id="links" className="links flex-container">
+            <a className="link current" onClick={this.handleHome}>Home</a>
+            <a className="link" onClick={this.handleSubmit}>Submit</a>
+            <a className="link" onClick={this.handleLogout}>{this.props.username}, Sign Out</a>
+          </div>
+        </div>
+      </div>
+        )
+      }
       return (
         <div className="content">
       <div id="nav" className="flex-container center nav">
@@ -248,12 +244,33 @@ class Navigation extends Component {
           </div>
         </div>
         <div id="links" className="links flex-container">
-          <a className="link current" onClick={this.handleHome}>Home</a>
-          <a className="link" onClick={this.handleSubmit}>Submit</a>
+          <a className="link" onClick={this.handleHome}>Home</a>
+          <a className="link current" onClick={this.handleSubmit}>Submit</a>
           <a className="link" onClick={this.handleLogout}>{this.props.username}, Sign Out</a>
         </div>
       </div>
     </div>
+      )
+    }
+    if (this.props.onHome) {
+      return (
+        <div className="content">
+        <div id="nav" className="flex-container center nav">
+          <div id="title" className="title flex-container">
+            <div>
+              <img className="logo" src="logosmall.png" alt=""></img>
+            </div>
+            <div>
+              <h1>Carrier Commander</h1>
+            </div>
+          </div>
+          <div id="links" className="links flex-container">
+            <a className="link current" onClick={this.handleHome}>Home</a>
+            <a className="link" onClick={this.handleSubmit}>Submit</a>
+            <a className="link" onClick={this.handleLogin}>Sign In</a>
+          </div>
+        </div>
+      </div>
       )
     }
     return (
@@ -268,8 +285,8 @@ class Navigation extends Component {
           </div>
         </div>
         <div id="links" className="links flex-container">
-          <a className="link current" onClick={this.handleHome}>Home</a>
-          <a className="link" onClick={this.handleSubmit}>Submit</a>
+          <a className="link" onClick={this.handleHome}>Home</a>
+          <a className="link current" onClick={this.handleSubmit}>Submit</a>
           <a className="link" onClick={this.handleLogin}>Sign In</a>
         </div>
       </div>
