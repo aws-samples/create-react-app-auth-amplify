@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react'
 import { API, graphqlOperation } from 'aws-amplify'
 import { createGame } from './graphql/mutations'
 import { listGames } from './graphql/queries'
+import { DateUtils } from '@aws-amplify/core';
 Amplify.configure(aws_exports);
 
 const logger = new Logger("CCLogger");
@@ -355,31 +356,41 @@ class Games extends Component {
 
 const Submit = () => {
   const [formState, setFormState] = useState([]);
-  const [games, setGames] = useState([])
+  //const [games, setGames] = useState([])
 
-  useEffect(() => {
-    fetchGames()
-  }, [])
+  // useEffect(() => {
+  //   fetchGames()
+  // }, [])
 
   function setInput(key, value) {
     setFormState({ ...formState, [key]: value})
   }
 
-  async function fetchGames() {
-    try {
-      const gameData = await API.graphql(graphqlOperation(listGames));
-      const games = gameData.data.listGames.items;
-      setGames(games);
-    } catch (err) {
-      console.log("error fetching games: " + err);
-    }
-  }
+  // async function fetchGames() {
+  //   try {
+  //     const gameData = await API.graphql(graphqlOperation(listGames));
+  //     const games = gameData.data.listGames.items;
+  //     setGames(games);
+  //   } catch (err) {
+  //     console.log("error fetching games: " + err);
+  //   }
+  // }
 
   async function addGame() {
     try {
-      if (!formState.name || !formState.description) return;
+      if (!formState.title || !formState.invite || !formState.password) 
+      {
+        return;
+      }
+      if (!formState.players)
+      {
+        formState.players = 2;
+      }
+      formState.created = new Date().toISOString();
+      formState.creator = "Test";
+      formState.reports = 0;
       const game = { ...formState };
-      setGames([...formState]);
+      //setGames([...formState]);
       setFormState(initialState);
       await API.graphql(graphqlOperation(createGame, {input: game}));
     } catch (err) {
@@ -411,36 +422,6 @@ const Submit = () => {
     </div>
   )
 }
-
-// class Submit extends Component {
-//   render() {
-//     return (
-//     <div className="submit">
-//         <form action="" class="left">
-//         <label for="title">Title</label> <br />
-//         <input type="text" name="title" id="title" className="game-input"></input>
-//         <br />
-//         <br />
-//         <label for="title">Invite Code</label> <br />
-//         <input type="text" name="title" id="title" className="game-input"></input>
-//         <br />
-//         <br />
-//         <label for="title">Password</label> <br />
-//         <input type="text" name="password" id="password" className="game-input"></input>
-//         <br />
-//         <br />
-//         <label for="title">Players</label> <br />
-//         <input type="number" max="16" min="2" value="2" name="title" id="title" className="game-input"></input>
-//         <br />
-//         <br />
-//         <div className="white">Games are deleted after 3 hours.</div>
-//         <br />
-//         <input type="submit" value="Submit Game"></input>
-//       </form>
-//     </div>
-//     )
-//   }
-// }
 
 class Footer extends Component {
   render() {
