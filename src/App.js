@@ -26,10 +26,6 @@ const initialState = {
   created: null
 }
 
-const client = new AWSAppSyncClient({
-  url: resolveAwsAuthConfig.
-})
-
 class App extends Component {
   constructor(props) {
     super(props);
