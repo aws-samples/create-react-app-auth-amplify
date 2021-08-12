@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Auth } from 'aws-amplify';
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react'
-import Amplify from 'aws-amplify';
 import aws_exports from './aws-exports';
 import { AmplifyAuthContainer, AmplifyAuthenticator, AmplifySignIn } from "@aws-amplify/ui-react";
 import appSyncConfig from "./aws-exports";
+import { Amplify, Auth, Hub, Logger } from 'aws-amplify';
 Amplify.configure(aws_exports);
 
-var user = null;
+const logger = new Logger("CCLogger");
+
 
 class App extends Component {
   constructor(props) {
@@ -16,7 +16,9 @@ class App extends Component {
     this.state = { 
       loggedIn: false,
       showSignIn: false,
-      showSubmit: false
+      showSubmit: false,
+      username: "Test",
+      user: null
     }
 
     this.handleNavigation = this.handleNavigation.bind(this);
@@ -24,21 +26,35 @@ class App extends Component {
   }
 
   componentDidMount() {
+    // https://docs.amplify.aws/lib/auth/auth-events/q/platform/js
+    const listener = (data) => {
+      switch (data.payload.event) {
+        case "signIn":
+          this.state.user = data.payload.data;
+          this.setState({
+            loggedIn: true,
+            showSignIn: false,
+            showSubmit: false,
+            user: data.payload.data,
+            username: data.payload.data.username
+          })
+          break;
+      }
+    }
+
+    Hub.listen('auth', listener);
+
     Auth.currentSession()
     .then((result) => {
       if (result !== null) {
-        user = result;
         this.setState({
           loggedIn: true,
           showSignIn: false,
-          showSubmit: false
+          showSubmit: false,
+          user: result,
+          username: result.idToken.payload.preferred_username
         })
       }
-      this.setState({
-        loggedIn: false,
-        showSignIn: false,
-        showSubmit: false
-      })
     })
     .catch((error) => {
       console.log("Not logged in");
@@ -48,7 +64,7 @@ class App extends Component {
         showSubmit: false
       })
     })
-  }
+ }
 
   handleLogin(user) {
     this.setState({
@@ -101,7 +117,7 @@ class App extends Component {
     if (this.state.showSignIn) {
       return (
         <div>
-        <Navigation onNavigation={this.handleNavigation} loggedIn={this.state.loggedIn}/>
+        <Navigation onNavigation={this.handleNavigation} loggedIn={this.state.loggedIn} username={this.state.username} />
         <AmplifyAuthenticator>
           <AmplifySignIn></AmplifySignIn>
         </AmplifyAuthenticator>
@@ -112,7 +128,7 @@ class App extends Component {
     if (this.state.showSubmit) {
       return (
         <div>
-        <Navigation onNavigation={this.handleNavigation} />
+        <Navigation onNavigation={this.handleNavigation} loggedIn={this.state.loggedIn} username={this.state.username} />
         <Submit />
         <Footer />
       </div>
@@ -120,7 +136,7 @@ class App extends Component {
     }
     return(
     <div>
-      <Navigation onNavigation={this.handleNavigation} loggedIn={this.state.loggedIn} />
+      <Navigation onNavigation={this.handleNavigation} loggedIn={this.state.loggedIn} username={this.state.username} />
       <Content />
       <Footer />
     </div>
@@ -184,7 +200,7 @@ class Navigation extends Component {
         <div id="links" className="links flex-container">
           <a className="link current" onClick={this.handleHome}>Home</a>
           <a className="link" onClick={this.handleSubmit}>Submit</a>
-          <a className="link" onClick={this.handleLogout}>Sign Out</a>
+          <a className="link" onClick={this.handleLogout}>{this.props.username}, Sign Out</a>
         </div>
       </div>
     </div>
