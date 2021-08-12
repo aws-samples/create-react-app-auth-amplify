@@ -1,26 +1,79 @@
 export const schema = {
-    "models": {
+    "models": {},
+    "enums": {
+        "ModelAttributeTypes": {
+            "name": "ModelAttributeTypes",
+            "values": [
+                "_null",
+                "binary",
+                "binarySet",
+                "bool",
+                "list",
+                "map",
+                "number",
+                "numberSet",
+                "string",
+                "stringSet"
+            ]
+        },
+        "ModelSortDirection": {
+            "name": "ModelSortDirection",
+            "values": [
+                "ASC",
+                "DESC"
+            ]
+        }
+    },
+    "nonModels": {
         "Game": {
             "name": "Game",
             "fields": {
-                "id": {
-                    "name": "id",
+                "_deleted": {
+                    "name": "_deleted",
                     "isArray": false,
-                    "type": "ID",
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "_lastChangedAt": {
+                    "name": "_lastChangedAt",
+                    "isArray": false,
+                    "type": "AWSTimestamp",
                     "isRequired": true,
                     "attributes": []
                 },
-                "title": {
-                    "name": "title",
+                "_version": {
+                    "name": "_version",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "created": {
+                    "name": "created",
                     "isArray": false,
                     "type": "String",
                     "isRequired": true,
                     "attributes": []
                 },
-                "players": {
-                    "name": "players",
+                "createdAt": {
+                    "name": "createdAt",
                     "isArray": false,
-                    "type": "Int",
+                    "type": "AWSDateTime",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "creator": {
+                    "name": "creator",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
                     "isRequired": true,
                     "attributes": []
                 },
@@ -38,6 +91,13 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "players": {
+                    "name": "players",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": true,
+                    "attributes": []
+                },
                 "reports": {
                     "name": "reports",
                     "isArray": false,
@@ -45,48 +105,51 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "creator": {
-                    "name": "creator",
+                "title": {
+                    "name": "title",
                     "isArray": false,
                     "type": "String",
                     "isRequired": true,
                     "attributes": []
                 },
-                "created": {
-                    "name": "created",
+                "updatedAt": {
+                    "name": "updatedAt",
                     "isArray": false,
-                    "type": "String",
+                    "type": "AWSDateTime",
                     "isRequired": true,
                     "attributes": []
                 }
-            },
-            "syncable": true,
-            "pluralName": "Games",
-            "attributes": [
-                {
-                    "type": "model",
-                    "properties": {}
+            }
+        },
+        "ModelGameConnection": {
+            "name": "ModelGameConnection",
+            "fields": {
+                "items": {
+                    "name": "items",
+                    "isArray": true,
+                    "type": {
+                        "nonModel": "Game"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true
                 },
-                {
-                    "type": "auth",
-                    "properties": {
-                        "rules": [
-                            {
-                                "allow": "public",
-                                "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
-                                    "read"
-                                ]
-                            }
-                        ]
-                    }
+                "nextToken": {
+                    "name": "nextToken",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "startedAt": {
+                    "name": "startedAt",
+                    "isArray": false,
+                    "type": "AWSTimestamp",
+                    "isRequired": false,
+                    "attributes": []
                 }
-            ]
+            }
         }
     },
-    "enums": {},
-    "nonModels": {},
-    "version": "4bf2c991f9b3f10866fa12fefbc75189"
+    "version": "8c0dd4c66f6c9f257d3d7be9a483de91"
 };

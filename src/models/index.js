@@ -2,10 +2,29 @@
 import { initSchema } from '@aws-amplify/datastore';
 import { schema } from './schema';
 
+const ModelAttributeTypes = {
+  "NULL": "_null",
+  "BINARY": "binary",
+  "BINARY_SET": "binarySet",
+  "BOOL": "bool",
+  "LIST": "list",
+  "MAP": "map",
+  "NUMBER": "number",
+  "NUMBER_SET": "numberSet",
+  "STRING": "string",
+  "STRING_SET": "stringSet"
+};
 
+const ModelSortDirection = {
+  "ASC": "ASC",
+  "DESC": "DESC"
+};
 
-const { Game } = initSchema(schema);
+const { Game, ModelGameConnection } = initSchema(schema);
 
 export {
-  Game
+  ModelAttributeTypes,
+  ModelSortDirection,
+  Game,
+  ModelGameConnection
 };
