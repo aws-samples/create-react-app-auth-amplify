@@ -4,7 +4,7 @@ schema {
   subscription: Subscription
 }
 
-type Game @aws_api_key @aws_iam {
+type Game @aws_auth(cognito_groups: ["Manage-only"]) {
   _deleted: Boolean
   _lastChangedAt: AWSTimestamp!
   _version: Int!
@@ -20,28 +20,28 @@ type Game @aws_api_key @aws_iam {
   updatedAt: AWSDateTime!
 }
 
-type ModelGameConnection @aws_api_key @aws_iam {
+type ModelGameConnection @aws_auth(cognito_groups: ["Manage-only"]) {
   items: [Game]
   nextToken: String
   startedAt: AWSTimestamp
 }
 
 type Mutation {
-  createGame(condition: ModelGameConditionInput, input: CreateGameInput!): Game @aws_api_key @aws_iam
-  deleteGame(condition: ModelGameConditionInput, input: DeleteGameInput!): Game @aws_api_key @aws_iam
-  updateGame(condition: ModelGameConditionInput, input: UpdateGameInput!): Game @aws_api_key @aws_iam
+  createGame(condition: ModelGameConditionInput, input: CreateGameInput!): Game @aws_auth(cognito_groups: ["Manage-only"])
+  deleteGame(condition: ModelGameConditionInput, input: DeleteGameInput!): Game @aws_auth(cognito_groups: ["Manage-only"])
+  updateGame(condition: ModelGameConditionInput, input: UpdateGameInput!): Game @aws_auth(cognito_groups: ["Manage-only"])
 }
 
 type Query {
-  getGame(id: ID!): Game @aws_api_key @aws_iam
-  listGames(filter: ModelGameFilterInput, limit: Int, nextToken: String): ModelGameConnection @aws_api_key @aws_iam
-  syncGames(filter: ModelGameFilterInput, lastSync: AWSTimestamp, limit: Int, nextToken: String): ModelGameConnection @aws_api_key @aws_iam
+  getGame(id: ID!): Game @aws_auth(cognito_groups: ["Manage-only"])
+  listGames(filter: ModelGameFilterInput, limit: Int, nextToken: String): ModelGameConnection @aws_auth(cognito_groups: ["Manage-only"])
+  syncGames(filter: ModelGameFilterInput, lastSync: AWSTimestamp, limit: Int, nextToken: String): ModelGameConnection @aws_auth(cognito_groups: ["Manage-only"])
 }
 
 type Subscription {
-  onCreateGame: Game @aws_api_key @aws_iam @aws_subscribe(mutations : ["createGame"])
-  onDeleteGame: Game @aws_api_key @aws_iam @aws_subscribe(mutations : ["deleteGame"])
-  onUpdateGame: Game @aws_api_key @aws_iam @aws_subscribe(mutations : ["updateGame"])
+  onCreateGame: Game @aws_auth(cognito_groups: ["Manage-only"]) @aws_subscribe(mutations : ["createGame"])
+  onDeleteGame: Game @aws_auth(cognito_groups: ["Manage-only"]) @aws_subscribe(mutations : ["deleteGame"])
+  onUpdateGame: Game @aws_auth(cognito_groups: ["Manage-only"]) @aws_subscribe(mutations : ["updateGame"])
 }
 
 enum ModelAttributeTypes {
