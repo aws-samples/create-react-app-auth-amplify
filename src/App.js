@@ -389,27 +389,25 @@ const Submit = () => {
 
   return (
     <div className="submit">
-        <form action="" class="left">
-        <label for="title">Title</label> <br />
-        <input type="text" name="title" id="title" className="game-input" onChange={event => setInput('title', event.target.value)}></input>
-        <br />
-        <br />
-        <label for="title">Invite Code</label> <br />
-        <input type="text" name="title" id="title" className="game-input" onChange={event => setInput('invite', event.target.value)}></input>
-        <br />
-        <br />
-        <label for="title">Password</label> <br />
-        <input type="text" name="password" id="password" className="game-input" onChange={event => setInput('password', event.target.value)}></input>
-        <br />
-        <br />
-        <label for="title">Players</label> <br />
-        <input type="number" max="16" min="2" value="2" name="title" id="title" className="game-input" onChange={event => setInput('players', event.target.value)}></input>
-        <br />
-        <br />
-        <div className="white">Games are deleted after 3 hours.</div>
-        <br />
-        <button onClick={addGame}>Create Game</button>
-      </form>
+      <label for="title">Title</label> <br />
+      <input type="text" name="title" id="title" className="game-input" onChange={event => setInput('title', event.target.value)}></input>
+      <br />
+      <br />
+      <label for="title">Invite Code</label> <br />
+      <input type="text" name="title" id="title" className="game-input" onChange={event => setInput('invite', event.target.value)}></input>
+      <br />
+      <br />
+      <label for="title">Password</label> <br />
+      <input type="text" name="password" id="password" className="game-input" onChange={event => setInput('password', event.target.value)}></input>
+      <br />
+      <br />
+      <label for="title">Players</label> <br />
+      <input type="number" max="16" min="2" value="2" name="title" id="title" className="game-input" onChange={event => setInput('players', event.target.value)}></input>
+      <br />
+      <br />
+      <div className="white">Games are deleted after 3 hours.</div>
+      <br />
+      <button onClick={addGame}>Create Game</button>
     </div>
   )
 }
