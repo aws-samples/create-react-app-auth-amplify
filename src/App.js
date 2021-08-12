@@ -5,10 +5,59 @@ import aws_exports from './aws-exports';
 import { AmplifyAuthContainer, AmplifyAuthenticator, AmplifySignIn } from "@aws-amplify/ui-react";
 import appSyncConfig from "./aws-exports";
 import { Amplify, Auth, Hub, Logger } from 'aws-amplify';
+import { useEffect, useState } from 'react'
+import { API, graphqlOperation } from 'aws-amplify'
+import { createGame } from './graphql/mutations'
+import { listGames } from './graphql/queries'
 Amplify.configure(aws_exports);
 
 const logger = new Logger("CCLogger");
 
+// https://docs.amplify.aws/start/getting-started/data-model/q/integration/react#deploying-the-api
+const initialState = {
+  title: '',
+  players: 0,
+  invite: '',
+  password: '',
+  reports: 0,
+  creator: '',
+  created: null
+}
+
+// const App = () => {
+//   const [formState, setFormState] = useState([]);
+//   const [todos, setTodos] = useState([])
+
+//   useEffect(() => {
+//     fetchGames()
+//   }, [])
+
+//   function setInput(key, value) {
+//     setFormState({ ...formState, [key]: value})
+//   }
+
+//   async function fetchGames() {
+//     try {
+//       const gameData = await API.graphql(graphqlOperation(listGames));
+//       const games = gameData.data.listGames.items;
+//       setGames(games);
+//     } catch (err) {
+//       console.log("error fetching games: " + err);
+//     }
+//   }
+
+//   async function addGame() {
+//     try {
+//       if (!formState.name || !formState.description) return;
+//       const game = { ...formState };
+//       setGames([...formState]);
+//       setFormState(initialState);
+//       await API.graphql(graphqlOperation(createGame, {input: game}));
+//     } catch (err) {
+//       console.log("error creating game: " + err);
+//     }
+//   }
+// }
 
 class App extends Component {
   constructor(props) {
@@ -304,35 +353,96 @@ class Games extends Component {
   }
 }
 
-class Submit extends Component {
-  render() {
-    return (
+const Submit = () => {
+  const [formState, setFormState] = useState([]);
+  const [games, setGames] = useState([])
+
+  useEffect(() => {
+    fetchGames()
+  }, [])
+
+  function setInput(key, value) {
+    setFormState({ ...formState, [key]: value})
+  }
+
+  async function fetchGames() {
+    try {
+      const gameData = await API.graphql(graphqlOperation(listGames));
+      const games = gameData.data.listGames.items;
+      setGames(games);
+    } catch (err) {
+      console.log("error fetching games: " + err);
+    }
+  }
+
+  async function addGame() {
+    try {
+      if (!formState.name || !formState.description) return;
+      const game = { ...formState };
+      setGames([...formState]);
+      setFormState(initialState);
+      await API.graphql(graphqlOperation(createGame, {input: game}));
+    } catch (err) {
+      console.log("error creating game: " + err);
+    }
+  }
+
+  return (
     <div className="submit">
         <form action="" class="left">
         <label for="title">Title</label> <br />
-        <input type="text" name="title" id="title" className="game-input"></input>
+        <input type="text" name="title" id="title" className="game-input" onChange={event => setInput('title', event.target.value)}></input>
         <br />
         <br />
         <label for="title">Invite Code</label> <br />
-        <input type="text" name="title" id="title" className="game-input"></input>
+        <input type="text" name="title" id="title" className="game-input" onChange={event => setInput('invite', event.target.value)}></input>
         <br />
         <br />
         <label for="title">Password</label> <br />
-        <input type="text" name="password" id="password" className="game-input"></input>
+        <input type="text" name="password" id="password" className="game-input" onChange={event => setInput('password', event.target.value)}></input>
         <br />
         <br />
         <label for="title">Players</label> <br />
-        <input type="number" max="16" min="2" value="2" name="title" id="title" className="game-input"></input>
+        <input type="number" max="16" min="2" value="2" name="title" id="title" className="game-input" onChange={event => setInput('players', event.target.value)}></input>
         <br />
         <br />
         <div className="white">Games are deleted after 3 hours.</div>
         <br />
-        <input type="submit" value="Submit Game"></input>
+        <button onClick={addGame}>Create Game</button>
       </form>
     </div>
-    )
-  }
+  )
 }
+
+// class Submit extends Component {
+//   render() {
+//     return (
+//     <div className="submit">
+//         <form action="" class="left">
+//         <label for="title">Title</label> <br />
+//         <input type="text" name="title" id="title" className="game-input"></input>
+//         <br />
+//         <br />
+//         <label for="title">Invite Code</label> <br />
+//         <input type="text" name="title" id="title" className="game-input"></input>
+//         <br />
+//         <br />
+//         <label for="title">Password</label> <br />
+//         <input type="text" name="password" id="password" className="game-input"></input>
+//         <br />
+//         <br />
+//         <label for="title">Players</label> <br />
+//         <input type="number" max="16" min="2" value="2" name="title" id="title" className="game-input"></input>
+//         <br />
+//         <br />
+//         <div className="white">Games are deleted after 3 hours.</div>
+//         <br />
+//         <input type="submit" value="Submit Game"></input>
+//       </form>
+//     </div>
+//     )
+//   }
+// }
 
 class Footer extends Component {
   render() {

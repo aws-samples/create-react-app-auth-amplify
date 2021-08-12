@@ -1,0 +1,11 @@
+type Game @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  title: String!
+  players: Int!
+  invite: String!
+  password: String!
+  reports: Int!
+  creator: String!
+  created: String!
+}
+ 
