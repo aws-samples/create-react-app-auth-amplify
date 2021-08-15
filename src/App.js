@@ -36,7 +36,8 @@ class App extends Component {
       showSubmit: false,
       username: "Test",
       user: null,
-      onHome: true
+      onHome: true,
+      games: null
     }
 
     this.handleNavigation = this.handleNavigation.bind(this);
@@ -54,11 +55,12 @@ class App extends Component {
             showSignIn: false,
             showSubmit: false,
             user: data.payload.data,
-            username: data.payload.data.username
+            username: data.payload.data.username,
           })
           break;
       }
     }
+
 
     Hub.listen('auth', listener);
 
@@ -67,9 +69,12 @@ class App extends Component {
     //     alert(result);
     //   })
 
+
     API.graphql(graphqlOperation(listCcGames))
     .then((result) => {
-      console.log(result);
+      this.setState({
+        games: result.data.listCCGames.items
+      })
     })
     .catch((error) => {
       console.log(error);
@@ -174,7 +179,7 @@ class App extends Component {
     return(
     <div>
       <Navigation onNavigation={this.handleNavigation} loggedIn={this.state.loggedIn} username={this.state.username} onHome={this.state.onHome}  />
-      <Content />
+      <Content Games={this.state.games}/>
       <Footer />
     </div>
     )
@@ -182,6 +187,9 @@ class App extends Component {
 }
 
 class Content extends Component {
+  constructor(props) {
+    super(props)
+  }
   render() {
     var submitting = false;
     if (submitting) {
@@ -190,7 +198,7 @@ class Content extends Component {
       )
     }
     return (
-      <Games />
+      <Games Games={this.props.Games} />
     )
   }
 }
@@ -317,8 +325,23 @@ class GamesHeader extends Component {
   }
 }
 class Games extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  createGame(game) {
+    
+    return <Game title={game.title} author={game.author} code={game.code} password={game.password} title={game.title} players={game.players} reports={game.reports} />;
+  }
+
+  createGames(games) {
+    return games.map(this.createGame);
+  }
+
   render() {
-    return (
+
+    if (this.props.Games) {
+      return (
         <div className="flex-container column">
           <GamesHeader />
           <div className="game game-header">
@@ -338,74 +361,43 @@ class Games extends Component {
               <strong>Age</strong>
             </div>
           </div>
-          <div className="game">
+          {this.createGames(this.props.Games)}
+        </div>
+    )
+    }
+    else {
+      return (
+        <div className="flex-container column">
+          <GamesHeader />
+          <div className="game game-header">
             <div className="game-title">
-            Sam's Game
+              <strong>Match Title</strong>
             </div>
             <div className="players">
-            16
+              <strong>Players</strong>
             </div>
             <div className="code">
-            rkqst4efa3tsft5omydqrizoblychhqb7iw6hqnm
+              <strong>Invite Code</strong>
             </div>
             <div className="password">
-            password
+              <strong>Password</strong>
             </div>
             <div className="age">
-            20m
+              <strong>Age</strong>
             </div>
-            <div className="report">
-            Report
-            </div>
-          </div>
-          <Game title="Test Title" players="15" code="123" password="321" age="20m" />
-          <div className="game">
-          <div className="game-title">
-          This is a longer game title
-          </div>
-          <div className="players">
-          8
-          </div>
-          <div className="code">
-          rkqst4efa3tsft5omydqrizoblychhqb7iw6hqnm
-          </div>
-          <div className="password">
-          password
-          </div>
-          <div className="age">
-          33m
-          </div>
-          <div className="report">
-          Report
-          </div>
           </div>
         </div>
     )
+    }
   }
 }
 
 const Submit = () => {
   const [formState, setFormState] = useState([]);
-  //const [games, setGames] = useState([])
-
-  // useEffect(() => {
-  //   fetchGames()
-  // }, [])
 
   function setInput(key, value) {
     setFormState({ ...formState, [key]: value})
   }
-
-  // async function fetchGames() {
-  //   try {
-  //     const gameData = await API.graphql(graphqlOperation(listGames));
-  //     const games = gameData.data.listGames.items;
-  //     setGames(games);
-  //   } catch (err) {
-  //     console.log("error fetching games: " + err);
-  //   }
-  // }
-
 
   async function addGame() {
     try {
