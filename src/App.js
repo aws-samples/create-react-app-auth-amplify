@@ -330,8 +330,12 @@ class Games extends Component {
   }
 
   createGame(game) {
-    
-    return <Game title={game.title} author={game.author} code={game.code} password={game.password} title={game.title} players={game.players} reports={game.reports} />;
+    var now = new Date();
+    var converted = Date.parse(game.created);
+    var diffMs = (now - converted);
+    var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000);
+    game.age = diffMins + "m";
+    return <Game title={game.title} author={game.author} code={game.code} password={game.password} title={game.title} players={game.players} reports={game.reports} age={game.age} />;
   }
 
   createGames(games) {
@@ -470,9 +474,6 @@ class Game extends Component {
             </div>
             <div className="age">
             {this.props.age}
-            </div>
-            <div className="report">
-            Report
             </div>
           </div>
     )
