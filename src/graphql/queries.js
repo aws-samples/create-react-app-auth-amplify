@@ -11,6 +11,7 @@ export const getCcGames = /* GraphQL */ `
       title
       players
       reports
+      created
     }
   }
 `;
@@ -29,6 +30,7 @@ export const listCcGames = /* GraphQL */ `
         title
         players
         reports
+        created
       }
       nextToken
     }

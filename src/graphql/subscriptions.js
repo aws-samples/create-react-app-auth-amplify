@@ -23,6 +23,7 @@ export const onCreateCcGames = /* GraphQL */ `
       title
       players
       reports
+      created
     }
   }
 `;
@@ -48,6 +49,7 @@ export const onUpdateCcGames = /* GraphQL */ `
       title
       players
       reports
+      created
     }
   }
 `;
@@ -73,6 +75,7 @@ export const onDeleteCcGames = /* GraphQL */ `
       title
       players
       reports
+      created
     }
   }
 `;
