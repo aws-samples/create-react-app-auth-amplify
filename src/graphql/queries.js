@@ -36,3 +36,42 @@ export const listCcGames = /* GraphQL */ `
     }
   }
 `;
+export const getCarriedCommandGames = /* GraphQL */ `
+  query GetCarriedCommandGames($id: String!) {
+    getCarriedCommandGames(id: $id) {
+      id
+      author
+      code
+      password
+      title
+      players
+      reports
+      created
+    }
+  }
+`;
+export const listCarriedCommandGames = /* GraphQL */ `
+  query ListCarriedCommandGames(
+    $filter: TableCarriedCommandGamesFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listCarriedCommandGames(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        author
+        code
+        password
+        title
+        players
+        reports
+        created
+      }
+      nextToken
+    }
+  }
+`;

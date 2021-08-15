@@ -43,3 +43,45 @@ export const deleteCcGames = /* GraphQL */ `
     }
   }
 `;
+export const createCarriedCommandGames = /* GraphQL */ `
+  mutation CreateCarriedCommandGames($input: CreateCarriedCommandGamesInput!) {
+    createCarriedCommandGames(input: $input) {
+      id
+      author
+      code
+      password
+      title
+      players
+      reports
+      created
+    }
+  }
+`;
+export const updateCarriedCommandGames = /* GraphQL */ `
+  mutation UpdateCarriedCommandGames($input: UpdateCarriedCommandGamesInput!) {
+    updateCarriedCommandGames(input: $input) {
+      id
+      author
+      code
+      password
+      title
+      players
+      reports
+      created
+    }
+  }
+`;
+export const deleteCarriedCommandGames = /* GraphQL */ `
+  mutation DeleteCarriedCommandGames($input: DeleteCarriedCommandGamesInput!) {
+    deleteCarriedCommandGames(input: $input) {
+      id
+      author
+      code
+      password
+      title
+      players
+      reports
+      created
+    }
+  }
+`;

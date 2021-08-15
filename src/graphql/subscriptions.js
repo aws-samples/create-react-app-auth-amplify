@@ -79,3 +79,45 @@ export const onDeleteCcGames = /* GraphQL */ `
     }
   }
 `;
+export const onCreateCarriedCommandGames = /* GraphQL */ `
+  subscription OnCreateCarriedCommandGames($id: String) {
+    onCreateCarriedCommandGames(id: $id) {
+      id
+      author
+      code
+      password
+      title
+      players
+      reports
+      created
+    }
+  }
+`;
+export const onUpdateCarriedCommandGames = /* GraphQL */ `
+  subscription OnUpdateCarriedCommandGames($id: String) {
+    onUpdateCarriedCommandGames(id: $id) {
+      id
+      author
+      code
+      password
+      title
+      players
+      reports
+      created
+    }
+  }
+`;
+export const onDeleteCarriedCommandGames = /* GraphQL */ `
+  subscription OnDeleteCarriedCommandGames($id: String) {
+    onDeleteCarriedCommandGames(id: $id) {
+      id
+      author
+      code
+      password
+      title
+      players
+      reports
+      created
+    }
+  }
+`;

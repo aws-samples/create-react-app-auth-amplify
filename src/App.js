@@ -4,10 +4,10 @@ import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react'
 import aws_exports from './aws-exports';
 import { AmplifyAuthContainer, AmplifyAuthenticator, AmplifySignIn } from "@aws-amplify/ui-react";
 import appSyncConfig from "./aws-exports";
-import { Amplify, Auth, Hub, Logger } from 'aws-amplify';
+import { API, graphqlOperation, Amplify, Auth, Hub, Logger } from 'aws-amplify';
 import { useEffect, useState } from 'react'
-import { API, graphqlOperation } from 'aws-amplify'
-import { listCcGames } from './graphql/queries'
+import { listCarriedCommandGames } from './graphql/queries'
+import { createCarriedCommandGames } from './graphql/mutations'
 import { DateUtils } from '@aws-amplify/core';
 import { AWSAppSyncProvider } from '@aws-amplify/pubsub';
 Amplify.configure(aws_exports);
@@ -17,15 +17,6 @@ const logger = new Logger("CCLogger");
 // https://docs.amplify.aws/start/getting-started/data-model/q/integration/react#deploying-the-api
 // https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-using-tokens-with-identity-providers.html
 
-const initialState = {
-  title: '',
-  players: 0,
-  invite: '',
-  password: '',
-  reports: 0,
-  creator: '',
-  created: null
-}
 
 class App extends Component {
   constructor(props) {
@@ -70,10 +61,10 @@ class App extends Component {
     //   })
 
 
-    API.graphql(graphqlOperation(listCcGames))
+    API.graphql(graphqlOperation(listCarriedCommandGames))
     .then((result) => {
       this.setState({
-        games: result.data.listCCGames.items
+        games: result.data.listCarriedCommandGames.items
       })
     })
     .catch((error) => {
@@ -171,7 +162,7 @@ class App extends Component {
       return (
         <div>
         <Navigation onNavigation={this.handleNavigation} loggedIn={this.state.loggedIn} username={this.state.username} onHome={this.state.onHome}  />
-        <Submit />
+        <Submit author={this.state.username}/>
         <Footer />
       </div>
       )
@@ -396,36 +387,30 @@ class Games extends Component {
   }
 }
 
-const Submit = () => {
+const Submit = ({author}) => {
+  
   const [formState, setFormState] = useState([]);
 
   function setInput(key, value) {
     setFormState({ ...formState, [key]: value})
   }
 
-  async function addGame() {
-    try {
-      if (!formState.title || !formState.invite || !formState.password) 
-      {
-        return;
-      }
-      if (!formState.players)
-      {
-        formState.players = 2;
-      }
-      formState.created = new Date().toISOString();
-      formState.creator = "Test";
-      formState.reports = 0;
-      const game = { ...formState };
-      //setGames([...formState]);
-      setFormState(initialState);
-      // await API.graphql(graphqlOperation(createGame, {input: game}))
-      // .catch((error) => {
-      //   console.log(error);
-      // })
-    } catch (err) {
-      console.log("error creating game: " + err);
+  function addGame() {
+    if (!formState.players) {
+      formState.players = 2;
     }
+    var created = new Date;
+    formState.created = created.toISOString();
+    formState.author = {author}
+    formState.reports = 0;
+    formState.id = 
+    API.graphql(graphqlOperation(createCarriedCommandGames, { input: formState}))
+    .then((result) => {
+      console.log(result);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
   }
 
   return (
@@ -435,7 +420,7 @@ const Submit = () => {
       <br />
       <br />
       <label for="title">Invite Code</label> <br />
-      <input type="text" name="title" id="title" className="game-input" onChange={event => setInput('invite', event.target.value)}></input>
+      <input type="text" name="title" id="title" className="game-input" onChange={event => setInput('code', event.target.value)}></input>
       <br />
       <br />
       <label for="title">Password</label> <br />
@@ -445,8 +430,6 @@ const Submit = () => {
       <label for="title">Players</label> <br />
       <input type="number" max="16" min="2" value="2" name="title" id="title" className="game-input" onChange={event => setInput('players', event.target.value)}></input>
       <br />
-      <br />
-      <div className="white">Games are deleted after 3 hours.</div>
       <br />
       <button onClick={addGame}>Create Game</button>
     </div>
