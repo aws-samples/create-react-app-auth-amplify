@@ -71,6 +71,9 @@ class App extends Component {
     .then((result) => {
       console.log(result);
     })
+    .catch((error) => {
+      console.log(error);
+    })
 
     //API.graphql(graphqlOperation(createCCGames))
 
