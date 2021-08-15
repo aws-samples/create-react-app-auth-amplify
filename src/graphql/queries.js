@@ -5,6 +5,12 @@ export const getCcGames = /* GraphQL */ `
   query GetCcGames($Id: Int!) {
     getCCGames(Id: $Id) {
       Id
+      author
+      code
+      password
+      title
+      players
+      reports
     }
   }
 `;
@@ -17,6 +23,12 @@ export const listCcGames = /* GraphQL */ `
     listCCGames(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         Id
+        author
+        code
+        password
+        title
+        players
+        reports
       }
       nextToken
     }
