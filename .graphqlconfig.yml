@@ -1,6 +1,6 @@
 projects:
-  CarrierCommand:
-    schemaPath: amplify/backend/api/CarrierCommand/build/schema.graphql
+  CCAPIv2:
+    schemaPath: src/graphql/schema.json
     includes:
       - src/graphql/**/*.js
     excludes:
@@ -11,7 +11,7 @@ projects:
         generatedFileName: ''
         docsFilePath: src/graphql
         region: us-east-2
-        apiId: null
+        apiId: 5uwe7tsqizhvfbmo3vfvyisyy4
         maxDepth: 2
 extensions:
   amplify:

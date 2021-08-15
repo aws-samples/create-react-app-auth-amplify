@@ -80,3 +80,50 @@ export const syncGames = /* GraphQL */ `
     }
   }
 `;
+export const getCarrierCommand = /* GraphQL */ `
+  query GetCarrierCommand($GameId: String!) {
+    getCarrierCommand(GameId: $GameId) {
+      GameId
+    }
+  }
+`;
+export const listCarrierCommands = /* GraphQL */ `
+  query ListCarrierCommands(
+    $filter: TableCarrierCommandFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listCarrierCommands(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        GameId
+      }
+      nextToken
+    }
+  }
+`;
+export const getCcGames = /* GraphQL */ `
+  query GetCcGames($Id: Int!) {
+    getCCGames(Id: $Id) {
+      Id
+    }
+  }
+`;
+export const listCcGames = /* GraphQL */ `
+  query ListCcGames(
+    $filter: TableCCGamesFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listCCGames(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        Id
+        author
+        code
+        password
+        players
+        title
+      }
+      nextToken
+    }
+  }
+`;

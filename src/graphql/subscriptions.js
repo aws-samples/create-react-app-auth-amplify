@@ -58,3 +58,45 @@ export const onUpdateGame = /* GraphQL */ `
     }
   }
 `;
+export const onCreateCarrierCommand = /* GraphQL */ `
+  subscription OnCreateCarrierCommand($GameId: String) {
+    onCreateCarrierCommand(GameId: $GameId) {
+      GameId
+    }
+  }
+`;
+export const onUpdateCarrierCommand = /* GraphQL */ `
+  subscription OnUpdateCarrierCommand($GameId: String) {
+    onUpdateCarrierCommand(GameId: $GameId) {
+      GameId
+    }
+  }
+`;
+export const onDeleteCarrierCommand = /* GraphQL */ `
+  subscription OnDeleteCarrierCommand($GameId: String) {
+    onDeleteCarrierCommand(GameId: $GameId) {
+      GameId
+    }
+  }
+`;
+export const onCreateCcGames = /* GraphQL */ `
+  subscription OnCreateCcGames($Id: Int) {
+    onCreateCCGames(Id: $Id) {
+      Id
+    }
+  }
+`;
+export const onUpdateCcGames = /* GraphQL */ `
+  subscription OnUpdateCcGames($Id: Int) {
+    onUpdateCCGames(Id: $Id) {
+      Id
+    }
+  }
+`;
+export const onDeleteCcGames = /* GraphQL */ `
+  subscription OnDeleteCcGames($Id: Int) {
+    onDeleteCCGames(Id: $Id) {
+      Id
+    }
+  }
+`;

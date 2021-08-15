@@ -7,8 +7,7 @@ import appSyncConfig from "./aws-exports";
 import { Amplify, Auth, Hub, Logger } from 'aws-amplify';
 import { useEffect, useState } from 'react'
 import { API, graphqlOperation } from 'aws-amplify'
-import { createGame } from './graphql/mutations'
-import { listGames } from './graphql/queries'
+import { listCcGames } from './graphql/queries'
 import { DateUtils } from '@aws-amplify/core';
 import { AWSAppSyncProvider } from '@aws-amplify/pubsub';
 Amplify.configure(aws_exports);
@@ -62,6 +61,18 @@ class App extends Component {
     }
 
     Hub.listen('auth', listener);
+
+    // await API.graphql(graphqlOperation(listCcGames))
+    //   .then((result) => {
+    //     alert(result);
+    //   })
+
+    API.graphql(graphqlOperation(listCcGames))
+    .then((result) => {
+      console.log(result);
+    })
+
+    //API.graphql(graphqlOperation(createCCGames))
 
     Auth.currentSession()
     .then((result) => {
@@ -344,6 +355,7 @@ class Games extends Component {
             Report
             </div>
           </div>
+          <Game title="Test Title" players="15" code="123" password="321" age="20m" />
           <div className="game">
           <div className="game-title">
           This is a longer game title
@@ -391,6 +403,7 @@ const Submit = () => {
   //   }
   // }
 
+
   async function addGame() {
     try {
       if (!formState.title || !formState.invite || !formState.password) 
@@ -407,10 +420,10 @@ const Submit = () => {
       const game = { ...formState };
       //setGames([...formState]);
       setFormState(initialState);
-      await API.graphql(graphqlOperation(createGame, {input: game}))
-      .catch((error) => {
-        console.log(error);
-      })
+      // await API.graphql(graphqlOperation(createGame, {input: game}))
+      // .catch((error) => {
+      //   console.log(error);
+      // })
     } catch (err) {
       console.log("error creating game: " + err);
     }
@@ -439,6 +452,36 @@ const Submit = () => {
       <button onClick={addGame}>Create Game</button>
     </div>
   )
+}
+
+class Game extends Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return(
+      <div className="game">
+            <div className="game-title">
+            {this.props.title}
+            </div>
+            <div className="players">
+            {this.props.players}
+            </div>
+            <div className="code">
+            {this.props.code}
+            </div>
+            <div className="password">
+            {this.props.password}
+            </div>
+            <div className="age">
+            {this.props.age}
+            </div>
+            <div className="report">
+            Report
+            </div>
+          </div>
+    )
+  }
 }
 
 class Footer extends Component {
