@@ -1,0 +1,5 @@
+type UserModel @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  user_name: String
+}
+ 
