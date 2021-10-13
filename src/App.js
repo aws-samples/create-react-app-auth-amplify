@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react'
-import Amplify from 'aws-amplify';
+import Amplify, { API, graphqlOperation }  from 'aws-amplify';
 import aws_exports from './aws-exports';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
@@ -50,6 +50,9 @@ import EuroIcon from '@mui/icons-material/EuroSharp';
 import StarIcon from '@mui/icons-material/StarBorderOutlined';
 import Typography from '@mui/material/Typography';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import axios from 'axios';
+import { listPosts } from './graphql/queries';
+import moment from 'moment';
 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
@@ -88,7 +91,7 @@ const mainFeaturedPost = {
   linkText: 'Continue reading…',
 };
 
-const jogosDoDia = [
+const jogosDoDiaMock = [
   {
     date: 'Hoje 10:00',
     status: 'passed',
@@ -215,6 +218,134 @@ const sidebar = {
 
 const theme = createTheme();
 class App extends Component {
+  constructor(props){
+    super(props)
+  }
+  state = {
+    posts:null,
+    jogosDoDiaBrasA: [],
+    jogosDoDiaBrasB: []
+  }
+  componentDidMount(){
+    this.getPost();
+    this.getBrasileiraoSerieA()
+    this.getBrasileiraoSerieB()
+    this.getJogosEmAlta();
+  }
+
+  async getPost(){
+    const resp = await await API.graphql(graphqlOperation(listPosts));
+    this.setState({posts:resp.data.listPosts.items})
+    
+  }
+
+  //JOGOS EM ALTA
+
+
+  async getJogosEmAlta(){
+
+    var jogosEmAlta = this.state.jogosEmAlta;
+
+    //traz o id da liga e da temporada
+    var config = {
+      method: 'get',
+      url: ' https://api.soccersapi.com/v2.2/livescores/?user=webmaster&token=f186197e0b43782c53d5db9384f3e485&t=today',
+      headers: { }
+    };
+   
+    axios(config)
+    .then(function (response) {
+      console.log(response.data)
+     // jogosEmAlta.push(response.data)
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+   // this.setState({jogosEmAlta:jogosEmAlta})
+  }
+
+  //BRASILEIRAO SERIE A
+
+  async getBrasileiraoSerieA(){
+
+    var jogosDoDiaBrasA = this.state.jogosDoDiaBrasA;
+
+    //traz o id da liga e da temporada
+    var config = {
+      method: 'get',
+      url: 'https://api.soccersapi.com/v2.2/leagues/?user=webmaster&token=f186197e0b43782c53d5db9384f3e485&t=info&id=1358',
+      headers: { }
+    };
+   
+    axios(config)
+    .then(function (response) {
+        const leagueId = response.data.data.id
+        //busca os josgos do dia
+        const url = `https://api.soccersapi.com/v2.2/fixtures/?user=webmaster&token=f186197e0b43782c53d5db9384f3e485&t=schedule&d=${moment().format('YYYY-MM-DD')}&league_id=${leagueId}`;
+     
+        //traz os jogos
+          var configGames = {
+            method: 'get',
+            url: url,
+            headers: { }
+          };
+
+        axios(configGames)
+        .then(function (resp) {  
+         jogosDoDiaBrasA.push(resp.data.data) ;   
+       
+        })
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+    this.setState({jogosDoDiaBrasA:jogosDoDiaBrasA})
+  }
+
+
+  //BRASILEIRAO SERIEB
+
+  async getBrasileiraoSerieB(){
+
+    var jogosDoDiaBrasB = this.state.jogosDoDiaBrasB;
+
+    //traz o id da liga e da temporada
+    var config = {
+      method: 'get',
+      url: 'https://api.soccersapi.com/v2.2/leagues/?user=webmaster&token=f186197e0b43782c53d5db9384f3e485&t=info&id=1359',
+      headers: { }
+    };
+   
+    axios(config)
+    .then(function (response) {
+        const leagueId = response.data.data.id
+        //busca os josgos do dia
+        const url = `https://api.soccersapi.com/v2.2/fixtures/?user=webmaster&token=f186197e0b43782c53d5db9384f3e485&t=schedule&d=${moment().format('YYYY-MM-DD')}&league_id=${leagueId}`;
+     
+        //traz os jogos
+          var configGames = {
+            method: 'get',
+            url: url,
+            headers: { }
+          };
+
+        axios(configGames)
+        .then(function (resp) {  
+         jogosDoDiaBrasB.push(resp.data.data) ;   
+       console.log("oooo",jogosDoDiaBrasB);
+        })
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+    this.setState({jogosDoDiaBrasB:jogosDoDiaBrasB})
+  }
+
+
+  goToPageGame(id){
+    //TODO: redirecionar para pagina do jogo
+    console.log(id);
+  }
 
   filterSponsor(sponsor){
     switch (sponsor) {
@@ -254,7 +385,12 @@ class App extends Component {
   }
 
   render() {
-    return (
+
+    const jogosDoDiaBrasA = Object.assign([],this.state.jogosDoDiaBrasA)
+    const jogosDoDiaBrasB = Object.assign([],this.state.jogosDoDiaBrasB)
+    const jogosEmAlta = Object.assign([],this.state.jogosEmAlta)
+ 
+    return (  
       <div className="App">
         {/* <AmplifySignOut /> */}
       <Header/>
@@ -279,6 +415,16 @@ class App extends Component {
                 onSlideChange={() => console.log('slide change')}
                 onSwiper={(swiper) => console.log(swiper)}
               > 
+              {this.state.posts?this.state.posts.map((post)=>(
+                <SwiperSlide>
+                {post.patrocinio?
+                 <div className="patrocinio">OFERECIDO POR:<img style={{marginLeft:5}} src={this.filterSponsor(post.patrocinio)}/></div>
+                 :''}
+                <h1 className="title-banner">{post.title}</h1>
+                <div className="blacklayer"></div>
+                <div className="bkg-banner-home" style={{borderRadius:5, backgroundImage: `url(${post.imageUrl})`}}/>
+              </SwiperSlide>
+              )):''}
                 {featuredPosts.map((post) => (
                <SwiperSlide>
                  {post.patrocinio?
@@ -318,36 +464,7 @@ class App extends Component {
                 onSwiper={(swiper) => console.log(swiper)}
                 > 
                 {jogosEmAlta.map((post) => (
-              
-              <SwiperSlide className="cardJogosEmAlta">
-              
-                 <Typography sx={{textAlign:'left', fontSize: 14, fontWeight:'bold',paddingTop:2}} color="black" gutterBottom>
-                 {post.date}
-                </Typography>
-                
-                 <Stack direction="row" marginTop={3}>
-                   <Stack direction="row" spacing={2}>
-                    <div className="brasao-time" style={{backgroundImage: `url(${post.logoTimeA})`}}/>
-                    <div className="brasao-time" style={{backgroundImage: `url(${post.logoTimeB})`}}/>
-                   </Stack>
-                   <p className="nomeJogo">{post.title}</p>
-                 </Stack>
-               
-             
-
-                 
-                  <Grid marginTop={3} paddingTop={2} borderTop={1} borderColor="#e7e7e7" container alignItems="center" justifyContent="space-between">
-                    <div style={{display:"flex"}}>
-                        <p className="lbl-small" marginRight={10}>Assista na TV</p>
-                        <div>{post.canal==="Globo"}<img src={globoIcon} alt="Globo"/></div>
-                    </div>
-                    <div style={{display:"flex",alignItems:"center"}}>
-                      <Button size="small"> <NavigateNextIcon /> </Button>
-                    </div>
-                  </Grid>
-               
-
-               </SwiperSlide>
+                    console.log(post)
             ))}
               </Swiper>     
             </Grid>           
@@ -374,34 +491,39 @@ class App extends Component {
                         <Chip variant="contained" label="Oitavas de final" />
                      </Stack>
                    </li>
-                 {jogosDoDia.map((post) => (
-                    <li>
-                      
-                      <Stack direction="row" spacing={1} justifyContent="space-between" alignItems="center">
-                       <Stack direction="column">
-                          <p className="txt-small-strong">{post.date}</p>
-                          {post.status ==="passed"?<p className="passed">Já passou</p>:''}
-                          {post.status ==="live"?<p className="live">° Ao Vivo</p>:''}
-                      </Stack>
-                      
-                      
-                      <Stack direction="row" spacing={1} alignItems="center">
-                        <div className="brasao-time" style={{backgroundImage: `url(${logoTimeA})`}}/>
-                        <p className="teamName">{post.timeA}</p>&nbsp;&nbsp;<p><strong>{post.golsTimeA}</strong></p>
-                        <span className="game-divider">x</span>
-                        <p><strong>{post.golsTimeB}</strong></p>&nbsp;&nbsp; <p className="teamName">{post.timeB}</p>
-                        <div className="brasao-time" style={{backgroundImage: `url(${logoTimeB})`}}/>
-                     </Stack>
 
-                      <Stack direction="row" spacing={3} alignItems="center">
-                        {post.canais?post.canais.map((item) => (
-                          <img src={this.filterChannel(item)} />
-                        )):''}
-                      </Stack>
-                      <NavigateNextIcon />
-                      </Stack>                                                    
-                    </li>
-                   ))}
+
+                   
+                 {jogosDoDiaBrasA.length>0?jogosDoDiaBrasA[0].map((post,index) => (
+          
+                    <li>
+                        
+                    <Stack direction="row" spacing={1} justifyContent="space-between" alignItems="center">
+                    <Stack direction="column">
+                        <p className="txt-small-strong">{moment(post.time.datetime).format('DD/MM HH:mm')}</p>
+                        {post.status ===3?<p className="passed">Já passou</p>:''}
+                        {post.status ===1?<p className="live">° Ao Vivo</p>:''}
+                        {post.status ===0?<p className="live">em breve</p>:''}
+                    </Stack>
+                    
+                    
+                    <Stack direction="row" spacing={1} alignItems="center">
+                      <div className="brasao-time" style={{backgroundImage: `url(${post.teams.home.img})`}}/>
+                      <p className="teamName">{post.teams.home.name}</p>&nbsp;&nbsp;<p><strong>{post.scores.home_score}</strong></p>
+                      <span className="game-divider">x</span>
+                      <p><strong>{post.scores.away_score}</strong></p>&nbsp;&nbsp; <p className="teamName">{post.teams.away.name}</p>
+                      <div className="brasao-time" style={{backgroundImage: `url(${post.teams.away.img})`}}/>
+                  </Stack>
+
+                    <Stack direction="row" spacing={3} alignItems="center">
+                      {post.canais?post.canais.map((item) => (
+                        <img src={this.filterChannel(item)} />
+                      )):''}
+                    </Stack>
+                    <NavigateNextIcon onClick={()=>this.goToPageGame(post.id)} />
+                    </Stack>                                                    
+                  </li>
+                   )):''}
                   </ul>
                 </div>
 
@@ -414,34 +536,37 @@ class App extends Component {
                         <Chip variant="contained" label="Oitavas de final" />
                      </Stack>
                    </li>
-                 {jogosDoDia.map((post) => (
-                    <li>
                       
+                   {jogosDoDiaBrasB.length>0?jogosDoDiaBrasB[0].map((post,index) => (
+          
+                      <li>
+                          
                       <Stack direction="row" spacing={1} justifyContent="space-between" alignItems="center">
-                       <Stack direction="column">
-                          <p className="txt-small-strong">{post.date}</p>
-                          {post.status ==="passed"?<p className="passed">Já passou</p>:''}
-                          {post.status ==="live"?<p className="live">° Ao Vivo</p>:''}
+                      <Stack direction="column">
+                          <p className="txt-small-strong">{moment(post.time.datetime).format('DD/MM HH:mm')}</p>
+                          {post.status ===3?<p className="passed">Já passou</p>:''}
+                          {post.status ===1?<p className="live">° Ao Vivo</p>:''}
+                          {post.status ===0?<p className="live">em breve</p>:''}
                       </Stack>
                       
                       
                       <Stack direction="row" spacing={1} alignItems="center">
-                        <div className="brasao-time" style={{backgroundImage: `url(${logoTimeA})`}}/>
-                        <p className="teamName">{post.timeA}</p>&nbsp;&nbsp;<p><strong>{post.golsTimeA}</strong></p>
+                        <div className="brasao-time" style={{backgroundImage: `url(${post.teams.home.img})`}}/>
+                        <p className="teamName">{post.teams.home.name}</p>&nbsp;&nbsp;<p><strong>{post.scores.home_score}</strong></p>
                         <span className="game-divider">x</span>
-                        <p><strong>{post.golsTimeB}</strong></p>&nbsp;&nbsp; <p className="teamName">{post.timeB}</p>
-                        <div className="brasao-time" style={{backgroundImage: `url(${logoTimeB})`}}/>
-                     </Stack>
+                        <p><strong>{post.scores.away_score}</strong></p>&nbsp;&nbsp; <p className="teamName">{post.teams.away.name}</p>
+                        <div className="brasao-time" style={{backgroundImage: `url(${post.teams.away.img})`}}/>
+                    </Stack>
 
                       <Stack direction="row" spacing={3} alignItems="center">
                         {post.canais?post.canais.map((item) => (
                           <img src={this.filterChannel(item)} />
                         )):''}
                       </Stack>
-                      <NavigateNextIcon />
+                      <NavigateNextIcon onClick={()=>this.goToPageGame(post.id)} />
                       </Stack>                                                    
                     </li>
-                   ))}
+                    )):''}
                   </ul>
                 </div>
             </Grid>       

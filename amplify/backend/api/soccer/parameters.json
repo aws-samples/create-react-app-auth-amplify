@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "soccer",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authcognitocf0c6096",
+      "Outputs.UserPoolId"
+    ]
+  }
+}
