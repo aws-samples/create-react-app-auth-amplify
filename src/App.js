@@ -244,7 +244,7 @@ class App extends Component {
 
   async getJogosEmAlta(){
 
-    var jogosEmAlta = this.state.jogosEmAlta;
+    var jogosEmAlta = this.state.jogosEmAlta || [];
 
     //traz o id da liga e da temporada
     var config = {
@@ -255,13 +255,13 @@ class App extends Component {
    
     axios(config)
     .then(function (response) {
-      console.log(response.data)
-     // jogosEmAlta.push(response.data)
+      console.log('iiiii',response.data.data);
+       jogosEmAlta.push(response.data.data)
     })
     .catch(function (error) {
       console.log(error);
     });
-   // this.setState({jogosEmAlta:jogosEmAlta})
+   this.setState({jogosEmAlta:jogosEmAlta})
   }
 
   //BRASILEIRAO SERIE A
@@ -389,7 +389,7 @@ class App extends Component {
     const jogosDoDiaBrasA = Object.assign([],this.state.jogosDoDiaBrasA)
     const jogosDoDiaBrasB = Object.assign([],this.state.jogosDoDiaBrasB)
     const jogosEmAlta = Object.assign([],this.state.jogosEmAlta)
- 
+ console.log('esto',jogosEmAlta);
     return (  
       <div className="App">
         {/* <AmplifySignOut /> */}
@@ -456,6 +456,7 @@ class App extends Component {
            
             <Grid item xs={12} textAlign="left" marginTop={3}>
                <Grid marginBottom={2}><h3 marginBottom>Jogos em Alta</h3></Grid>
+             
                <Swiper                
                 spaceBetween={10}
                 slidesPerView={4}
@@ -463,10 +464,41 @@ class App extends Component {
                 onSlideChange={() => console.log('slide change')}
                 onSwiper={(swiper) => console.log(swiper)}
                 > 
-                {jogosEmAlta.map((post) => (
-                    console.log(post)
-            ))}
-              </Swiper>     
+              {jogosEmAlta.length>0 ? jogosEmAlta[0].map((post) => (
+              
+              <SwiperSlide className="cardJogosEmAlta">
+              
+                 <Typography sx={{textAlign:'left', fontSize: 14, fontWeight:'bold',paddingTop:2}} color="black" gutterBottom>
+                 {moment(post.time.datetime).format('DD/MM HH:mm')}
+                </Typography>
+                
+                 <Stack direction="row" marginTop={3} alignItems="center">
+                   <Stack direction="row" spacing={2}>
+                    <div className="brasao-time" style={{backgroundImage: `url(${post.teams.home.img})`}}/>
+                    <div className="brasao-time" style={{backgroundImage: `url(${post.teams.away.img})`}}/>
+                   </Stack>
+                   <p className="nomeJogo">{post.teams.home.name}</p>&nbsp;<strong>x</strong>
+                   <p className="nomeJogo">{post.teams.away.name}</p>
+                 </Stack>
+               
+             
+
+                 
+                  <Grid marginTop={3} paddingTop={2} borderTop={1} borderColor="#e7e7e7" container alignItems="center" justifyContent="space-between">
+                    <div style={{display:"flex"}}>
+                        <p className="lbl-small" marginRight={10}>Assista na TV</p>
+                        <div>{post.canal==="Globo"}<img src={globoIcon} alt="Globo"/></div>
+                    </div>
+                    <div style={{display:"flex",alignItems:"center"}}>
+                      <Button size="small"> <NavigateNextIcon /> </Button>
+                    </div>
+                  </Grid>
+               
+
+               </SwiperSlide>
+             )):<SwiperSlide></SwiperSlide>}  
+              </Swiper>
+                
             </Grid>           
 
             <Grid item xs={12} textAlign="left" marginTop={2}>
