@@ -229,7 +229,7 @@ class App extends Component {
   componentDidMount(){
     this.getPost();
     this.getBrasileiraoSerieA()
-    this.getBrasileiraoSerieB()
+   // this.getBrasileiraoSerieB()
     this.getJogosEmAlta();
   }
 
@@ -569,7 +569,7 @@ class App extends Component {
                      </Stack>
                    </li>
                       
-                   {jogosDoDiaBrasB.length>0?jogosDoDiaBrasB[0].map((post,index) => (
+                   {jogosDoDiaBrasB&&jogosDoDiaBrasB.length>0?jogosDoDiaBrasB[0].map((post,index) => (
           
                       <li>
                           
@@ -618,4 +618,4 @@ class App extends Component {
   }
 }
 
-export default withAuthenticator(App);
+export default App;
