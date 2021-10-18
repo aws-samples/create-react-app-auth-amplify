@@ -403,7 +403,7 @@ class App extends Component {
             <Grid marginTop={3} marginBottom={5} container spacing={2}>
            
               <Grid style={{display:'flex',flexDirection:'column',justifyContent:'center',textAlign:'start'}} alignItems="start" item xs={4}>
-              <h1> Nós chegamos. Pra você nunca mais perder um jogo.</h1>
+              <h1> Nós chegamos. pra você nunca mais perder um jogo.</h1>
               <Button className="btn-cadastrar"><p>Cadastrar minha conta</p></Button>
               </Grid>
 
