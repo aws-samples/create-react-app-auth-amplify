@@ -2,7 +2,7 @@
   "providers": [
     "awscloudformation"
   ],
-  "projectName": "createreactappautham",
+  "projectName": "kasalive",
   "version": "3.1",
   "frontend": "javascript",
   "javascript": {
