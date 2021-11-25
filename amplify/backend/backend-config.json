@@ -34,5 +34,13 @@
         ]
       }
     }
+  },
+  "storage": {
+    "createreactappautham674a3b9b": {
+      "service": "S3",
+      "serviceType": "imported",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": []
+    }
   }
 }

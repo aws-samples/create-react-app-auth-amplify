@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "aws-amplify": "^4.2.0",
     "@aws-amplify/ui-react": "^1.2.6",
+    "aws-amplify": "^4.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "^4.0.3"
+    "react-scripts": "^4.0.3",
+    "styled-components": "^5.3.3",
+    "video-react": "^0.14.1"
   },
   "resolutions": {
     "set-value": "^2.0.1",
@@ -27,5 +29,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "react-player": "^2.9.0"
+  }
 }
