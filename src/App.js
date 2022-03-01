@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from './logo.png';
 import './App.css';
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react'
 import Amplify from 'aws-amplify';
@@ -15,8 +15,9 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <p>
             Edit <code>src/App.js</code> and save to reload.
-
-            This is an example of a React web app designed to help integrate Flatfile into our processes.
+          </p>
+          <p>
+          This is an example of a React web app designed to help integrate Flatfile into our processes.
           </p>
           <a
             className="App-link"
