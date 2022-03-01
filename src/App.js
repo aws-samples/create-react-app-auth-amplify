@@ -15,6 +15,8 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <p>
             Edit <code>src/App.js</code> and save to reload.
+
+            This is an example of a React web app designed to help integrate Flatfile into our processes.
           </p>
           <a
             className="App-link"
