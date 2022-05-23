@@ -1,5 +1,5 @@
 projects:
-  createreactappautham-devi:
+  PGA Golf App Sync:
     schemaPath: src/graphql/schema.json
     includes:
       - src/graphql/**/*.js
@@ -11,5 +11,8 @@ projects:
         generatedFileName: ''
         docsFilePath: src/graphql
         region: us-west-2
-        apiId: vtjl43p7xverfp2waasdtxd6ru
+        apiId: zaoqciz66jddlfqaj4zwlkt4cq
         maxDepth: 2
+extensions:
+  amplify:
+    version: 3
