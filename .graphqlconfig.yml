@@ -1,0 +1,15 @@
+projects:
+  createreactappautham-devi:
+    schemaPath: src/graphql/schema.json
+    includes:
+      - src/graphql/**/*.js
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: javascript
+        generatedFileName: ''
+        docsFilePath: src/graphql
+        region: us-west-2
+        apiId: vtjl43p7xverfp2waasdtxd6ru
+        maxDepth: 2
