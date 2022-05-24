@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { Features2x3 } from "./ui-components";
 import './App.css';
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react'
 import Amplify from 'aws-amplify';
@@ -11,23 +11,14 @@ class App extends Component {
     return (
       <div className="App">
         <AmplifySignOut />
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Features2x3 />
       </div>
     );
   }
 }
+
+
+
+
 
 export default withAuthenticator(App);
