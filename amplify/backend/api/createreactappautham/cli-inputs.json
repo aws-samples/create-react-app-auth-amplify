@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "createreactappautham",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/Users/stuart/Documents/GitHub/create-react-app-auth-amplify/amplify/backend/api/createreactappautham/schema.graphql",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 7
+    }
+  }
+}

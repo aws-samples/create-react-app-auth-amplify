@@ -13,6 +13,17 @@ projects:
         region: us-west-2
         apiId: zaoqciz66jddlfqaj4zwlkt4cq
         maxDepth: 2
+  createreactappautham:
+    schemaPath: src/graphql/schema.json
+    includes:
+      - src/graphql/**/*.js
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: javascript
+        generatedFileName: ''
+        docsFilePath: src/graphql
 extensions:
   amplify:
     version: 3

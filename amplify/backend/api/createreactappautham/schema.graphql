@@ -1,0 +1,135 @@
+schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}
+
+type Mutation {
+  createTournament(input: CreateTournamentInput!): Tournament
+  deleteTournament(input: DeleteTournamentInput!): Tournament
+  updateTournament(input: UpdateTournamentInput!): Tournament
+}
+
+type Query {
+  getTournament(name: String!): Tournament
+  listTournaments(filter: TableTournamentFilterInput, limit: Int, nextToken: String): TournamentConnection
+  queryTournamentsByOrderIndex(after: String, first: Int, order: Int!): TournamentConnection
+}
+
+type Subscription {
+  onCreateTournament(active: Int, champion: String, dates: String, id: ID, name: String): Tournament @aws_subscribe(mutations : ["createTournament"])
+  onDeleteTournament(active: Int, champion: String, dates: String, id: ID, name: String): Tournament @aws_subscribe(mutations : ["deleteTournament"])
+  onUpdateTournament(active: Int, champion: String, dates: String, id: ID, name: String): Tournament @aws_subscribe(mutations : ["updateTournament"])
+}
+
+type Tournament {
+  active: Int!
+  champion: String!
+  dates: String!
+  id: ID!
+  location: String!
+  major: Int!
+  name: String!
+  order: Int!
+  url: String!
+}
+
+type TournamentConnection {
+  items: [Tournament]
+  nextToken: String
+}
+
+input CreateTournamentInput {
+  active: Int!
+  champion: String!
+  dates: String!
+  id: ID!
+  location: String!
+  major: Int!
+  name: String!
+  order: Int!
+  url: String!
+}
+
+input DeleteTournamentInput {
+  name: String!
+}
+
+input TableBooleanFilterInput {
+  eq: Boolean
+  ne: Boolean
+}
+
+input TableFloatFilterInput {
+  between: [Float]
+  contains: Float
+  eq: Float
+  ge: Float
+  gt: Float
+  le: Float
+  lt: Float
+  ne: Float
+  notContains: Float
+}
+
+input TableIDFilterInput {
+  beginsWith: ID
+  between: [ID]
+  contains: ID
+  eq: ID
+  ge: ID
+  gt: ID
+  le: ID
+  lt: ID
+  ne: ID
+  notContains: ID
+}
+
+input TableIntFilterInput {
+  between: [Int]
+  contains: Int
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+  ne: Int
+  notContains: Int
+}
+
+input TableStringFilterInput {
+  beginsWith: String
+  between: [String]
+  contains: String
+  eq: String
+  ge: String
+  gt: String
+  le: String
+  lt: String
+  ne: String
+  notContains: String
+}
+
+input TableTournamentFilterInput {
+  active: TableIntFilterInput
+  champion: TableStringFilterInput
+  dates: TableStringFilterInput
+  id: TableIDFilterInput
+  location: TableStringFilterInput
+  major: TableIntFilterInput
+  name: TableStringFilterInput
+  order: TableIntFilterInput
+  url: TableStringFilterInput
+}
+
+input UpdateTournamentInput {
+  active: Int
+  champion: String
+  dates: String
+  id: ID
+  location: String
+  major: Int
+  name: String!
+  order: Int
+  url: String
+}

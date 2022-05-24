@@ -3,53 +3,26 @@
 
 export const onCreateTournament = /* GraphQL */ `
   subscription OnCreateTournament(
-    $id: ID
-    $name: String
     $active: Int
     $champion: String
     $dates: String
+    $id: ID
+    $name: String
   ) {
     onCreateTournament(
-      id: $id
-      name: $name
       active: $active
       champion: $champion
       dates: $dates
-    ) {
-      id
-      name
-      active
-      champion
-      dates
-      location
-      major
-      order
-      url
-    }
-  }
-`;
-export const onUpdateTournament = /* GraphQL */ `
-  subscription OnUpdateTournament(
-    $id: ID
-    $name: String
-    $active: Int
-    $champion: String
-    $dates: String
-  ) {
-    onUpdateTournament(
       id: $id
       name: $name
-      active: $active
-      champion: $champion
-      dates: $dates
     ) {
-      id
-      name
       active
       champion
       dates
+      id
       location
       major
+      name
       order
       url
     }
@@ -57,26 +30,53 @@ export const onUpdateTournament = /* GraphQL */ `
 `;
 export const onDeleteTournament = /* GraphQL */ `
   subscription OnDeleteTournament(
-    $id: ID
-    $name: String
     $active: Int
     $champion: String
     $dates: String
+    $id: ID
+    $name: String
   ) {
     onDeleteTournament(
-      id: $id
-      name: $name
       active: $active
       champion: $champion
       dates: $dates
+      id: $id
+      name: $name
     ) {
-      id
-      name
       active
       champion
       dates
+      id
       location
       major
+      name
+      order
+      url
+    }
+  }
+`;
+export const onUpdateTournament = /* GraphQL */ `
+  subscription OnUpdateTournament(
+    $active: Int
+    $champion: String
+    $dates: String
+    $id: ID
+    $name: String
+  ) {
+    onUpdateTournament(
+      active: $active
+      champion: $champion
+      dates: $dates
+      id: $id
+      name: $name
+    ) {
+      active
+      champion
+      dates
+      id
+      location
+      major
+      name
       order
       url
     }

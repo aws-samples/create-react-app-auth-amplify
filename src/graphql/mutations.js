@@ -4,28 +4,13 @@
 export const createTournament = /* GraphQL */ `
   mutation CreateTournament($input: CreateTournamentInput!) {
     createTournament(input: $input) {
-      id
-      name
       active
       champion
       dates
-      location
-      major
-      order
-      url
-    }
-  }
-`;
-export const updateTournament = /* GraphQL */ `
-  mutation UpdateTournament($input: UpdateTournamentInput!) {
-    updateTournament(input: $input) {
       id
-      name
-      active
-      champion
-      dates
       location
       major
+      name
       order
       url
     }
@@ -34,13 +19,28 @@ export const updateTournament = /* GraphQL */ `
 export const deleteTournament = /* GraphQL */ `
   mutation DeleteTournament($input: DeleteTournamentInput!) {
     deleteTournament(input: $input) {
-      id
-      name
       active
       champion
       dates
+      id
       location
       major
+      name
+      order
+      url
+    }
+  }
+`;
+export const updateTournament = /* GraphQL */ `
+  mutation UpdateTournament($input: UpdateTournamentInput!) {
+    updateTournament(input: $input) {
+      active
+      champion
+      dates
+      id
+      location
+      major
+      name
       order
       url
     }

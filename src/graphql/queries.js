@@ -4,13 +4,13 @@
 export const getTournament = /* GraphQL */ `
   query GetTournament($name: String!) {
     getTournament(name: $name) {
-      id
-      name
       active
       champion
       dates
+      id
       location
       major
+      name
       order
       url
     }
@@ -24,13 +24,13 @@ export const listTournaments = /* GraphQL */ `
   ) {
     listTournaments(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
-        id
-        name
         active
         champion
         dates
+        id
         location
         major
+        name
         order
         url
       }
@@ -40,19 +40,19 @@ export const listTournaments = /* GraphQL */ `
 `;
 export const queryTournamentsByOrderIndex = /* GraphQL */ `
   query QueryTournamentsByOrderIndex(
-    $order: Int!
-    $first: Int
     $after: String
+    $first: Int
+    $order: Int!
   ) {
-    queryTournamentsByOrderIndex(order: $order, first: $first, after: $after) {
+    queryTournamentsByOrderIndex(after: $after, first: $first, order: $order) {
       items {
-        id
-        name
         active
         champion
         dates
+        id
         location
         major
+        name
         order
         url
       }
