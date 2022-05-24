@@ -46,3 +46,27 @@ export const updateTournament = /* GraphQL */ `
     }
   }
 `;
+export const createTournamentTable = /* GraphQL */ `
+  mutation CreateTournamentTable($input: CreateTournamentTableInput!) {
+    createTournamentTable(input: $input) {
+      name
+      order
+    }
+  }
+`;
+export const updateTournamentTable = /* GraphQL */ `
+  mutation UpdateTournamentTable($input: UpdateTournamentTableInput!) {
+    updateTournamentTable(input: $input) {
+      name
+      order
+    }
+  }
+`;
+export const deleteTournamentTable = /* GraphQL */ `
+  mutation DeleteTournamentTable($input: DeleteTournamentTableInput!) {
+    deleteTournamentTable(input: $input) {
+      name
+      order
+    }
+  }
+`;

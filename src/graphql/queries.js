@@ -60,3 +60,49 @@ export const queryTournamentsByOrderIndex = /* GraphQL */ `
     }
   }
 `;
+export const getTournamentTable = /* GraphQL */ `
+  query GetTournamentTable($name: String!) {
+    getTournamentTable(name: $name) {
+      name
+      order
+    }
+  }
+`;
+export const listTournamentTables = /* GraphQL */ `
+  query ListTournamentTables(
+    $filter: TableTournamentTableFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listTournamentTables(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        name
+        order
+      }
+      nextToken
+    }
+  }
+`;
+export const queryTournamentTablesByOrderIndex = /* GraphQL */ `
+  query QueryTournamentTablesByOrderIndex(
+    $order: Int!
+    $first: Int
+    $after: String
+  ) {
+    queryTournamentTablesByOrderIndex(
+      order: $order
+      first: $first
+      after: $after
+    ) {
+      items {
+        name
+        order
+      }
+      nextToken
+    }
+  }
+`;

@@ -7,6 +7,11 @@
     "defaultAuthType": {
       "mode": "API_KEY",
       "expirationTime": 7
+    },
+    "conflictResolution": {
+      "defaultResolutionStrategy": {
+        "type": "AUTOMERGE"
+      }
     }
   }
 }
