@@ -14,7 +14,7 @@ projects:
         apiId: zaoqciz66jddlfqaj4zwlkt4cq
         maxDepth: 2
   createreactappautham:
-    schemaPath: src/graphql/schema.json
+    schemaPath: amplify/backend/api/createreactappautham/build/schema.graphql
     includes:
       - src/graphql/**/*.js
     excludes:

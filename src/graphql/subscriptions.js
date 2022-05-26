@@ -82,27 +82,3 @@ export const onUpdateTournament = /* GraphQL */ `
     }
   }
 `;
-export const onCreateTournamentTable = /* GraphQL */ `
-  subscription OnCreateTournamentTable($name: String, $order: Int) {
-    onCreateTournamentTable(name: $name, order: $order) {
-      name
-      order
-    }
-  }
-`;
-export const onUpdateTournamentTable = /* GraphQL */ `
-  subscription OnUpdateTournamentTable($name: String, $order: Int) {
-    onUpdateTournamentTable(name: $name, order: $order) {
-      name
-      order
-    }
-  }
-`;
-export const onDeleteTournamentTable = /* GraphQL */ `
-  subscription OnDeleteTournamentTable($name: String, $order: Int) {
-    onDeleteTournamentTable(name: $name, order: $order) {
-      name
-      order
-    }
-  }
-`;
