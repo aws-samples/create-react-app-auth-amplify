@@ -1,32 +1,55 @@
+
+import './App.css';
+
+import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 import React, { Component } from 'react';
-import { Features2x3 } from "./ui-components";
-// import './App.css';
-import { Authenticator } from '@aws-amplify/ui-react'
-import '@aws-amplify/ui-react/styles.css';
 
-import Amplify from 'aws-amplify';
-import aws_exports from './aws-exports';
+// import Layout from './containers/Layout'
 
-Amplify.configure(aws_exports);
+import Tournaments from './components/tournaments';
+import Teams from './components/teams';
+import Team from './components/team';
+import Overall from './components/overall';
+import Standings from './components/standings';
+import Navigation from './components/navigation';
+
+// import Navbar from 'react-bootstrap/Navbar';
+// import Nav from 'react-bootstrap/Nav';
+// import Container from 'react-bootstrap/Container';
 
 class App extends Component {
+
+  state = {
+    tournament: 'Not Set'
+  }
+
   render() {
     return (
-      <div className="App">
-        <Authenticator>
-          {({ signOut, user }) => (
-            <div className="App">
-              <p>
-                Hey {user.username}, welcome to my channel, with auth!
-              </p>
-              <button onClick={signOut}>Sign out</button>
-            </div>
-          )}
-        </Authenticator>
-        <Features2x3 />
-      </div>
-    );
-  }
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Navigation/>} >
+            <Route path='tournaments' element={<Tournaments/>} />
+            <Route path='standings/:tournament' element={<WrapStandings/>} />
+            <Route path='teams' element={<Teams/>} >
+              <Route path=':team' element={<Team/>} />
+            </Route>
+            <Route path='overall' element={<Overall/>} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    )
+  };
+
+}
+
+function WrapStandings() {
+  let params = useParams();
+  return <Standings tournament={params.tournament}/>
+}
+
+function NotFound() {
+  return <h1>Not Found</h1>;
 }
 
 export default App;
