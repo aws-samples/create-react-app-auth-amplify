@@ -8,6 +8,7 @@ class Navigation extends React.Component {
     render () {
       return (
         <Container>
+        <div>
           <Navbar bg="light" expand="lg">
             <Navbar.Brand href="#home">Major Tournament Pick Six</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -21,6 +22,7 @@ class Navigation extends React.Component {
             </Navbar.Collapse>
           </Navbar>
           <Outlet/>
+          </div>
         </Container>
 
       )

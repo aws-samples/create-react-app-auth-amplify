@@ -44,7 +44,8 @@ class Teams extends React.Component {
                     players.push(x.player)
                 });
                 //console.log(teamlist);
-                this.setState({ teams : teams , teamlist : Array.from(teamlist) } );
+                teamlist = Array.from(teamlist).sort();
+                this.setState({ teams : teams , teamlist : teamlist } );
             })
             .catch(console.log)
 

@@ -26,6 +26,7 @@ class App extends Component {
 
   render() {
     return (
+      <div className='App'>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Navigation/>} >
@@ -40,6 +41,7 @@ class App extends Component {
           </Route>
         </Routes>
       </BrowserRouter>
+      </div>
     )
   };
 
