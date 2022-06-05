@@ -1,5 +1,6 @@
 import React from 'react'
 
+import {Table} from 'react-bootstrap';
 
 class Standings extends React.Component {
     constructor(props) {
@@ -16,17 +17,25 @@ class Standings extends React.Component {
         return (
             <div>
             <center><h1>{this.tournament}</h1></center>
-            {
-                this.state.standings.map((team) => (
-                    <div class="card" key={team.team}>
-                        <div class="card-body">
-                        <h5 class="card-title">{team.team}</h5>
-                        <p class="card-text">{team.score}</p>
-                        </div>
-                    </div>
+            <Table striped bordered hover size="sm">
+                <thead>
+                    <tr>
+                        <th>Team</th> 
+                        <th>Score</th> 
+                    </tr>
+                </thead>
+                {
+                    this.state.standings.map((x) => (
+                        <tbody>
+                            <tr>
+                                <td>{x.team}</td>
+                            <   td>{x.score}</td>
+                            </tr>           
+                        </tbody>
+                        ) 
                     )
-                )
-            }
+                }
+            </Table>
             </div>
         ) 
     }
@@ -36,7 +45,11 @@ class Standings extends React.Component {
         fetch(url)
         .then(res => res.json())
         .then((data) => {
-          this.setState({ standings: data.Items })
+            let standings = data.Items;
+            standings.sort(function(a, b){
+                return a.score - b.score;
+            });
+            this.setState({ standings: standings })
         })
         .catch(console.log)
     }

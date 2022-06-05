@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {Accordion, Table} from 'react-bootstrap';
+import {Accordion, Table, Spinner} from 'react-bootstrap';
 
 class Teams extends React.Component {
 
@@ -13,27 +13,24 @@ class Teams extends React.Component {
         if (this.state.teams === undefined) {
             //console.log('render-loading');
             return (
-                <div>Loading...</div>
+                <Spinner animation="border" />
             );
         }
         //console.log('render-starting',this.state.teamlist.size);
         return (
-            <div>
-            {/* <li>Teams</li> */}
-            <Accordion defaultActiveKey={['0']} alwaysOpen>                      
+            <Accordion flush>                      
             {
                 this.state.teamlist.map((team) => (
                     <TeamLayout key={team} team={team} players={this.state.teams.get(team)} />
                 ))
             }
             </Accordion>
-            </div>
         );
     }
 
     componentDidMount() {
         if (this.state.teams === undefined) {
-            console.log('componentDidMount');
+            //console.log('componentDidMount');
             fetch('https://jyrbmltxta.execute-api.us-west-2.amazonaws.com/prod/teams')
             .then(res => res.json())
             .then((data) => {
@@ -73,7 +70,6 @@ function TeamLayout(x) {
     ));
 
     return (
-        <div>
         <Accordion.Item eventKey={x.team}>
         <Accordion.Header>{x.team}</Accordion.Header>
         <Accordion.Body>
@@ -89,7 +85,6 @@ function TeamLayout(x) {
         </Table>
         </Accordion.Body>
         </Accordion.Item>
-        </div>
     );
 }
 

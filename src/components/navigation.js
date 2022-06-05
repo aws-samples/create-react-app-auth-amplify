@@ -15,6 +15,7 @@ class Navigation extends React.Component {
               <Nav className="me-auto">
                 <Nav.Link href="/tournaments">Tournaments</Nav.Link>
                 <Nav.Link href="/teams">Teams</Nav.Link>
+                <Nav.Link href="/players">Players</Nav.Link>
                 <Nav.Link href="/overall">Overall</Nav.Link>
               </Nav>
             </Navbar.Collapse>

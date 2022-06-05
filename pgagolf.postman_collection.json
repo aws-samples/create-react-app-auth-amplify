@@ -1,0 +1,182 @@
+{
+	"info": {
+		"_postman_id": "a126995c-9d6d-498c-a532-561ff1448a48",
+		"name": "pgagolf",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20473645"
+	},
+	"item": [
+		{
+			"name": "standings get overall",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jyrbmltxta.execute-api.us-west-2.amazonaws.com/prod/overall",
+					"protocol": "https",
+					"host": [
+						"jyrbmltxta",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"prod",
+						"overall"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "standings by tournament and team",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jyrbmltxta.execute-api.us-west-2.amazonaws.com/prod/overall",
+					"protocol": "https",
+					"host": [
+						"jyrbmltxta",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"prod",
+						"overall"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "standings by tournament",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jyrbmltxta.execute-api.us-west-2.amazonaws.com/prod/standings?tournament=Masters Tournament",
+					"protocol": "https",
+					"host": [
+						"jyrbmltxta",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"prod",
+						"standings"
+					],
+					"query": [
+						{
+							"key": "tournament",
+							"value": "Masters Tournament"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "players by team",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jyrbmltxta.execute-api.us-west-2.amazonaws.com/prod/players?team=Crook",
+					"protocol": "https",
+					"host": [
+						"jyrbmltxta",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"prod",
+						"players"
+					],
+					"query": [
+						{
+							"key": "team",
+							"value": "Crook"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "tournaments",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jyrbmltxta.execute-api.us-west-2.amazonaws.com/prod/tournaments?active=false",
+					"protocol": "https",
+					"host": [
+						"jyrbmltxta",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"prod",
+						"tournaments"
+					],
+					"query": [
+						{
+							"key": "active",
+							"value": "false"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "teams",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jyrbmltxta.execute-api.us-west-2.amazonaws.com/prod/teams",
+					"protocol": "https",
+					"host": [
+						"jyrbmltxta",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"prod",
+						"teams"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "player",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "leaders",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

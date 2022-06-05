@@ -12,6 +12,7 @@ import Team from './components/team';
 import Overall from './components/overall';
 import Standings from './components/standings';
 import Navigation from './components/navigation';
+import Players from './components/players';
 
 // import Navbar from 'react-bootstrap/Navbar';
 // import Nav from 'react-bootstrap/Nav';
@@ -33,6 +34,7 @@ class App extends Component {
             <Route path='teams' element={<Teams/>} >
               <Route path=':team' element={<Team/>} />
             </Route>
+            <Route path='players' element={<Players/>} />
             <Route path='overall' element={<Overall/>} />
             <Route path="*" element={<NotFound />} />
           </Route>
