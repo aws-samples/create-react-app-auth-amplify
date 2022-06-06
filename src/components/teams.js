@@ -97,6 +97,7 @@ function TeamLayout(x) {
             <thead>
             <tr>
                 <th>Player</th> 
+                <th>Selected By</th> 
             </tr>
             </thead>
             <tbody>
@@ -114,7 +115,7 @@ function PlayerLayout(x) {
     var index = selected.indexOf(x.team);
 
     //console.log(index, x.team, selected);
-    
+
     if (index !== -1) {
         selected.splice(index, 1);
     }
