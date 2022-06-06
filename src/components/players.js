@@ -1,32 +1,47 @@
-import React from 'react'
+import React, {useState} from 'react';
 
-import {Table, Accordion, Spinner} from 'react-bootstrap';
+import {Table, Accordion, Spinner, ButtonGroup, Button} from 'react-bootstrap';
 
 class Players extends React.Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.tournament = props.tournament;
-    //     console.log(this.tournament);
-    // }
+    constructor(props) {
+        super(props);
+        this.state.showall = (props.showall === 'true');
+        // console.log('showall',props.showall,this.showall,(this.showall) ? 'T' : 'F');
+    }
 
     state = {
         playerlist : undefined,
-        results : undefined
+        results : undefined,
+        selectedplayerlist : undefined,
+        selectedplayers : undefined
     }
     
     render() {
-        if (this.state.results === undefined) {
+
+        if ((this.state.playerlist === undefined) | (this.state.selectedplayerlist === undefined)) {
             return (
                 <Spinner animation="border" />
             );
         }
+
+        console.log('rendering', this.showall);
+
+        var playerlist = (this.state.showall) ? this.state.playerlist : this.state.selectedplayerlist;
+        //console.log(playerlist.length);
+
         return (
             <div>
             <center><h1>Players</h1></center>
-            <Accordion flush>                      
+            <SelectionLayout/>
+            <h1> </h1>
+            <Accordion flush>                     
             {
-                this.state.playerlist.map((player) => (
-                    <PlayerLayout key={player} player={player} results={this.state.results.get(player)} />
+                playerlist.map((player) => (
+                    <PlayerLayout key={player} 
+                        player={player} 
+                        results={this.state.results.get(player)}
+                        selected={this.state.selectedplayers.get(player)}
+                    />
                 ))
             }
             </Accordion>
@@ -35,6 +50,7 @@ class Players extends React.Component {
     }
 
     componentDidMount() {
+
         var url = 'https://jyrbmltxta.execute-api.us-west-2.amazonaws.com/prod/leaders'
         fetch(url)
         .then(res => res.json())
@@ -49,25 +65,50 @@ class Players extends React.Component {
                 resultsforplayer.push(x)
             });
             playerlist = Array.from(playerlist).sort();
-
             this.setState({ results : results , playerlist : playerlist } );
-
-            // leaders.sort(function(a, b){
-            //     if  ( a.player > b.player)  
-            //         return 1;
-            //     else if  ( a.player < b.player)  
-            //         return -1;
-            //     return a.tournament - b.tournament;
-            
-            // });
             
         })
-        .catch(console.log)
+        .catch(console.log);
+
+        fetch('https://jyrbmltxta.execute-api.us-west-2.amazonaws.com/prod/teams')
+        .then(res => res.json())
+        .then((data) => {
+            var selectedplayers = new Map();  
+            data.Items.forEach(function(x) { selectedplayers.set(x.player, [] ) });
+            data.Items.forEach(function(x) {
+                var player = x.player;
+                var teams = selectedplayers.get(player);
+                teams.push(x.team)
+            });
+            const selectedplayerlist = Array.from(selectedplayers.keys()).sort();
+            // console.log(selectedplayerlist);
+            this.setState({ selectedplayerlist : selectedplayerlist, selectedplayers : selectedplayers } );
+        })
+        .catch(console.log);
+
     }
 
 }
 
+function SelectionLayout() {
+    const [showall, setShowAll] = useState(true);
+    return (
+        <ButtonGroup>
+            <Button variant="secondary" href="/players/showall=true" active={showall}>All</Button>
+            <Button variant="secondary" href="/players/showall=false">Selected</Button>
+        </ButtonGroup>
+    )
+}
+
 function PlayerLayout(x) {
+
+    var results;
+    if (x.results === undefined) {
+        results = [];
+    }
+    else {
+        results = x.results;
+    }
 
     return (
         <Accordion.Item eventKey={x.player}>
@@ -81,18 +122,18 @@ function PlayerLayout(x) {
                     <th>Position</th>
                 </tr>
             </thead>
+            <tbody>
             {
-                x.results.map((x) => (
-                    <tbody>
+                results.map((x) => (
                         <tr>
                             <td>{x.tournament}</td>
                             <td>{x.total}</td>
                             <td>{x.position}</td>
                         </tr>           
-                    </tbody>
                     ) 
                 )
             }
+            </tbody>
         </Table>
         </Accordion.Body>
         </Accordion.Item>

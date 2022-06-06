@@ -48,9 +48,7 @@ class Teams extends React.Component {
                 this.setState({ teams : teams , teamlist : teamlist } );
             })
             .catch(console.log)
-
         }
-
 
     }
 
@@ -58,23 +56,15 @@ class Teams extends React.Component {
 
 function TeamLayout(x) {
 
-    //console.log('TeamLayout');
-
-    //var teams = x.state.teams;
-
-    //var players = teams.get(x.team);
-
-    //console.log('teamlayout-size',x.team,players,teams.size);
-
     const team = x.players.map((player) => (
         <PlayerLayout key={player} player={player} />
     ));
 
     return (
         <Accordion.Item eventKey={x.team}>
-        <Accordion.Header>{x.team}</Accordion.Header>
+        <Accordion.Header id={team}>{x.team}</Accordion.Header>
         <Accordion.Body>
-            <Table striped bordered hover>
+            <Table striped hover>
             <thead>
             <tr>
                 <th>Player</th> 

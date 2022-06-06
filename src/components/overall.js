@@ -19,24 +19,16 @@ class Overall extends React.Component {
                         <th>Score</th> 
                     </tr>
                 </thead>
+                <tbody>
                 {
                     this.state.overall.map((x) => (
-                        <tbody>
                             <tr>
                                 <td>{x.team}</td>
                                 <td>{x.score}</td>
-                                </tr>           
-                        </tbody>
-                    
-                    // <div class="card" key={team.team}>
-                    //     <div class="card-body">
-                    //     <h5 class="card-title">{team.team}</h5>
-                    //     <p class="card-text">{team.score}</p>
-                    //     </div>
-                    // </div>
-                    )
-                )
-            }
+                            </tr>           
+                    ))
+                }
+                </tbody>
             </Table>
             </div>
         )

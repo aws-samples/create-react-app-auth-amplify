@@ -35,7 +35,8 @@ class App extends Component {
             <Route path='teams' element={<Teams/>} >
               <Route path=':team' element={<Team/>} />
             </Route>
-            <Route path='players' element={<Players/>} />
+            {/* <Route path='players' element={<Players/>} /> */}
+            <Route path='players/showall=:showall' element={<WrapPlayers/>} />
             <Route path='overall' element={<Overall/>} />
             <Route path="*" element={<NotFound />} />
           </Route>
@@ -45,6 +46,11 @@ class App extends Component {
     )
   };
 
+}
+
+function WrapPlayers() {
+  let params = useParams();
+  return <Players showall={params.showall}/>
 }
 
 function WrapStandings() {
