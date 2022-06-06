@@ -6,7 +6,7 @@ class Standings extends React.Component {
     constructor(props) {
         super(props);
         this.tournament = props.tournament;
-        console.log(this.tournament);
+        //console.log(this.tournament);
     }
 
     state = {
@@ -32,7 +32,7 @@ class Standings extends React.Component {
                 this.state.standings.map((x) => ( 
                     <Accordion.Item eventKey={x.team} key={x.team}>
                     <Accordion.Header id={x.team}>
-                        {x.team} ({x.score})
+                        {x.team} ({formatscore(x.score)})
                     </Accordion.Header>
                     <PlayerLayout team={x.team} results={this.state.results} players={this.state.teams.get(x.team)}/>
                     </Accordion.Item>
@@ -90,7 +90,7 @@ class Standings extends React.Component {
 
 function PlayerLayout(props) {
 
-    var team = props.team;
+    //var team = props.team;
     var results = [];
     props.results.forEach(function(x) { 
         if (props.players.includes(x.player)) {
@@ -119,7 +119,7 @@ function PlayerLayout(props) {
         }
         return a.total - b.total
     });
-    console.log(team,results);
+    //console.log(team,results);
 
     return (
         <Accordion.Body>

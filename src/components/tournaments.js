@@ -15,7 +15,7 @@ class Tournaments extends React.Component {
                 <Spinner animation="border" />
             );
         }
-        console.log(this.state.tournaments);
+        //console.log(this.state.tournaments);
         return (
             <div>
             <center>   

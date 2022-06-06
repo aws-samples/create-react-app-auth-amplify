@@ -6,22 +6,28 @@ class Teams extends React.Component {
 
     state = {
         teamlist : undefined,
-        teams: undefined
+        teams: undefined,
+        selectedplayerlist : undefined,
+        selectedplayers : undefined
     };
 
     render() {
-        if (this.state.teams === undefined) {
-            //console.log('render-loading');
+
+        if ((this.state.teams === undefined) | (this.state.selectedplayers === undefined)) {
             return (
                 <Spinner animation="border" />
             );
         }
-        //console.log('render-starting',this.state.teamlist.size);
+
         return (
             <Accordion flush>                      
             {
                 this.state.teamlist.map((team) => (
-                    <TeamLayout key={team} team={team} players={this.state.teams.get(team)} />
+                    <TeamLayout key={team} 
+                        team={team} 
+                        players={this.state.teams.get(team)}
+                        selected={this.state.selectedplayers}
+                    />
                 ))
             }
             </Accordion>
@@ -29,23 +35,42 @@ class Teams extends React.Component {
     }
 
     componentDidMount() {
+
         if (this.state.teams === undefined) {
-            //console.log('componentDidMount');
             fetch('https://jyrbmltxta.execute-api.us-west-2.amazonaws.com/prod/teams')
             .then(res => res.json())
             .then((data) => {
-                var teamlist = new Set();
                 var teams = new Map();  
-                data.Items.forEach(function(x) { teamlist.add(x.team) });
                 data.Items.forEach(function(x) { teams.set(x.team, [] ) });
                 data.Items.forEach(function(x) {
                     var team = x.team;
                     var players = teams.get(team);
                     players.push(x.player)
                 });
-                //console.log(teamlist);
-                teamlist = Array.from(teamlist).sort();
-                this.setState({ teams : teams , teamlist : teamlist } );
+
+                const teamlist = Array.from(teams.keys()).sort();
+
+                //console.log('teamlist',teamlist);
+
+                var selectedplayers = new Map();  
+                data.Items.forEach(function(x) { selectedplayers.set(x.player, [] ) });
+                data.Items.forEach(function(x) {
+                    var player = x.player;
+                    var teams = selectedplayers.get(player);
+                    teams.push(x.team)
+                });
+
+                const selectedplayerlist = Array.from(selectedplayers.keys()).sort();
+                
+                //console.log('selectedplayers',selectedplayers);
+
+                this.setState({ 
+                    teams : teams , 
+                    teamlist : teamlist,
+                    selectedplayerlist : selectedplayerlist, 
+                    selectedplayers : selectedplayers 
+                });
+
             })
             .catch(console.log)
         }
@@ -56,8 +81,12 @@ class Teams extends React.Component {
 
 function TeamLayout(x) {
 
-    const team = x.players.map((player) => (
-        <PlayerLayout key={player} player={player} />
+    const team = x.players.sort().map((player) => (
+        <PlayerLayout key={player} 
+            team={x.team}
+            player={player} 
+            selected={x.selected.get(player)}
+        />
     ));
 
     return (
@@ -80,10 +109,20 @@ function TeamLayout(x) {
 }
 
 function PlayerLayout(x) {
-    //console.log('player',x.player);
+
+    var selected = x.selected;
+    var index = selected.indexOf(x.team);
+
+    //console.log(index, x.team, selected);
+    
+    if (index !== -1) {
+        selected.splice(index, 1);
+    }
+
     return (
         <tr>
             <td>{x.player}</td>
+            <td>{selected.sort().join(', ')}</td>
         </tr>  
     );
 }
