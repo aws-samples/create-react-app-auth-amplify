@@ -3,6 +3,7 @@ import './App.css';
 
 import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 import React, { Component } from 'react';
+//import {isMobile} from 'react-device-detect';
 
 // import Layout from './containers/Layout'
 

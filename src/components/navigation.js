@@ -5,13 +5,17 @@ import { Outlet } from "react-router-dom";
 import {isMobile} from 'react-device-detect';
 
 class Navigation extends React.Component {
+    // constructor(props) {
+    //   super(props);
+    //   this.mobile = props.mobile;
+    // }
 
     render () {
       return (
         <Container>
         <div>
-          <Navbar bg="light" expand="lg" expanded={isMobile}>
-            <Navbar.Brand href="#home">Major Tournament Pick Six</Navbar.Brand>
+          <Navbar bg="light" expand="lg" defaultExpanded={isMobile}>
+            <Navbar.Brand href="/">Major Tournament Pick Six</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
@@ -25,10 +29,10 @@ class Navigation extends React.Component {
           <Outlet/>
           </div>
         </Container>
-
       )
     }
-  };
+
+  };  
 
   export default Navigation
 

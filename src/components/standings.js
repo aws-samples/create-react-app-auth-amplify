@@ -134,9 +134,9 @@ function PlayerLayout(props) {
             <tbody>
             {
                 results.map((x) => (
-                        <tr class={(x.position==='CUT' ) | (x.position==='WD') ? "table-danger" :"table-default" }>
+                        <tr className={(x.position==='CUT' ) | (x.position==='WD') ? "table-danger" :"table-default" } key={x.player}>
                             <td>{x.player}</td>
-                            <td>{x.total}</td>
+                            <td>{formatscore(x.total)}</td>
                             <td>{x.position}</td>
                         </tr>           
                     ) 
@@ -148,5 +148,11 @@ function PlayerLayout(props) {
     );
 }
 
+function formatscore(x) {
+    if (x === 0) {
+        return 'E'
+    }
+    return (x<0) ? x : '+' + x
+}
 
 export default Standings

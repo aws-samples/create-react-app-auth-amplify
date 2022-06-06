@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-import {Table, Accordion, Spinner, ButtonGroup, Button} from 'react-bootstrap';
+import {Table, Card, Accordion, Spinner, ButtonGroup, Button} from 'react-bootstrap';
 
 class Players extends React.Component {
     constructor(props) {
@@ -24,7 +24,7 @@ class Players extends React.Component {
             );
         }
 
-        console.log('rendering', this.showall);
+        //console.log('rendering', this.showall);
 
         var playerlist = (this.state.showall) ? this.state.playerlist : this.state.selectedplayerlist;
         //console.log(playerlist.length);
@@ -50,7 +50,6 @@ class Players extends React.Component {
     }
 
     componentDidMount() {
-
         var url = 'https://jyrbmltxta.execute-api.us-west-2.amazonaws.com/prod/leaders'
         fetch(url)
         .then(res => res.json())
@@ -110,10 +109,22 @@ function PlayerLayout(x) {
         results = x.results;
     }
 
+    var selected;
+    if (x.selected === undefined) {
+        selected = ['Not Selected'];
+    }
+    else {
+        selected = x.selected;
+    }
+
     return (
-        <Accordion.Item eventKey={x.player}>
+        <Accordion.Item eventKey={x.player} >
         <Accordion.Header id={x.player}>{x.player}</Accordion.Header>
         <Accordion.Body>
+        <Card>
+            <Card.Title>Selected By</Card.Title>
+            <Card.Body>{selected.sort().join(', ')}</Card.Body>
+        </Card>
         <Table striped bordered hover size="sm">
             <thead>
                 <tr>
@@ -125,9 +136,9 @@ function PlayerLayout(x) {
             <tbody>
             {
                 results.map((x) => (
-                        <tr>
+                        <tr key={x.tournament}>
                             <td>{x.tournament}</td>
-                            <td>{x.total}</td>
+                            <td>{formatscore(x.total)}</td>
                             <td>{x.position}</td>
                         </tr>           
                     ) 
@@ -138,6 +149,13 @@ function PlayerLayout(x) {
         </Accordion.Body>
         </Accordion.Item>
     );
+}
+
+function formatscore(x) {
+    if (x === 0) {
+        return 'E'
+    }
+    return (x<0) ? x : '+' + x
 }
 
 export default Players

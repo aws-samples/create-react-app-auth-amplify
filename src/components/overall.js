@@ -22,7 +22,7 @@ class Overall extends React.Component {
                 <tbody>
                 {
                     this.state.overall.map((x) => (
-                            <tr>
+                            <tr key={x.team}>
                                 <td>{x.team}</td>
                                 <td>{x.score}</td>
                             </tr>           
