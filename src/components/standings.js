@@ -81,7 +81,7 @@ class Standings extends React.Component {
         .then((data) => {
             let standings = data.Items;
             standings.sort(function(a, b){
-                return a.score - b.score;
+                return a.order - b.order;
             });
             this.setState({ standings: standings })
         })
