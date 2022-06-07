@@ -20,6 +20,8 @@ class Teams extends React.Component {
         }
 
         return (
+            <div>
+            <center><h1>Teams</h1></center>
             <Accordion flush>                      
             {
                 this.state.teamlist.map((team) => (
@@ -31,6 +33,7 @@ class Teams extends React.Component {
                 ))
             }
             </Accordion>
+            </div>
         );
     }
 
@@ -91,7 +94,11 @@ function TeamLayout(x) {
 
     return (
         <Accordion.Item eventKey={x.team}>
-        <Accordion.Header id={team}>{x.team}</Accordion.Header>
+        <Accordion.Header id={team}>
+            <center>
+            {x.team}
+            </center> 
+        </Accordion.Header>
         <Accordion.Body>
             <Table striped hover>
             <thead>

@@ -80,7 +80,6 @@ class Players extends React.Component {
                 teams.push(x.team)
             });
             const selectedplayerlist = Array.from(selectedplayers.keys()).sort();
-            // console.log(selectedplayerlist);
             this.setState({ selectedplayerlist : selectedplayerlist, selectedplayers : selectedplayers } );
         })
         .catch(console.log);
@@ -119,7 +118,11 @@ function PlayerLayout(x) {
 
     return (
         <Accordion.Item eventKey={x.player} >
-        <Accordion.Header id={x.player}>{x.player}</Accordion.Header>
+        <Accordion.Header id={x.player}>
+            <center>
+            {x.player}
+            </center>
+        </Accordion.Header>
         <Accordion.Body>
         <Card>
             <Card.Title>Selected By</Card.Title>

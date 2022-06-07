@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { Card, Row, Button, Container, Spinner } from 'react-bootstrap';
-import { Link } from "react-router-dom";
+import { Accordion, Spinner } from 'react-bootstrap';
+import Standings from './standings';
 
 class Tournaments extends React.Component {
     
@@ -15,21 +15,15 @@ class Tournaments extends React.Component {
                 <Spinner animation="border" />
             );
         }
-        //console.log(this.state.tournaments);
+
         return (
-            <div>
-            <center>   
-            <Container>
-                <Row>  
-                {
-                    this.state.tournaments.map((tournament) => (
-                        <TournamentCard key={tournament.tournament} tournament={tournament}/>
-                    ))
-                }                     
-                </Row>
-            </Container>
-            </center>
-            </div>
+            <Accordion flush> 
+            {
+                this.state.tournaments.map((tournament) => (
+                    <TournamentCard key={tournament.tournament} tournament={tournament}/>
+                ))
+            }                     
+            </Accordion>
         )
     }
 
@@ -53,25 +47,19 @@ class Tournaments extends React.Component {
 
 function TournamentCard(props) {
     var tournament = props.tournament;
- //       console.log(tournament);
     return (
-        <div>
-        <Card style={{ width: '24rem' }}>
-        <Card.Body>
-            <Card.Title>{tournament.tournament}</Card.Title>
-            <Card.Text>{tournament.location}</Card.Text>
-            <Card.Text>{tournament.dates}</Card.Text>
-            <Link to={`/standings/${tournament.tournament}`}>
-                <Button 
-                    variant="primary" 
-                    disabled={tournament.active===0}
-                >
-                    Standings
-                </Button>
-                </Link>
-        </Card.Body>
-        </Card>
-        </div>
+        <Accordion.Item eventKey={tournament.tournament} key={tournament.tournament}>
+        <Accordion.Header id={tournament.tournament}>
+            <center>
+            <div>{tournament.tournament}</div>
+            <div>{tournament.location}</div>
+            <div>{tournament.dates}</div>
+            </center>
+        </Accordion.Header>
+        <Accordion.Body>
+            <Standings tournament={tournament.tournament}/>
+        </Accordion.Body>
+        </Accordion.Item>
     )
 }
 

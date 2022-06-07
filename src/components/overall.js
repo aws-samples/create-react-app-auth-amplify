@@ -25,7 +25,9 @@ class Overall extends React.Component {
                 this.state.overall.map((x) => ( 
                     <Accordion.Item eventKey={x.team} key={x.team}>
                     <Accordion.Header id={x.team}>
-                        {x.team} ({formatscore(x.score)})
+                        <center>
+                            {x.team} ({formatscore(x.score)})
+                        </center>
                     </Accordion.Header>
                     <TeamLayout team={x.team} results={this.state.results.get(x.team)} />
                     </Accordion.Item>

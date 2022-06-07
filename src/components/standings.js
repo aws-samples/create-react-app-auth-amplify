@@ -26,13 +26,15 @@ class Standings extends React.Component {
 
         return (
             <div>
-            <center><h1>{this.tournament}</h1></center>
+            {/* <center><h1>{this.tournament}</h1></center> */}
             <Accordion flush> 
             {
                 this.state.standings.map((x) => ( 
                     <Accordion.Item eventKey={x.team} key={x.team}>
                     <Accordion.Header id={x.team}>
+                    <center>
                         {x.team} ({formatscore(x.score)})
+                     </center>
                     </Accordion.Header>
                     <PlayerLayout team={x.team} results={this.state.results} players={this.state.teams.get(x.team)}/>
                     </Accordion.Item>
