@@ -9,7 +9,7 @@ import React, { Component } from 'react';
 
 import Tournaments from './components/tournaments';
 import Teams from './components/teams';
-import Team from './components/team';
+// import Team from './components/team';
 import Overall from './components/overall';
 import Standings from './components/standings';
 import Navigation from './components/navigation';
@@ -34,7 +34,7 @@ class App extends Component {
             <Route path='tournaments' element={<Tournaments/>} />
             <Route path='standings/:tournament' element={<WrapStandings/>} />
             <Route path='teams' element={<Teams/>} >
-              <Route path=':team' element={<Team/>} />
+              {/* <Route path=':team' element={<Team/>} /> */}
             </Route>
             {/* <Route path='players' element={<Players/>} /> */}
             <Route path='players/showall=:showall' element={<WrapPlayers/>} />

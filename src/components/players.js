@@ -63,6 +63,11 @@ class Players extends React.Component {
                 var resultsforplayer = results.get(player);
                 resultsforplayer.push(x)
             });
+
+            // results.forEach(function(resultsforplayer) {
+            //     resultsforplayer.sort((a,b) => a.order - b.order)
+            // })
+
             playerlist = Array.from(playerlist).sort();
             this.setState({ results : results , playerlist : playerlist } );
             
@@ -155,6 +160,9 @@ function PlayerLayout(x) {
 }
 
 function formatscore(x) {
+    if (x === undefined) {
+        return 'N/A'
+    }
     if (x === 0) {
         return 'E'
     }

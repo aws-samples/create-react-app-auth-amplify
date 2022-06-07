@@ -101,6 +101,15 @@ function PlayerLayout(props) {
     })
 
     results = results.sort(function(a,b) {
+        if (a.position==='DNS') {
+            if (b.position!=='DNS') {
+                return 1;
+            }
+            return a.total - b.total
+        }
+        if (b.position==='DNS') {
+            return -1;
+        }
         if (a.position==='WD') {
             if (b.position!=='WD') {
                 return 1;
@@ -136,7 +145,10 @@ function PlayerLayout(props) {
             <tbody>
             {
                 results.map((x) => (
-                        <tr className={(x.position==='CUT' ) | (x.position==='WD') ? "table-danger" :"table-default" } key={x.player}>
+                        <tr key={x.player}
+                            className={
+                                ['CUT','WD','DNS'].includes(x.position) ? "table-danger" : "table-default" 
+                            }>
                             <td>{x.player}</td>
                             <td>{formatscore(x.total)}</td>
                             <td>{x.position}</td>
@@ -151,6 +163,9 @@ function PlayerLayout(props) {
 }
 
 function formatscore(x) {
+    if (x === undefined) {
+        return 'N/A'
+    }
     if (x === 0) {
         return 'E'
     }

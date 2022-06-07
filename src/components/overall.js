@@ -102,6 +102,9 @@ function TeamLayout(props) {
 }
 
 function formatscore(x) {
+    if (x === undefined) {
+        return 'N/A'
+    }
     if (x === 0) {
         return 'E'
     }
