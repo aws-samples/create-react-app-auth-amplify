@@ -118,14 +118,7 @@ function TeamLayout(x) {
 
 function PlayerLayout(x) {
 
-    var selected = x.selected;
-    var index = selected.indexOf(x.team);
-
-    //console.log(index, x.team, selected);
-
-    if (index !== -1) {
-        selected.splice(index, 1);
-    }
+    const selected = x.selected.filter(item => item !== x.team);
 
     return (
         <tr>
