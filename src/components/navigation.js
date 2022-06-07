@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 
 import {Navbar, Nav, Container} from 'react-bootstrap';
 import { Outlet } from "react-router-dom";
-//import { isMobile } from 'react-device-detect';
+import { isMobile } from 'react-device-detect';
 
 class Navigation extends React.Component {
 
@@ -40,7 +40,7 @@ class Navigation extends React.Component {
     return (
       <Container>
       <div>
-        <Navbar expand="lg" expanded={expanded}> 
+        <Navbar expand="lg" defaultExpanded={isMobile} collapseOnSelect={true}> 
           <Navbar.Brand href="/tournaments" onClick={() => setExpanded(true)}>Major Tournament Pick Six</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={() => setExpanded(!expanded)}/>
           <Navbar.Collapse id="basic-navbar-nav">
