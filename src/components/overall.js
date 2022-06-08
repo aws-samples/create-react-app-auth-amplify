@@ -54,7 +54,7 @@ class Overall extends React.Component {
         })
         .catch(console.log)
 
-        fetch('https://jyrbmltxta.execute-api.us-west-2.amazonaws.com/prod/standings?tournament=All')
+        fetch('https://jyrbmltxta.execute-api.us-west-2.amazonaws.com/prod/standings?tournament=Active')
         .then(res => res.json())
         .then((data) => {
             results = new Map();  

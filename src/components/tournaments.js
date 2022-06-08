@@ -31,13 +31,14 @@ class Tournaments extends React.Component {
         fetch('https://jyrbmltxta.execute-api.us-west-2.amazonaws.com/prod/tournaments?active=true')
         .then(res => res.json())
         .then((data) => {
-            const months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+            //const months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
             var tournaments = data.Items;
-            tournaments = tournaments.sort(function(a,b) {
-                const d1 = a.dates.slice(0,3).toLowerCase();
-                const d2 = b.dates.slice(0,3).toLowerCase();
-                return months.indexOf(d1) - months.indexOf(d2);
-            });       
+            // tournaments = tournaments.sort(function(a,b) {
+            //     const d1 = a.dates.slice(0,3).toLowerCase();
+            //     const d2 = b.dates.slice(0,3).toLowerCase();
+            //     return months.indexOf(d1) - months.indexOf(d2);
+            // });  
+            tournaments = tournaments.sort((a,b) => a.order - b.order);
             this.setState({ tournaments: tournaments })
         })
         .catch(console.log)
