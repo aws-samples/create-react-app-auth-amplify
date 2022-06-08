@@ -26,7 +26,7 @@ class Overall extends React.Component {
                     <Accordion.Item eventKey={x.team} key={x.team}>
                     <Accordion.Header id={x.team}>
                         <center>
-                            {x.team} ({formatscore(x.score)})
+                            {x.team} ({formatscore(x.score[0] + x.score[1])})
                         </center>
                     </Accordion.Header>
                     <TeamLayout team={x.team} results={this.state.results.get(x.team)} />
@@ -90,7 +90,7 @@ function TeamLayout(props) {
                 props.results.map((x) => (
                         <tr key={x.tournament}>
                             <td>{x.tournament}</td>
-                            <td>{formatscore(x.score[0]+x.score[1])}</td>
+                            <td>{formatscore(x.score)}</td>
                         </tr>           
                     ) 
                 )

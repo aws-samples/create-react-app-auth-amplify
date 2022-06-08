@@ -52,3 +52,4 @@ amplifytools.xcconfig
 **.sample
 #amplify-do-not-edit-end
 src/scrape.js
+src/index 2.css
