@@ -48,7 +48,7 @@ class Overall extends React.Component {
         .then((data) => {
             overall = data.Items;
             overall.sort(function(a, b){
-                return a.score - b.score;
+                return a.order - b.order;
             });
             this.setState({ overall : overall });
         })
@@ -90,7 +90,7 @@ function TeamLayout(props) {
                 props.results.map((x) => (
                         <tr key={x.tournament}>
                             <td>{x.tournament}</td>
-                            <td>{formatscore(x.score)}</td>
+                            <td>{formatscore(x.score[0]+x.score[1])}</td>
                         </tr>           
                     ) 
                 )
