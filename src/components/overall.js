@@ -29,7 +29,7 @@ class Overall extends React.Component {
                             {x.team} ({formatscore(x.score[0] + x.score[1])})
                         </center>
                     </Accordion.Header>
-                    <TeamLayout team={x.team} results={this.state.results.get(x.team)} />
+                    <TeamLayout team={x.team} results={this.state.results.get(x.team)} tiebreaker={x.tiebreaker}/>
                     </Accordion.Item>
                 ))
             }    
@@ -76,6 +76,8 @@ class Overall extends React.Component {
 
 function TeamLayout(props) {
 
+    const tiebreaker = [ 'Last', 'Better Score', 'Third Place', 'Fourth Place', 'Fifth Place', 'Sixth Place' ];
+
     return (
         <Accordion.Body>
         <Table striped bordered size="sm">
@@ -97,6 +99,7 @@ function TeamLayout(props) {
             }
             </tbody>
         </Table>
+        <div><font size="2">Position Tiebreaker : {tiebreaker[Math.abs(props.tiebreaker)]}</font></div>
         </Accordion.Body>
     );
 }
