@@ -33,7 +33,7 @@ class Standings extends React.Component {
                     <Accordion.Item eventKey={x.team} key={x.team}>
                     <Accordion.Header id={x.team}>
                     <center>
-                        {x.team} ({formatscore(x.score)})
+                        {x.team} ({formatscore(x.score[0] + x.score[1])})
                      </center>
                     </Accordion.Header>
                     <PlayerLayout team={x.team} results={this.state.results} players={this.state.teams.get(x.team)}/>
