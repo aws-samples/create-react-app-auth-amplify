@@ -36,7 +36,7 @@ class Standings extends React.Component {
                         {x.team} ({formatscore(x.score[0] + x.score[1])})
                      </center>
                     </Accordion.Header>
-                    <PlayerLayout team={x.team} results={this.state.results} players={this.state.teams.get(x.team)}/>
+                    <PlayerLayout team={x.team} results={this.state.results} players={this.state.teams.get(x.team)} tiebreaker={x.tiebreaker}/>
                     </Accordion.Item>
                 ))
             }    
@@ -132,6 +132,8 @@ function PlayerLayout(props) {
     });
     //console.log(team,results);
 
+    const tiebreaker = [ 'Last', 'Better Score', 'Third Place', 'Fourth Place', 'Fifth Place', 'Sixth Place' ];
+
     return (
         <Accordion.Body>
         <Table striped bordered size="sm">
@@ -158,6 +160,7 @@ function PlayerLayout(props) {
             }
             </tbody>
         </Table>
+        <div><font size="2">Position Tiebreaker : {tiebreaker[Math.abs(props.tiebreaker)]}</font></div>
         </Accordion.Body>
     );
 }

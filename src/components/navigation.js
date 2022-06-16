@@ -40,7 +40,7 @@ class Navigation extends React.Component {
     return (
       <Container>
       <div>
-        <Navbar expand="lg" defaultExpanded={isMobile} collapseOnSelect={true}> 
+        <Navbar expand="lg" defaultExpanded={false} collapseOnSelect={true}> 
           <Navbar.Brand href="/tournaments" onClick={() => setExpanded(true)}>Major Tournament Pick Six</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={() => setExpanded(!expanded)}/>
           <Navbar.Collapse id="basic-navbar-nav">
