@@ -92,7 +92,7 @@ function TeamLayout(props) {
                 props.results.map((x) => (
                         <tr key={x.tournament}>
                             <td>{x.tournament}</td>
-                            <td>{formatscore(x.score)}</td>
+                            <td>{formatscore(x.score[0] + x.score[1])}</td>
                         </tr>           
                     ) 
                 )
