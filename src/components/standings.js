@@ -142,6 +142,7 @@ function PlayerLayout(props) {
                     <th>Player</th> 
                     <th>Score</th> 
                     <th>Position</th>
+                    <th>Thru</th>
                 </tr>
             </thead>
             <tbody>
@@ -154,6 +155,7 @@ function PlayerLayout(props) {
                             <td>{x.player}</td>
                             <td>{formatscore(x.total)}</td>
                             <td>{x.position}</td>
+                            <td>{x.thru}</td>
                         </tr>           
                     ) 
                 )
