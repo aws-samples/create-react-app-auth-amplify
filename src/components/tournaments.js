@@ -38,7 +38,18 @@ class Tournaments extends React.Component {
             //     const d2 = b.dates.slice(0,3).toLowerCase();
             //     return months.indexOf(d1) - months.indexOf(d2);
             // });  
-            tournaments = tournaments.sort((a,b) => a.order - b.order);
+            tournaments = tournaments.sort(function(a, b){
+                if (a.active === b.active) {
+                    return a.order - b.order;
+                }
+                if (a.active === 1) {
+                    return -1;
+                }
+                if (b.active === 1) {
+                    return 1;
+                }
+                return b.active - a.active;             
+            });
             this.setState({ tournaments: tournaments })
         })
         .catch(console.log)
@@ -51,7 +62,7 @@ function TournamentCard(props) {
     return (
         <Accordion.Item eventKey={tournament.tournament} key={tournament.tournament}>
         <Accordion.Header id={tournament.tournament}>
-            <center>
+            <center className={tournament.active===1 ? "active-tournament" : ""}>
             <div>{tournament.tournament}</div>
             <div>{tournament.location}</div>
             <div>{tournament.dates}</div>

@@ -40,3 +40,12 @@
 .accordion-button{
   display:block;
 }
+
+.accordion-button:hover {
+  background: rgb(220,220,220) !important;
+}
+
+.active-tournament {
+/*  background: rgb(0,192,0) !important; */
+  font-weight: 800;
+}
