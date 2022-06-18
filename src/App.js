@@ -31,6 +31,7 @@ class App extends Component {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Navigation/>} >
+            <Route index element={<Tournaments/>} />
             <Route path='tournaments' element={<Tournaments/>} />
             <Route path='standings/:tournament' element={<WrapStandings/>} />
             <Route path='teams' element={<Teams/>} >
