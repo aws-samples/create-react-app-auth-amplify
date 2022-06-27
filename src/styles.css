@@ -1,0 +1,340 @@
+/*Common sectiom*/
+body {
+  background-color: #ffffff;
+  background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+  /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+  overflow-x: hidden;
+  font-family: proxima-nova, Helvetica, sans-serif;
+  margin: 0;
+}
+div#popup-form .MuiFormControl-root.MuiTextField-root {
+  width: 48%;
+  margin: 10px 1%;
+}
+div#popup-form {
+  /*background-color: #f7f7f7;*/
+  width: 100%;
+  height: 100%;
+  min-height: 800px;
+  margin: auto;
+  position: relative;
+  /* overflow-y: scroll; */
+  opacity: 1;
+}
+span.FormBox .MuiFormControl-root.MuiTextField-root,
+div#popup-form span.FormBox .MuiFormControl-root {
+  width: 100%;
+  margin: 10px 1% 10px 0;
+}
+.css-a3l6o-MuiInputBase-root-MuiInput-root-MuiSelect-root:hover:not(.Mui-disabled):before,
+.muiinput-root.muiinput-underline.muiinputbase-root.muiinputbase-colorprimary:before,
+.css-a3l6o-MuiInputBase-root-MuiInput-root-MuiSelect-root:before {
+  border-bottom: 2px solid #35b3a8;
+}
+.css-a3l6o-MuiInputBase-root-MuiInput-root-MuiSelect-root:after,
+.MuiInput-root.MuiInput-underline.MuiInputBase-root.MuiInputBase-colorPrimary:after {
+  border-bottom: 2px solid #35b3a8;
+}
+button#tab-5.hide {
+  display: none;
+}
+span.leftBox.MuiBox-root {
+  float: left;
+}
+span.RightBox.MuiBox-root {
+  float: left;
+  width: 48%;
+  margin-left: 1%;
+  margin-top: 20px;
+}
+span.RightBox.MuiBox-root textarea {
+  width: 100%;
+}
+.bg-configurator-box-background,
+.FormBody {
+  width: 100%;
+  margin: auto;
+  padding: 30px 10%;
+}
+.FormBody {
+  width: 80%;
+  float: left;
+  margin-bottom: 30px;
+}
+.bg-configurator-box-background {
+  background-color: #f7f7f7;
+}
+.bg-configurator-box-background .container .row {
+  justify-content: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;
+  align-content: center;
+}
+.packaging-summary-col {
+  text-align: left;
+  width: 26%;
+}
+.summary-title {
+  width: 100%;
+  position: relative;
+}
+.summary-title p.summary-row {
+  width: 90%;
+  margin: 10px 0 10px auto;
+  float: left;
+}
+.summary-title span.summary-titel-span {
+  text-align: left;
+  width: 35%;
+  float: left;
+  font-weight: 700;
+  color: #35b3a8;
+  font-size: 1.05rem;
+}
+.summary-title span.summary-details {
+  text-align: right;
+  width: 65%;
+  float: right;
+}
+.Body {
+  float: left;
+  width: 100%;
+}
+.navbar-inner {
+  margin: 10px 20px;
+}
+.App {
+  font-family: proxima-nova, Helvetica, sans-serif;
+  text-align: center;
+}
+.footer {
+  background: #000;
+  color: #fff;
+  font-size: 12px;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+.footer a {
+  color: #fff;
+  padding: 0 10px;
+}
+.row {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+/*Common sectiom*/
+
+/*Top image disaply sectiom*/
+.home-header.position-relative {
+  min-height: 200px;
+  text-align: center;
+  min-width: 500px;
+  width: 40%;
+  margin: 53px auto 0;
+  vertical-align: bottom;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  height: 60%;
+}
+.home-header.position-relative h3 {
+  font-size: 3rem;
+  font-family: Playfair Display, serif;
+  font-weight: 300;
+  margin: 10px auto;
+}
+.home-header.position-relative .text-center.pt-5.pt-xs-7.pt-sm-9.header {
+  width: 500px;
+  margin: auto;
+  vertical-align: bottom;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 550px;
+}
+.home-header.position-relative {
+  position: relative;
+}
+.home-header.position-relative img {
+  position: relative;
+  max-width: 100%;
+}
+.home-header.position-relative img.mw-100 {
+  position: absolute;
+  max-width: 100%;
+  top: 0;
+  left: 0;
+}
+.text-center.pt-5.pt-xs-7.pt-sm-9.header img {
+  margin-top: 35%;
+  max-width: 100%;
+}
+@media only screen and (max-width: 1666px) {
+  .home-header.position-relative .text-center.pt-5.pt-xs-7.pt-sm-9.header {
+    height: 400px;
+  }
+  .text-center.pt-5.pt-xs-7.pt-sm-9.header img {
+    margin-top: 10%;
+  }
+}
+
+.text-center.pt-5.pt-xs-7.pt-sm-9.header p {
+  margin-top: 20px;
+  font-size: 1.5rem;
+  font-weight: 100;
+}
+.nav-top-right.d-flex.justify-content-end.pt-3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  width: 14%;
+  margin-right: 30px;
+}
+.nav-top-right.d-flex.justify-content-end.pt-3 .Nice {
+  display: none;
+}
+.nav-top-right.d-flex.justify-content-end.pt-3 .Nice.Display {
+  display: block;
+}
+/*Top image disaply sectiom*/
+
+/*button*/
+button.MuiButtonBase-root.MuiFab-root.MuiFab-primary {
+  background: #35b3a8;
+  font-weight: 700;
+}
+
+/*Tab sectiom*/
+.MuiTabs-flexContainer.MuiTabs-centered {
+  max-width: 1600px;
+  margin: auto;
+  justify-content: space-around;
+}
+.MuiTabs-scroller.MuiTabs-fixed {
+  margin: auto;
+  border-bottom: 1px solid #35b3a8;
+}
+.MuiTabs-flexContainer.MuiTabs-centered {
+  align-items: center;
+}
+.MuiTabs-flexContainer.MuiTabs-centered
+  button.MuiButtonBase-root.MuiTab-root.MuiTab-labelIcon {
+  width: 185px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+.MuiTabs-flexContainer.MuiTabs-centered
+  button
+  svg.MuiSvgIcon-root.MuiTab-iconWrapper {
+  margin-left: 10px;
+}
+.MuiTabs-flexContainer.MuiTabs-centered button.Mui-selected {
+  color: #35b3a8;
+  border-color: #35b3a8;
+  font-weight: bold;
+}
+.MuiTabs-flexContainer.MuiTabs-centered button.MuiFab-extended {
+  vertical-align: center;
+}
+.MuiTabs-flexContainer.MuiTabs-centered
+  button.Mui-selected
+  svg.MuiSvgIcon-root.MuiTab-iconWrapper {
+  color: #35b3a8;
+}
+.MuiTabs-indicator {
+  background-color: #35b3a8 !important;
+}
+.MuiBox-root .Tabpanel .MuiBox-root {
+  min-height: 245px;
+  padding: 0;
+}
+.MuiTypography-root {
+  max-width: 1500px;
+  margin: auto !important;
+}
+div.Tabpanel {
+  width: 80%;
+  margin: auto;
+}
+.Tabpanel button.MuiButtonBase-root.MuiIconButton-root {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  color: #35b3a8;
+  height: 140px;
+  border-radius: 0;
+}
+/*Tab sectiom*/
+.InputOuter {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  align-content: center;
+  justify-content: space-evenly;
+  margin: 20px auto 0;
+  float: left;
+}
+[type="radio"],
+[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 134px;
+  height: 115px;
+}
+/* IMAGE STYLES */
+[type="radio"] + img,
+[type="checkbox"] + img {
+  cursor: pointer;
+}
+[type="radio"] + span,
+[type="checkbox"] + span {
+  margin-top: 20px;
+}
+/* CHECKED STYLES */
+[type="radio"]:checked + img,
+[type="checkbox"]:checked + img {
+  outline: 2px solid #f00;
+}
+[type="checkbox"]:checked ~ *,
+[type="radio"]:checked ~ * {
+  font-weight: bold;
+ /* margin-top: 20px;*/
+}
+.Tabpanel.Coating .InputOuter img,
+.Tabpanel.Finish .InputOuter img,
+.Tabpanel.Material .InputOuter img,
+.Tabpanel.PrintSpec .InputOuter img,
+.Tabpanel.Printsurface .InputOuter img {
+  border: 1px solid #ccc;
+  border-radius: 50%;
+}
+.Tabpanel.Coating label.InputOuter,
+.Tabpanel.Finish label.InputOuter,
+.Tabpanel.Printsurface label.InputOuter {
+  width: 16%;
+}
+.Tabpanel.Style label.InputOuter {
+  width: 12.5%;
+}
+.Tabpanel.Material label.InputOuter {
+  width: 16.5%;
+}
+.Tabpanel.PrintSpec label.InputOuter {
+  width: 8%;
+}
+.align-top p {
+  line-height: 0;
+}
