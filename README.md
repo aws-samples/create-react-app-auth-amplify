@@ -1,4 +1,4 @@
-# Create-react-app with AWS Amplify Auth 
+# Create-react-app with AWS Amplify Auth (Archived)
 
 This auth starter implements withAuthenticator HOC to provide a basic authentication flow for signing up signing in users as well as protected client side routing using AWS Amplify. Auth features: User sign up, User sign in, Multi-factor Authentication, User sign-out.
 
