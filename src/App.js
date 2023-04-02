@@ -16,6 +16,9 @@ class App extends Component {
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
+          <p>
+          This is an example of a React web app designed to help integrate Flatfile into our processes.
+          </p>
           <a
             className="App-link"
             href="https://reactjs.org"
